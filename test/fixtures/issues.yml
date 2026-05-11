@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  project_name: MyString
+  status: MyString
+  error_message: MyText
+  stack_trace: MyText
+  steps_to_reproduce: MyText
+  what_i_checked: MyText
+  root_cause: MyText
+  fix: MyText
+  prevention: MyText
+  interview_summary: MyText
+
+two:
+  title: MyString
+  project_name: MyString
+  status: MyString
+  error_message: MyText
+  stack_trace: MyText
+  steps_to_reproduce: MyText
+  what_i_checked: MyText
+  root_cause: MyText
+  fix: MyText
+  prevention: MyText
+  interview_summary: MyText
