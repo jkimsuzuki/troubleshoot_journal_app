@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Troubleshooting Journal
 
-Things you may want to cover:
+A Ruby on Rails app for logging bugs, errors, debugging steps, root causes, fixes, and interview-ready summaries.
 
-* Ruby version
+## Purpose
 
-* System dependencies
+This project helps me build technical troubleshooting habits for future Site Reliability Engineering and Resiliency Incident Response roles.
 
-* Configuration
+## Features
 
-* Database creation
+- Create troubleshooting entries
+- Track error messages and stack traces
+- Record what was checked
+- Document root causes and fixes
+- Write interview-ready summaries
 
-* Database initialization
+## Tech Stack
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Ruby on Rails
+- SQLite
+- HTML/CSS
