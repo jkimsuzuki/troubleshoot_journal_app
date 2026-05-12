@@ -21,7 +21,7 @@
     <p><strong> Date Created <br> <%= issue.created_at %> <br></p>
     <p><strong> Last Updated <br> <%= issue.updated_at %> <br></p>
     <p>
-      <%= link_to "Show this issue", issue %>
+      <h2><%= link_to issue.title, issue %></h2>
     </p>
   <% end %>
 </div>
