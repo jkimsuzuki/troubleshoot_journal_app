@@ -7,6 +7,19 @@
 <div id="issues">
   <% @issues.each do |issue| %>
     <%= render issue %>
+    <h2><%= issue.title %></h2> <br>
+    <p> Project </p> <%= issue.project_name %> <br>
+    <p> Status </p> <%= issue.status %> <br>
+    <p> Error Message </p> <%= issue.error_message %> <br>
+    <p> Stack Trace </p> <%= issue.stack_trace %> <br>
+    <p> Steps to Reproduce </p> <%= issue.steps_to_reproduce %> <br>
+    <p> What I Checked </p> <%= issue.what_i_checked %> <br>
+    <p> Root Cause </p> <%= issue.root_cause %> <br>
+    <p> Fix </p> <%= issue.fix %> <br>
+    <p> Prevention </p> <%= issue.prevention %> <br>
+    <p> Interview Summary </p> <%= issue.interview_summary %> <br>
+    <p> Date Created </p> <%= issue.created_at %> <br>
+    <p> Last Updated </p> <%= issue.updated_at %> <br>
     <p>
       <%= link_to "Show this issue", issue %>
     </p>
