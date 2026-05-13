@@ -14,57 +14,57 @@
   <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
-  </div>
+  </div><br>
 
   <div>
     <%= form.label :project_name, style: "display: block" %>
     <%= form.text_field :project_name %>
-  </div>
+  </div><br>
 
   <div>
     <%= form.label :status, style: "display: block" %>
     <%= form.text_field :status %>
-  </div>
+  </div><br>
 
   <div>
     <%= form.label :error_message, style: "display: block" %>
-    <%= form.textarea :error_message %>
-  </div>
+    <%= form.textarea :error_message, rows: 4 %>
+  </div><br>
 
   <div>
     <%= form.label :stack_trace, style: "display: block" %>
-    <%= form.textarea :stack_trace %>
-  </div>
+    <%= form.textarea :stack_trace, rows: 6 %>
+  </div><br>
 
   <div>
     <%= form.label :steps_to_reproduce, style: "display: block" %>
-    <%= form.textarea :steps_to_reproduce %>
-  </div>
+    <%= form.textarea :steps_to_reproduce, rows: 4 %>
+  </div><br>
 
   <div>
     <%= form.label :what_i_checked, style: "display: block" %>
-    <%= form.textarea :what_i_checked %>
-  </div>
+    <%= form.textarea :what_i_checked, rows: 4 %>
+  </div><br>
 
   <div>
     <%= form.label :root_cause, style: "display: block" %>
-    <%= form.textarea :root_cause %>
-  </div>
+    <%= form.textarea :root_cause, rows: 6 %>
+  </div><br>
 
   <div>
     <%= form.label :fix, style: "display: block" %>
-    <%= form.textarea :fix %>
-  </div>
+    <%= form.textarea :fix, rows: 6 %>
+  </div><br>
 
   <div>
     <%= form.label :prevention, style: "display: block" %>
     <%= form.textarea :prevention %>
-  </div>
+  </div><br>
 
   <div>
     <%= form.label :interview_summary, style: "display: block" %>
-    <%= form.textarea :interview_summary %>
-  </div>
+    <%= form.textarea :interview_summary, rows: 4 %>
+  </div><br>
 
   <div>
     <%= form.submit %>
