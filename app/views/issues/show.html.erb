@@ -1,7 +1,75 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @issue %>
+<h1><%= @issue.title %></h1>
 
+<section>
+  <h2>Issue Details</h2>
+
+  <p>
+    <strong>Project:</strong>
+    <%= @issue.project_name %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @issue.status %>
+  </p>
+
+  <p>
+    <strong>Date Created:</strong>
+    <%= @issue.created_at.strftime("%B %d, %Y") %>
+  </p>
+
+  <p>
+    <strong>Last Updated:</strong>
+    <%= @issue.updated_at %>
+  </p>
+</section>
+<hr>
+<section>
+  <p>
+    <strong>Error Message:</strong>
+    <%= @issue.error_message %>
+  </p>
+
+  <p>
+    <strong>Stack Trace:</strong>
+    <pre><%= @issue.stack_trace %></pre>
+  </p>
+
+  <p>
+    <strong>Steps to Reproduce:</strong>
+    <%= @issue.steps_to_reproduce %>
+  </p>
+
+  <p>
+    <strong>What I Checked:</strong>
+    <%= @issue.what_i_checked %>
+  </p>
+</section>
+<hr>
+<section>
+  <p>
+    <strong>Root Cause:</strong>
+    <%= @issue.root_cause %>
+  </p>
+
+  <p>
+    <strong>Fix:</strong>
+    <%= @issue.fix %>
+  </p>
+
+  <p>
+    <strong>Prevention:</strong>
+    <%= @issue.prevention %>
+  </p>
+
+  <p>
+    <strong>Interview Summary:</strong>
+    <%= @issue.interview_summary %>
+  </p>
+</section>
+<hr>
 <div>
   <%= link_to "Edit this issue", edit_issue_path(@issue) %> |
   <%= link_to "Back to issues", issues_path %>
