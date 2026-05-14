@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_11_175312) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_14_155514) do
   create_table "issues", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "error_message"
     t.text "fix"
     t.text "interview_summary"
     t.text "prevention"
+    t.integer "project_id"
     t.string "project_name"
     t.text "root_cause"
     t.text "stack_trace"
@@ -25,5 +26,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_11_175312) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.text "what_i_checked"
+    t.index ["project_id"], name: "index_issues_on_project_id"
   end
+
+  create_table "projects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "name"
+    t.string "status"
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "issues", "projects"
 end
