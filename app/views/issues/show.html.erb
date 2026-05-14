@@ -7,7 +7,7 @@
 
   <p>
     <strong>Project:</strong>
-    <%= @issue.project_name %>
+    <%= @issue.project&.name || "No project assigned" %>
   </p>
 
   <p>

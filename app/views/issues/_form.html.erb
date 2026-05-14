@@ -17,7 +17,7 @@
   </div><br>
 
   <div>
-    <%= form.label :project_name, style: "display: block" %>
+    <%= form.label :project_id, "Project", style: "display: block" %>
     <%= form.collection_select :project_id, Project.all, :id, :name, { prompt: "Select a Project" } %>
   </div><br>
 

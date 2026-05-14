@@ -1,6 +1,6 @@
 class Issue < ApplicationRecord
-  belongs_to :project
+  belongs_to :project, optional: true
   validates :title, presence: true
-  validates :project_name, presence: true
+  validates :project_id, presence: true
   validates :status, presence: true
 end

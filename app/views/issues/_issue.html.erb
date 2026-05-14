@@ -6,7 +6,7 @@
 
   <div>
     <strong>Project name:</strong>
-    <%= issue.project_name %>
+    <%= issue.project&.name || "No project assigned" %>
   </div>
 
   <div>
@@ -30,7 +30,7 @@
   </div>
 
   <div>
-    <strong>What i checked:</strong>
+    <strong>What I checked:</strong>
     <%= issue.what_i_checked %>
   </div>
 
