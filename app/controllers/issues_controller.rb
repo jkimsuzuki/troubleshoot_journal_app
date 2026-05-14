@@ -65,6 +65,6 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.expect(issue: [ :title, :project_name, :status, :error_message, :stack_trace, :steps_to_reproduce, :what_i_checked, :root_cause, :fix, :prevention, :interview_summary ])
+      params.expect(issue: [ :title, :project_id, :status, :error_message, :stack_trace, :steps_to_reproduce, :what_i_checked, :root_cause, :fix, :prevention, :interview_summary ])
     end
 end
