@@ -8,3 +8,51 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.app-layout {
+  display: flex;
+}
+
+aside {
+  width: 220px;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #0E0C0C;
+  color: #F3F1F1
+}
+
+aside a {
+  color: #F3F1F1;
+  text-decoration: none;
+}
+
+aside a:visited {
+  color: #F3F1F1
+}
+
+aside a:hover {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  color: #0E0C0C;
+}
+
+main a {
+  color: #0E0C0C;
+  text-decoration: none;
+}
+
+main a:visited {
+  color: #0E0C0C
+}
+
+main a:hover {
+  text-decoration: underline;
+}
