@@ -17,7 +17,7 @@ class IssuesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create issue" do
     assert_difference("Issue.count") do
-      post issues_url, params: { issue: { error_message: @issue.error_message, fix: @issue.fix, interview_summary: @issue.interview_summary, prevention: @issue.prevention, project_name: @issue.project_name, root_cause: @issue.root_cause, stack_trace: @issue.stack_trace, status: @issue.status, steps_to_reproduce: @issue.steps_to_reproduce, title: @issue.title, what_i_checked: @issue.what_i_checked } }
+      post issues_url, params: { issue: { error_message: @issue.error_message, fix: @issue.fix, interview_summary: @issue.interview_summary, prevention: @issue.prevention, project_id: projects(:one).id, root_cause: @issue.root_cause, stack_trace: @issue.stack_trace, status: @issue.status, steps_to_reproduce: @issue.steps_to_reproduce, title: @issue.title, what_i_checked: @issue.what_i_checked } }
     end
 
     assert_redirected_to issue_url(Issue.last)
@@ -34,7 +34,7 @@ class IssuesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update issue" do
-    patch issue_url(@issue), params: { issue: { error_message: @issue.error_message, fix: @issue.fix, interview_summary: @issue.interview_summary, prevention: @issue.prevention, project_name: @issue.project_name, root_cause: @issue.root_cause, stack_trace: @issue.stack_trace, status: @issue.status, steps_to_reproduce: @issue.steps_to_reproduce, title: @issue.title, what_i_checked: @issue.what_i_checked } }
+    patch issue_url(@issue), params: { issue: { error_message: @issue.error_message, fix: @issue.fix, interview_summary: @issue.interview_summary, prevention: @issue.prevention, project_name: projects(:one).id, root_cause: @issue.root_cause, stack_trace: @issue.stack_trace, status: @issue.status, steps_to_reproduce: @issue.steps_to_reproduce, title: @issue.title, what_i_checked: @issue.what_i_checked } }
     assert_redirected_to issue_url(@issue)
   end
 
