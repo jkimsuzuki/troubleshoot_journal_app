@@ -240,3 +240,18 @@ input[type="submit"] {
 input[type="submit"]:hover {
   opacity: 0.9;
 }
+
+.status-resolved {
+  background-color: #E6F4EA;
+  color: #137333;
+}
+
+.status-investigating {
+  background-color: #FFF3CD;
+  color: #856404;
+}
+
+.status-pending {
+  background-color: #F3F4F6;
+  color: #374151;
+}
