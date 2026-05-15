@@ -35,30 +35,7 @@
 
 <div id="issues">
   <% @issues.each do |issue| %>
-
-  <section>
-    <h2>
-      <%= link_to issue.title, issue %>
-    </h2>
-
-    <p>
-      <strong>Project:</strong>
-      <%= issue.project&.name || "No project assigned" %>
-    </p>
-
-    <p>
-      <strong>Status:</strong>
-      <%= issue.status %>
-    </p>
-
-    <p>
-      <strong>Date Created:</strong>
-      <%= issue.created_at.strftime("%B %d, %Y") %>
-    </p>
-  </section>
-
-    <hr>
-
+    <% render "issue_card", issue: issue %>
     <%end%>
 
 </div>

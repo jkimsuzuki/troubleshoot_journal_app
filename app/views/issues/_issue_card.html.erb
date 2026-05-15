@@ -1,0 +1,22 @@
+<section class="issue_card">
+
+  <h3>
+    <%= link_to issue.title, issue %>
+  </h3>
+
+  <p>
+    <strong>Project:</strong>
+    <%= issue.project&.name || "No project assigned" %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= issue.status %>
+  </p>
+
+  <p>
+    <strong>Date Created:</strong>
+    <%= issue.created_at.strftime("%B %d, %Y") %>
+  </p>
+  
+</section>
