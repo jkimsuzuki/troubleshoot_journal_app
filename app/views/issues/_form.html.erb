@@ -1,7 +1,11 @@
 <%= form_with(model: issue) do |form| %>
+
   <% if issue.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+      <h2>
+        <%= pluralize(issue.errors.count, "error") %>
+        prohibited this issue from being saved:
+      </h2>
 
       <ul>
         <% issue.errors.each do |error| %>
@@ -11,62 +15,86 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div><br>
+  <section class="form-section">
 
-  <div>
-    <%= form.label :project_id, "Project", style: "display: block" %>
-    <%= form.collection_select :project_id, Project.all, :id, :name, { prompt: "Select a Project" } %>
-  </div><br>
+    <h2>Issue Overview</h2>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div><br>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div>
-    <%= form.label :error_message, style: "display: block" %>
-    <%= form.textarea :error_message, rows: 4 %>
-  </div><br>
+    <div class="field">
+      <%= form.label :project_id, "Project" %>
+      <%= form.collection_select :project_id,
+      Project.all,
+      :id,
+      :name,
+      prompt: "Select a project" %>
+    </div>
 
-  <div>
-    <%= form.label :stack_trace, style: "display: block" %>
-    <%= form.textarea :stack_trace, rows: 6 %>
-  </div><br>
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status,
+      ["Pending", "Investigating", "Resolved"] %>
+    </div>
 
-  <div>
-    <%= form.label :steps_to_reproduce, "Steps to Reproduce", style: "display: block" %>
-    <%= form.textarea :steps_to_reproduce, rows: 4 %>
-  </div><br>
+  </section>
 
-  <div>
-    <%= form.label :what_i_checked, "What I Checked", style: "display: block" %>
-    <%= form.textarea :what_i_checked, rows: 4 %>
-  </div><br>
+  <section class="form-section">
 
-  <div>
-    <%= form.label :root_cause, style: "display: block" %>
-    <%= form.textarea :root_cause, rows: 6 %>
-  </div><br>
+    <h2>Error Details</h2>
 
-  <div>
-    <%= form.label :fix, style: "display: block" %>
-    <%= form.textarea :fix, rows: 6 %>
-  </div><br>
+    <div class="field">
+      <%= form.label :error_message %>
+      <%= form.text_area :error_message, rows: 4 %>
+    </div>
 
-  <div>
-    <%= form.label :prevention, style: "display: block" %>
-    <%= form.textarea :prevention %>
-  </div><br>
+    <div class="field">
+      <%= form.label :stack_trace %>
+      <%= form.text_area :stack_trace, rows: 6 %>
+    </div>
 
-  <div>
-    <%= form.label :interview_summary, style: "display: block" %>
-    <%= form.textarea :interview_summary, rows: 4 %>
-  </div><br>
+    <div class="field">
+      <%= form.label :steps_to_reproduce %>
+      <%= form.text_area :steps_to_reproduce, rows: 4 %>
+    </div>
 
-  <div>
+  </section>
+
+  <section class="form-section">
+
+    <h2>Investigation Process</h2>
+
+    <div class="field">
+      <%= form.label :what_i_checked %>
+      <%= form.text_area :what_i_checked, rows: 4 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :root_cause %>
+      <%= form.text_area :root_cause, rows: 4 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :fix %>
+      <%= form.text_area :fix, rows: 4 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :prevention %>
+      <%= form.text_area :prevention, rows: 4 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :interview_summary %>
+      <%= form.text_area :interview_summary, rows: 4 %>
+    </div>
+
+  </section>
+
+  <div class="form-actions">
     <%= form.submit %>
   </div>
+
 <% end %>
