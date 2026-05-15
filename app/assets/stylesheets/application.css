@@ -19,32 +19,32 @@ body {
   min-height: 100vh;
 }
 
-aside {
-  width: 250px;
+a.sidebar {
+  width: 260px;
   min-height: 100vh;
-  padding: 20px;
+  padding: 2rem 1rem;
   background-color: #0E0C0C;
   color: #F3F1F1;
 }
 
-aside h2 {
+.sidebar h2 {
   margin-bottom: 2rem;
 }
 
-aside p {
+.sidebar p {
   margin-bottom: 1rem;
 }
 
-aside a {
+.sidebar a {
   color: #F3F1F1;
   text-decoration: none;
 }
 
-aside a:visited {
+.sidebar a:visited {
   color: #F3F1F1
 }
 
-aside a:hover {
+.sidebar a:hover {
   text-decoration: underline;
 }
 
@@ -74,9 +74,9 @@ main a:hover {
 
 .issue-card {
   border: 1px solid #dcdcdc;
-  padding: 1rem;
+  padding: 1.25rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #ffffff;
 }
 
@@ -86,9 +86,15 @@ main a:hover {
 
 .dashboard-stats div {
   background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #dcdcdc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.dashboard-stats div:hover {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
 }
 
 .dashboard-stats {
