@@ -1,27 +1,27 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: Cart issue
   project: one
-  status: MyString
-  error_message: MyText
-  stack_trace: MyText
-  steps_to_reproduce: MyText
-  what_i_checked: MyText
-  root_cause: MyText
-  fix: MyText
-  prevention: MyText
-  interview_summary: MyText
+  status: Investigating
+  error_message: Cart failing
+  stack_trace: Stack trace example
+  steps_to_reproduce: Reproduce steps
+  what_i_checked: Checked logs
+  root_cause: Nil cart
+  fix: Added nil check
+  prevention: Add tests
+  interview_summary: Learned debugging
 
 two:
-  title: MyString
-  project: one
-  status: MyString
-  error_message: MyText
-  stack_trace: MyText
-  steps_to_reproduce: MyText
-  what_i_checked: MyText
-  root_cause: MyText
-  fix: MyText
-  prevention: MyText
-  interview_summary: MyText
+  title: Liquid rendering issue
+  project: two
+  status: Resolved
+  error_message: Liquid variable missing
+  stack_trace: Liquid stack trace
+  steps_to_reproduce: Visit product page
+  what_i_checked: Checked theme
+  root_cause: Missing variable
+  fix: Added variable
+  prevention: Add theme checks
+  interview_summary: Learned Liquid debugging
