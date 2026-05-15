@@ -4,6 +4,11 @@ class IssuesController < ApplicationController
   # GET /issues or /issues.json
   def index
     @issues = Issue.all
+
+    @total_issues = Issue.count
+    @resolved_issues = Issue.where(status: "Resolved").count
+    @investigating_issues = Issue.where(status: "Investigating").count
+    @projects_count = Project.count
   end
 
   # GET /issues/1 or /issues/1.json
