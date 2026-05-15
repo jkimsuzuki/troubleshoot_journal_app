@@ -56,3 +56,15 @@ main a:visited {
 main a:hover {
   text-decoration: underline;
 }
+
+.issue-card {
+  border: 1px solid #dcdcdc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.issue-card:hover {
+  background-color: #f8f9fc;
+}
