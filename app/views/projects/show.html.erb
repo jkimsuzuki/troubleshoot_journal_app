@@ -14,7 +14,9 @@
    <%= render "issues/issue_card", issue: issue %>
   <% end %>
 <% else %>
-  <p>No issues have been logged for this project yet.</p>
+  <p class="empty-state">
+    No issues have been logged for this project yet.
+  </p>
 <% end %>
 
 <div>
