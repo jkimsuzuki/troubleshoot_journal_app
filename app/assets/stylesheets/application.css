@@ -152,3 +152,45 @@ h3 {
   color: #555;
   margin-bottom: 0.5rem;
 }
+
+.issue-detail-page {
+  max-width: 1000px;
+}
+
+.issue-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.issue-meta {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.detail-section {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.stack-trace {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.issue-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}

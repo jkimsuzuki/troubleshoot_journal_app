@@ -1,76 +1,76 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= @issue.title %></h1>
+<section class="issue-detail-page">
 
-<section>
-  <h2>Issue Details</h2>
+  <div class="issue-detail-header">
+    <div>
+      <h1><%= @issue.title %></h1>
 
-  <p>
-    <strong>Project:</strong>
-    <%= @issue.project&.name || "No project assigned" %>
-  </p>
+      <p class="issue-meta">
+        Project:
+        <%= @issue.project&.name || "No project assigned" %>
+      </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= @issue.status %>
-  </p>
+      <p class="issue-meta">
+        Created:
+        <%= @issue.created_at.strftime("%B %d, %Y") %>
+      </p>
+    </div>
 
-  <p>
-    <strong>Date Created:</strong>
-    <%= @issue.created_at.strftime("%B %d, %Y") %>
-  </p>
+    <span class="status-badge">
+      <%= @issue.status %>
+    </span>
+  </div>
 
-  <p>
-    <strong>Last Updated:</strong>
-    <%= @issue.updated_at %>
-  </p>
+  <section class="detail-section">
+    <h2>Error Message</h2>
+    <p><%= @issue.error_message %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>Stack Trace</h2>
+
+    <pre class="stack-trace">
+<%= @issue.stack_trace %>
+    </pre>
+  </section>
+
+  <section class="detail-section">
+    <h2>Steps to Reproduce</h2>
+    <p><%= @issue.steps_to_reproduce %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>What I Checked</h2>
+    <p><%= @issue.what_i_checked %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>Root Cause</h2>
+    <p><%= @issue.root_cause %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>Fix</h2>
+    <p><%= @issue.fix %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>Prevention</h2>
+    <p><%= @issue.prevention %></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>Interview Summary</h2>
+    <p><%= @issue.interview_summary %></p>
+  </section>
+
+  <div class="issue-actions">
+    <%= link_to "Edit issue", edit_issue_path(@issue) %>
+
+    <%= button_to "Delete issue",
+    @issue,
+    method: :delete %>
+  </div>
+
 </section>
-<hr>
-<section>
-  <p>
-    <strong>Error Message:</strong>
-    <%= @issue.error_message %>
-  </p>
-
-  <p><strong>Stack Trace:</strong></p>
-    <pre><%= @issue.stack_trace %></pre>
-  
-  <p>
-    <strong>Steps to Reproduce:</strong>
-    <%= @issue.steps_to_reproduce %>
-  </p>
-
-  <p>
-    <strong>What I Checked:</strong>
-    <%= @issue.what_i_checked %>
-  </p>
-</section>
-<hr>
-<section>
-  <p>
-    <strong>Root Cause:</strong>
-    <%= @issue.root_cause %>
-  </p>
-
-  <p>
-    <strong>Fix:</strong>
-    <%= @issue.fix %>
-  </p>
-
-  <p>
-    <strong>Prevention:</strong>
-    <%= @issue.prevention %>
-  </p>
-
-  <p>
-    <strong>Interview Summary:</strong>
-    <%= @issue.interview_summary %>
-  </p>
-</section>
-<hr>
-<div>
-  <%= link_to "Edit this issue", edit_issue_path(@issue) %> |
-  <%= link_to "Back to issues", issues_path %>
-
-  <%= button_to "Destroy this issue", @issue, method: :delete %>
-</div>
