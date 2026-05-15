@@ -91,6 +91,10 @@ main a:hover {
   border: 1px solid #dcdcdc;
 }
 
+.dashboard-stats {
+  margin-bottom: 2rem;
+}
+
 h1 {
   margin-top: 0;
 }
