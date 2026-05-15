@@ -1,5 +1,4 @@
 module IssuesHelper
-  module IssuesHelper
    def status_badge_class(status)
       case status
       when "Resolved"
@@ -11,6 +10,5 @@ module IssuesHelper
       else
       "status-badge"
       end
-    end
-  end
+   end
 end
