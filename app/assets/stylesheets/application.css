@@ -138,8 +138,9 @@ main a:hover {
   background-color: white;
   border: 1px solid #dcdcdc;
   border-radius: 999px;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.9rem;
   color: #111827;
+  cursor: pointer;
 }
 
 .status-filters a:hover {
@@ -158,8 +159,9 @@ display: flex;
   background-color: white;
   border: 1px solid #dcdcdc;
   border-radius: 999px;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.9rem;
   color: #111827;
+  cursor: pointer;
 }
 
 .project-filters a:hover {
