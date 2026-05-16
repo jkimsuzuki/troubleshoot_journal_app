@@ -6,13 +6,14 @@ class IssuesController < ApplicationController
     @status = params[:status]
     @project_id = params[:project_id]
 
-    @issues =
+    @issues = Issue.all
+
       if @status.present?
         Issue.where(status: @status)
-      elsif @project_id.present?
+      end
+
+      if @project_id.present?
         Issue.where(project_id: @project_id)
-      else
-        Issue.all
       end
 
     @total_issues = Issue.count
