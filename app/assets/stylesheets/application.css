@@ -124,6 +124,28 @@ main a:hover {
   transition: 0.2s ease;
 }
 
+/* ========================================
+   ISSUE FILTER
+======================================== */
+
+.status-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-filters a {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  color: #111827;
+}
+
+.status-filters a:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+}
 
 /* ========================================
    ISSUE CARDS
