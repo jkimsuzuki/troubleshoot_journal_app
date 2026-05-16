@@ -3,7 +3,14 @@ class IssuesController < ApplicationController
 
   # GET /issues or /issues.json
   def index
-    @issues = Issue.all
+    @status = params[:status]
+
+    @issues =
+      if @status.present?
+        Issue.where(status: @status)
+      else
+        Issue.all
+      end
 
     @total_issues = Issue.count
     @resolved_issues = Issue.where(status: "Resolved").count
