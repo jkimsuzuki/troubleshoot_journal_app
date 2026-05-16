@@ -168,10 +168,12 @@ display: flex;
   background-color: #f3f4f6;
   text-decoration: none;
 }
+
 .active-filter {
   background-color: #111827 !important;
   color: white !important;
 }
+
 /* ========================================
    ISSUE CARDS
 ======================================== */

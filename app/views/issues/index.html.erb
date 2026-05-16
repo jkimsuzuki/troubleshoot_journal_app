@@ -70,9 +70,27 @@
 </nav>
 
 <div id="issues">
-  <% @issues.each do |issue| %>
-    <%= render "issue_card", issue: issue %>
-    <%end%>
+  <% if @issues.any? %>
+
+    <% @issues.each do |issue| %>
+      <%= render "issue_card", issue: issue %>
+      <%end%>
+
+  <% else %>
+
+  <section class="empty-state">
+
+    <h2>No issues found</h2>
+
+    <p>
+      Try changing filters or create a new issue.
+    </p>
+
+    <%= link_to "Create issue", new_issue_path %>
+
+  </section>
+
+<% end %>
 
 </div>
 
