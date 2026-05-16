@@ -78,7 +78,8 @@ main a:hover {
   margin-bottom: 1rem;
   border-radius: 10px;
   background-color: #ffffff;
-  transition: 0.2s ease;
+  transition: transform 0.15s ease,
+              box-shadow 0.15s ease;
 }
 
 .issue-card:hover {
@@ -165,8 +166,9 @@ h3 {
 }
 
 .issue-meta {
-  color: #666;
-  margin-bottom: 0.5rem;
+  color: #5f5f5f;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;;
 }
 
 .detail-section {

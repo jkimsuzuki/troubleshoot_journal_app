@@ -10,15 +10,16 @@
     </span>
   </div>
 
+<div class="issue-meta">
   <p class="issue-project">
-    Project:
+    <strong>Project:</strong>
     <%= issue.project&.name || "No project assigned" %>
   </p>
 
   <p class="issue-date">
-    Created:
+    <strong>Created:</strong>
     <%= issue.created_at.strftime("%B %d, %Y") %>
   </p>
-
+</div>
 </section>
 
