@@ -33,6 +33,13 @@
 </section>
 <hr>
 
+<nav class="status-filters">
+  <%= link_to "All", issues_path %>
+  <%= link_to "Pending", issues_path(status: "Pending") %>
+  <%= link_to "Investigating", issues_path(status: "Investigating") %>
+  <%= link_to "Resolved", issues_path(status: "Resolved") %>
+</nav>
+
 <div id="issues">
   <% @issues.each do |issue| %>
     <%= render "issue_card", issue: issue %>
