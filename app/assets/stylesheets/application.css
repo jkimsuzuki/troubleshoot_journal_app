@@ -137,8 +137,8 @@ h3 {
 .issue-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .status-badge {
@@ -256,4 +256,10 @@ input[type="submit"]:hover {
 .status-pending {
   background-color: #F3F4F6;
   color: #374151;
+}
+
+.issue-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }

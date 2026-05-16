@@ -1,7 +1,7 @@
 <section class="issue-card">
 
   <div class="issue-card-header">
-    <h2>
+    <h2 class="issue-title">
       <%= link_to issue.title, issue %>
     </h2>
 
@@ -10,16 +10,18 @@
     </span>
   </div>
 
-<div class="issue-meta">
-  <p class="issue-project">
+<div class="issue-card-body">
+  <div class="issue-meta">
+    <p class="issue-project">
     <strong>Project:</strong>
-    <%= issue.project&.name || "No project assigned" %>
-  </p>
+      <%= issue.project&.name || "No project assigned" %>
+    </p>
 
-  <p class="issue-date">
+    <p class="issue-date">
     <strong>Created:</strong>
-    <%= issue.created_at.strftime("%B %d, %Y") %>
-  </p>
+      <%= issue.created_at.strftime("%B %d, %Y") %>
+    </p>
+  </div>
 </div>
 </section>
 
