@@ -4,10 +4,13 @@ class IssuesController < ApplicationController
   # GET /issues or /issues.json
   def index
     @status = params[:status]
+    @project_id = params[:project_id]
 
     @issues =
       if @status.present?
         Issue.where(status: @status)
+      elsif @project_id.present?
+        Issue.where(project_id: @project_id)
       else
         Issue.all
       end

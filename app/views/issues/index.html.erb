@@ -40,6 +40,17 @@
   <%= link_to "Resolved", issues_path(status: "Resolved") %>
 </nav>
 
+<nav class="project-filters">
+
+  <%= link_to "All Projects", issues_path %>
+
+  <% Project.all.each do |project| %>
+
+    <%= link_to project.name,
+    issues_path(project_id: project.id) %>
+
+  <% end %>
+
 <div id="issues">
   <% @issues.each do |issue| %>
     <%= render "issue_card", issue: issue %>

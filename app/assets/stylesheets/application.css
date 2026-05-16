@@ -147,6 +147,26 @@ main a:hover {
   text-decoration: none;
 }
 
+.project-filters {
+display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-filters a {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  color: #111827;
+}
+
+.project-filters a:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+}
+
 /* ========================================
    ISSUE CARDS
 ======================================== */
