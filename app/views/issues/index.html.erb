@@ -34,10 +34,23 @@
 <hr>
 
 <nav class="status-filters">
-  <%= link_to "All", issues_path %>
-  <%= link_to "Pending", issues_path(status: "Pending") %>
-  <%= link_to "Investigating", issues_path(status: "Investigating") %>
-  <%= link_to "Resolved", issues_path(status: "Resolved") %>
+
+  <%= link_to "All",
+  issues_path,
+  class: (@status.nil? ? "active-filter" : nil) %>
+
+  <%= link_to "Pending",
+  issues_path(status: "Pending"),
+  class: (@status == "Pending" ? "active-filter" : nil) %>
+
+  <%= link_to "Investigating",
+  issues_path(status: "Investigating"),
+  class: (@status == "Investigating" ? "active-filter" : nil) %>
+
+  <%= link_to "Resolved",
+  issues_path(status: "Resolved"),
+  class: (@status == "Resolved" ? "active-filter" : nil) %>
+
 </nav>
 
 <nav class="project-filters">
