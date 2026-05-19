@@ -11,4 +11,8 @@ module IssuesHelper
       "status-badge"
       end
    end
+
+   def formatted_date(date)
+      date.strftime("%B %d, %Y")
+   end
 end
