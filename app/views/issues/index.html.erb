@@ -114,16 +114,22 @@
   <% else %>
 
   <section class="empty-state">
+  <h2>No issues found</h2>
 
-    <h2>No issues found</h2>
-
+  <% if @status.present? || @project_id.present? || @query.present? %>
     <p>
-      Try changing filters or create a new issue.
+      No issues match your current filters. Try clearing filters or changing your search.
     </p>
 
-    <%= link_to "Create issue", new_issue_path %>
+    <%= link_to "Clear filters", issues_path %>
+  <% else %>
+    <p>
+      No issues have been created yet.
+    </p>
 
-  </section>
+    <%= link_to "Create your first issue", new_issue_path %>
+  <% end %>
+</section>
 
 <% end %>
 
