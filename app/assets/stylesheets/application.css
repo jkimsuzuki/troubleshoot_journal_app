@@ -430,3 +430,12 @@ input[type="submit"]:hover {
   text-align: center;
 }
 
+.primary-action {
+  display: inline-block;
+  margin-top: 1rem;
+
+  background-color: #111827;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+}
