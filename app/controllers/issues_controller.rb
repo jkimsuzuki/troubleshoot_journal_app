@@ -5,15 +5,21 @@ class IssuesController < ApplicationController
   def index
     @status = params[:status]
     @project_id = params[:project_id]
+    @query = params[:query]
 
     @issues = Issue.all
 
       if @status.present?
-        Issue.where(status: @status)
+         @issues = @issues.where(status: @status)
       end
 
       if @project_id.present?
-        Issue.where(project_id: @project_id)
+        @issues = @issues.where(project_id: @project_id)
+      end
+
+      if @query.present?
+        @issues = @issues.where(
+        "title LIKE ?", "%#{@query}%")
       end
 
     @total_issues = Issue.count

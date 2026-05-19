@@ -357,6 +357,10 @@ input[type="submit"]:hover {
 ======================================== */
 
 .empty-state {
-  color: #777;
-  font-style: italic;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
 }
+
