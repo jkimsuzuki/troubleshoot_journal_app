@@ -69,6 +69,16 @@
 
 </nav>
 
+<form class="search-form" method="get" action="/issues">
+
+  <%= text_field_tag :query,
+  params[:query],
+  placeholder: "Search issues..." %>
+
+  <%= submit_tag "Search" %>
+
+</form>
+
 <div id="issues">
   <% if @issues.any? %>
 
