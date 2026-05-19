@@ -82,6 +82,28 @@
 
 </form>
 
+<% if @status.present? || @project_id.present? || @query.present? %>
+  <section class="filter-summary">
+    <p>
+      Showing filtered results
+      <% if @status.present? %>
+        for status: <strong><%= @status %></strong>
+      <% end %>
+
+      <% if @project_id.present? %>
+        <% selected_project = Project.find_by(id: @project_id) %>
+        for project: <strong><%= selected_project&.name %></strong>
+      <% end %>
+
+      <% if @query.present? %>
+        matching search: <strong><%= @query %></strong>
+      <% end %>
+    </p>
+
+    <%= link_to "Clear filters", issues_path %>
+  </section>
+<% end %>
+
 <div id="issues">
   <% if @issues.any? %>
 
