@@ -71,6 +71,9 @@
 
 <form class="search-form" method="get" action="/issues">
 
+<%= hidden_field_tag :status, @status if @status.present? %>
+<%= hidden_field_tag :project_id, @project_id if @project_id.present? %>
+
   <%= text_field_tag :query,
   params[:query],
   placeholder: "Search issues..." %>

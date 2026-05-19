@@ -357,6 +357,7 @@ input[type="submit"]:hover {
 
 .search-form {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
 }
