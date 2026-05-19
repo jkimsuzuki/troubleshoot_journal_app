@@ -231,6 +231,20 @@ display: flex;
   margin-bottom: 1rem;
 }
 
+/* ========================================
+   ISSUE METADATA
+======================================== */
+
+.issue-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.issue-meta-item {
+  color: #5f5f5f;
+  font-size: 0.95rem;
+}
 
 /* ========================================
    STATUS BADGES
