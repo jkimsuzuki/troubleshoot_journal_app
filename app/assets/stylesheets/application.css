@@ -378,6 +378,32 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
+
+/* ========================================
+   FILTER SUMMARY
+======================================== */
+
+.filter-summary {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-summary p {
+  margin: 0;
+}
+
+.filter-summary a {
+  color: #111827;
+  font-weight: bold;
+}
+
 /* ========================================
    UTILITIES / MISC
 ======================================== */
