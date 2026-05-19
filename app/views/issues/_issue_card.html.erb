@@ -12,16 +12,19 @@
 
 <div class="issue-card-body">
   <div class="issue-meta">
-    <p class="issue-project">
-    <strong>Project:</strong>
-      <%= issue.project&.name || "No project assigned" %>
-    </p>
 
-    <p class="issue-date">
-    <strong>Created:</strong>
-      <%= formatted_date(issue.created_at) %>
-    </p>
+  <div class="issue-meta-item">
+    <strong>Project:</strong>
+    <%= issue.project&.name || "No project assigned" %>
   </div>
+
+  <div class="issue-meta-item">
+    <strong>Created:</strong>
+    <%= formatted_date(issue.created_at) %>
+  </div>
+
+</div>
+
 </div>
 </section>
 
