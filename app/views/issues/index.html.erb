@@ -56,13 +56,13 @@
 <nav class="project-filters">
 
   <%= link_to "All Projects",
-  issues_path,
+  issues_path(status: @status, query: @query),
   class: (@project_id.nil? ? "active-filter" : nil) %>
 
   <% Project.all.each do |project| %>
 
     <%= link_to project.name,
-    issues_path(project_id: project.id),
+    issues_path(project_id: project.id, status: @status, query: @query),
     class: (@project_id == project.id.to_s ? "active-filter" : nil) %>
 
   <% end %>
