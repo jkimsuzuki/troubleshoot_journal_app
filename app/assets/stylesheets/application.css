@@ -351,6 +351,31 @@ input[type="submit"]:hover {
   opacity: 0.9;
 }
 
+/* ========================================
+   SEARCH FORMS
+======================================== */
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-form input[type="text"] {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  width: 300px;
+}
+
+.search-form input[type="submit"] {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #111827;
+  color: white;
+  cursor: pointer;
+}
 
 /* ========================================
    UTILITIES / MISC
