@@ -46,17 +46,17 @@
     <h2>Error Details</h2>
 
     <div class="field">
-      <%= form.label :error_message %>
+      <%= form.label :error_message, "Error Message" %>
       <%= form.text_area :error_message, rows: 4 %>
     </div>
 
     <div class="field">
-      <%= form.label :stack_trace %>
+      <%= form.label :stack_trace, "Stack Trace" %>
       <%= form.text_area :stack_trace, rows: 6 %>
     </div>
 
     <div class="field">
-      <%= form.label :steps_to_reproduce %>
+      <%= form.label :steps_to_reproduce, "Steps to Reproduce" %>
       <%= form.text_area :steps_to_reproduce, rows: 4 %>
     </div>
 
@@ -67,12 +67,12 @@
     <h2>Investigation Process</h2>
 
     <div class="field">
-      <%= form.label :what_i_checked %>
+      <%= form.label :what_i_checked, "What I Checked" %>
       <%= form.text_area :what_i_checked, rows: 4 %>
     </div>
 
     <div class="field">
-      <%= form.label :root_cause %>
+      <%= form.label :root_cause, "Root Cause" %>
       <%= form.text_area :root_cause, rows: 4 %>
     </div>
 
@@ -87,7 +87,7 @@
     </div>
 
     <div class="field">
-      <%= form.label :interview_summary %>
+      <%= form.label :interview_summary, "Interview Summary" %>
       <%= form.text_area :interview_summary, rows: 4 %>
     </div>
 
