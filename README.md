@@ -32,17 +32,18 @@ This project helps me build technical troubleshooting habits for future Resilien
 - Minitest
 - GitHub Actions
 
-## Learning Goals
+## Architecture Concepts Practiced and Learned
 
-This project is designed to help me practice:
+This project is designed to help me practice and reinforce:
 
 - Rails MVC structure
+- RESTful routing
 - ActiveRecord associations
 - Controller-driven filtering
 - Search with query params
 - Reusable partials
-- View helpers
-- CSS layout systems
+- View helpers for reusable formatting
+- Reusable CSS organization
 - Test-driven confidence with Minitest
 - Git/GitHub workflow
 - CI troubleshooting with GitHub Actions
