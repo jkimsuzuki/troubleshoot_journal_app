@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "pages/timeline"
+  get "pages/reports"
+  get "pages/search"
+  get "pages/tags"
   root "issues#index"
   resources :projects
   resources :issues
