@@ -47,6 +47,17 @@ main {
   padding: 2rem;
 }
 
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #5f5f5f;
+}
 
 /* ========================================
    SIDEBAR
