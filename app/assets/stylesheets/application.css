@@ -92,6 +92,31 @@ main {
   text-decoration: underline;
 }
 
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-nav a {
+  color: #d1d5db;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+  background-color: #1f2937;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-nav .active-nav {
+  background-color: rgb(24, 97, 169);
+  color: #111827;
+  font-weight: bold;
+}
+
 
 /* ========================================
    MAIN LINKS
