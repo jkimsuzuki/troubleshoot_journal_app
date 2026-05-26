@@ -117,6 +117,19 @@ main {
   font-weight: bold;
 }
 
+.sidebar-brand {
+  margin-bottom: 2rem;
+}
+
+.sidebar-brand h2 {
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.sidebar-brand p {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
 
 /* ========================================
    MAIN LINKS
