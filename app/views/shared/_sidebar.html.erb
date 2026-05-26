@@ -2,13 +2,13 @@
   <h2>Troubleshooting Journal</h2>
       
     <nav>
-      <p>Dashboard</p>
-      <p><%= link_to "Issues", issues_path %></p>
-      <p><%= link_to "Projects", projects_path %></p>
-      <p><%= link_to "Tags", tags_path %></p>
-      <p><%= link_to "Timeline", timeline_path %></p>
-      <p><%= link_to "Search", search_path %></p>
-      <p><%= link_to "Reports", reports_path %></p>
+      <p><%= link_to "Dashboard", issues_path, class: active_nav_class(issues_path) %></p>
+      <p><%= link_to "Issues", issues_path, class: active_nav_class(issues_path) %></p>
+      <p><%= link_to "Projects", projects_path, class: active_nav_class(projects_path) %></p>
+      <p><%= link_to "Tags", tags_path, class: active_nav_class(tags_path) %></p>
+      <p><%= link_to "Timeline", timeline_path, class: active_nav_class(timeline_path) %></p>
+      <p><%= link_to "Search", search_path, class: active_nav_class(search_path) %></p>
+      <p><%= link_to "Reports", reports_path, class: active_nav_class(reports_path) %></p>
       <a href="#">Settings</a> 
       <a href="#">Profile</a>
     </nav>
