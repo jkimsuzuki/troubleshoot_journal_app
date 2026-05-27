@@ -1,2 +1,17 @@
-<h1>Tags#index</h1>
-<p>Find me in app/views/tags/index.html.erb</p>
+<% content_for :title, "Tags" %>
+
+<section class="page-header">
+  <div>
+    <h1>Tags</h1>
+    <p>Browse recurring troubleshooting categories across issues.</p>
+  </div>
+</section>
+
+<section class="tag-grid">
+  <% @tags.each do |tag| %>
+    <%= link_to tag_path(tag), class: "tag-card" do %>
+      <h2><%= tag.name %></h2>
+      <p><%= pluralize(tag.issues.count, "issue") %></p>
+    <% end %>
+  <% end %>
+</section>
