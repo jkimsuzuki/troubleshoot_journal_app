@@ -511,6 +511,38 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   TAGS
+======================================== */
+
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.tag-card {
+  display: block;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: #111827;
+  text-decoration: none;
+  transition: transform 0.15s ease,
+              box-shadow 0.15s ease;
+}
+
+.tag-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  text-decoration: none;
+}
+
+.tag-card h2 {
+  margin-top: 0;
+}
+
+/* ========================================
    UTILITIES / MISC
 ======================================== */
 
