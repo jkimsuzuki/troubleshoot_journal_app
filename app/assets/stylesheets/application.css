@@ -563,6 +563,28 @@ input[type="submit"]:hover {
   background-color: #e0e7ff;
   text-decoration: none;
 }
+
+.tag-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.tag-filters a {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  color: #111827;
+  cursor: pointer;
+}
+
+.tag-filters a:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+}
+
 /* ========================================
    CHECKBOX GROUPS
 ======================================== */
