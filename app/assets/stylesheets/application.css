@@ -490,7 +490,7 @@ input[type="submit"]:hover {
   margin-top: 1rem;
 
   background-color: #111827;
-  color: white;
+  color: rgb(212, 164, 60) !important;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
 }

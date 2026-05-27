@@ -2,15 +2,31 @@
 
 <% content_for :title, "Projects" %>
 
-<h1>Projects</h1>
+<section class="page-header">
+  <div>
+    <h1>Projects</h1>
+    <p>Organize troubleshooting issues by application, feature, or learning project.</p>
+  </div>
 
-<div id="projects">
+  <%= link_to "New project", new_project_path, class: "primary-action" %>
+</section>
+
+<div class="project-grid">
   <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
+    <section class="project-card">
+      <h2><%= link_to project.name, project %></h2>
+
+      <p><%= project.description %></p>
+
+      <p>
+        <strong>Status:</strong>
+        <%= project.status %>
+      </p>
+
+      <p>
+        <strong>Issues:</strong>
+        <%= project.issues.count %>
+      </p>
+    </section>
   <% end %>
 </div>
-
-<%= link_to "New project", new_project_path %>
