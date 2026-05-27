@@ -7,6 +7,23 @@
   </div>
 </section>
 
+<section class="dashboard-stats">
+  <div>
+    <h3>Total Issues</h3>
+    <p><%= @tag.issues.count %></p>
+  </div>
+
+  <div>
+    <h3>Resolved</h3>
+    <p><%= @tag.issues.where(status: "Resolved").count %></p>
+  </div>
+
+  <div>
+    <h3>Investigating</h3>
+    <p><%= @tag.issues.where(status: "Investigating").count %></p>
+  </div>
+</section>
+
 <% if @tag.issues.any? %>
   <% @tag.issues.each do |issue| %>
     <%= render "issues/issue_card", issue: issue %>
