@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_27_064420) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_27_064502) do
+  create_table "issue_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "issue_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issue_id"], name: "index_issue_tags_on_issue_id"
+    t.index ["tag_id"], name: "index_issue_tags_on_tag_id"
+  end
+
   create_table "issues", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "error_message"
@@ -43,5 +52,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_27_064420) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "issue_tags", "issues"
+  add_foreign_key "issue_tags", "tags"
   add_foreign_key "issues", "projects"
 end
