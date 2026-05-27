@@ -6,6 +6,7 @@ class IssuesController < ApplicationController
     @status = params[:status]
     @project_id = params[:project_id]
     @query = params[:query]
+    @tag_id = params[:tag_id]
 
     @issues = Issue.all
 
@@ -20,6 +21,10 @@ class IssuesController < ApplicationController
       if @query.present?
         @issues = @issues.where(
         "title LIKE ?", "%#{@query}%")
+      end
+
+      if @tag_id.present?
+        @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
       end
 
     @total_issues = Issue.count
@@ -87,7 +92,7 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.expect(issue: [ 
+      params.expect(issue: [
         :title,
         :project_id,
         :status,
