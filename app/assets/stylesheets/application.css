@@ -542,6 +542,27 @@ input[type="submit"]:hover {
   margin-top: 0;
 }
 
+.issue-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag-pill {
+  display: inline-block;
+  background-color: #eef2ff;
+  color: #3730a3;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.tag-pill:hover {
+  background-color: #e0e7ff;
+  text-decoration: none;
+}
 /* ========================================
    CHECKBOX GROUPS
 ======================================== */
