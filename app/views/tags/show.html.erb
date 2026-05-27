@@ -1,2 +1,23 @@
-<h1>Tags#show</h1>
-<p>Find me in app/views/tags/show.html.erb</p>
+<% content_for :title, @tag.name %>
+
+<section class="page-header">
+  <div>
+    <h1><%= @tag.name %></h1>
+    <p>Issues categorized under this troubleshooting tag.</p>
+  </div>
+</section>
+
+<% if @tag.issues.any? %>
+  <% @tag.issues.each do |issue| %>
+    <%= render "issues/issue_card", issue: issue %>
+  <% end %>
+<% else %>
+  <section class="empty-state">
+    <h2>No issues for this tag yet</h2>
+    <p>This tag has not been attached to any troubleshooting issues.</p>
+  </section>
+<% end %>
+
+<div class="issue-actions">
+  <%= link_to "Back to tags", tags_path %>
+</div>
