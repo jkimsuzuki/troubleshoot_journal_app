@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "tags/index"
+  get "tags/show"
   get "pages/timeline"
   get "pages/reports"
   get "pages/search"
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   get "timeline", to: "pages#timeline"
   get "reports", to: "pages#reports"
   get "search", to: "pages#search"
-  get "tags", to: "pages#tags"
+  resources :tags, only: [ :index, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
