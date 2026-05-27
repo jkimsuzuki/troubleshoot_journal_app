@@ -1,19 +1,19 @@
 <nav class="status-filters">
 
   <%= link_to "All",
-  issues_path(project_id: @project_id, query: @query),
+  issues_path(project_id: @project_id, query: @query, tag_id: @tag_id),
   class: (@status.nil? ? "active-filter" : nil) %>
 
   <%= link_to "Pending",
-  issues_path(status: "Pending", project_id: @project_id, query: @query),
+  issues_path(status: "Pending", project_id: @project_id, query: @query, tag_id: @tag_id),
   class: (@status == "Pending" ? "active-filter" : nil) %>
 
   <%= link_to "Investigating",
-  issues_path(status: "Investigating", project_id: @project_id, query: @query),
+  issues_path(status: "Investigating", project_id: @project_id, query: @query, tag_id: @tag_id),
   class: (@status == "Investigating" ? "active-filter" : nil) %>
 
   <%= link_to "Resolved",
-  issues_path(status: "Resolved", project_id: @project_id, query: @query),
+  issues_path(status: "Resolved", project_id: @project_id, query: @query, tag_id: @tag_id),
   class: (@status == "Resolved" ? "active-filter" : nil) %>
 
 </nav>
@@ -21,13 +21,13 @@
 <nav class="project-filters">
 
   <%= link_to "All Projects",
-  issues_path(status: @status, query: @query),
+  issues_path(status: @status, query: @query, tag_id: @tag_id),
   class: (@project_id.nil? ? "active-filter" : nil) %>
 
   <% Project.all.each do |project| %>
 
     <%= link_to project.name,
-    issues_path(project_id: project.id, status: @status, query: @query),
+    issues_path(project_id: project.id, status: @status, query: @query, tag_id: @tag_id),
     class: (@project_id == project.id.to_s ? "active-filter" : nil) %>
 
   <% end %>
@@ -38,6 +38,7 @@
 
 <%= hidden_field_tag :status, @status if @status.present? %>
 <%= hidden_field_tag :project_id, @project_id if @project_id.present? %>
+<%= hidden_field_tag :tag_id, @tag_id if @tag_id.present? %>
 
   <%= text_field_tag :query,
   params[:query],
@@ -47,7 +48,7 @@
 
 </form>
 
-<% if @status.present? || @project_id.present? || @query.present? %>
+<% if @status.present? || @project_id.present? || @query.present? || @tag_id.present? %>
   <section class="filter-summary">
     <p>
       Showing filtered results
@@ -62,6 +63,11 @@
 
       <% if @query.present? %>
         matching search: <strong><%= @query %></strong>
+      <% end %>
+
+      <% if @tag_id.present? %>
+        <% selected_tag = Tag.find_by(id: @tag_id) %>
+        for tag: <strong><%= selected_tag&.name %></strong>
       <% end %>
     </p>
 
