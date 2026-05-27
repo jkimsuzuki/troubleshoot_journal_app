@@ -39,6 +39,19 @@
       ["Pending", "Investigating", "Resolved"] %>
     </div>
 
+    <div class="field">
+      <%= form.label :tag_ids, "Tags" %>
+
+    <div class="checkbox-group">
+      <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name do |tag| %>
+      <label class="checkbox-item">
+        <%= tag.check_box %>
+        <%= tag.text %>
+      </label>
+      <% end %>
+    </div>
+</div>
+
   </section>
 
   <section class="form-section">
