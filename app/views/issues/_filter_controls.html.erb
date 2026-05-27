@@ -34,6 +34,20 @@
 
 </nav>
 
+<nav class="tag-filters">
+
+  <%= link_to "All Tags",
+  issues_path(status: @status, project_id: @project_id, query: @query),
+  class: (@tag_id.nil? ? "active-filter" : nil) %>
+
+  <% Tag.order(:name).each do |tag| %>
+    <%= link_to tag.name,
+    issues_path(status: @status, project_id: @project_id, query: @query, tag_id: tag.id),
+    class: (@tag_id == tag.id.to_s ? "active-filter" : nil) %>
+  <% end %>
+
+</nav>
+
 <form class="search-form" method="get" action="/issues">
 
 <%= hidden_field_tag :status, @status if @status.present? %>
