@@ -1,27 +1,43 @@
 <% content_for :title, "Search" %>
 
 <section class="page-header">
-
   <div>
-
     <h1>Search</h1>
-
-    <p>
-     Search through all projects and issues.
-    </p>
-
+    <p>Search across issue titles, errors, root causes, and fixes.</p>
   </div>
-
 </section>
 
-<section class="dashboard-stats">
+<form class="search-form" method="get" action="<%= search_path %>">
+  <%= text_field_tag :query,
+  @query,
+  placeholder: "Search troubleshooting notes..." %>
 
-  <div>
-    <h3>Recent Searches</h3>
-    <p>24</p>
-  </div>
+  <%= submit_tag "Search" %>
+</form>
 
- <div>
-    <h3>Popular Tags</h3>
-    <p>24</p>
-  </div>
+<% if @query.present? %>
+  <section class="filter-summary">
+    <p>
+      Search results for:
+      <strong><%= @query %></strong>
+    </p>
+
+    <%= link_to "Clear search", search_path %>
+  </section>
+
+  <% if @issues.any? %>
+    <% @issues.each do |issue| %>
+      <%= render "issues/issue_card", issue: issue %>
+    <% end %>
+  <% else %>
+    <section class="empty-state">
+      <h2>No matching issues found</h2>
+      <p>Try searching for another error message, root cause, project term, or fix.</p>
+    </section>
+  <% end %>
+<% else %>
+  <section class="empty-state">
+    <h2>Start a search</h2>
+    <p>Search your troubleshooting journal to find past investigations and solutions.</p>
+  </section>
+<% end %>
