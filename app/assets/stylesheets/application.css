@@ -651,6 +651,47 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   REPORTS
+======================================== */
+
+.report-section {
+  margin-top: 2rem;
+}
+
+.report-section h2 {
+  margin-bottom: 1rem;
+}
+
+.report-list {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.report-row:last-child {
+  border-bottom: none;
+}
+
+.report-row p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.report-row span {
+  font-weight: bold;
+  color: #111827;
+}
+
+/* ========================================
    UTILITIES / MISC
 ======================================== */
 
