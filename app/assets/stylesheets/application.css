@@ -768,6 +768,12 @@ input[type="submit"]:hover {
   gap: 0.5rem;
 }
 
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ========================================
    UTILITIES / MISC
 ======================================== */
