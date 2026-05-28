@@ -692,6 +692,83 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   DASHBOARD
+======================================== */
+.quick-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  margin: 1.5rem 0 2rem;
+}
+
+.quick-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 1.4rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  box-sizing: border-box;
+  line-height: 1;
+  margin: 0;
+}
+
+.quick-actions .primary-action {
+  background-color: #111827;
+  color: #facc15 !important;
+  border: 1px solid transparent;
+}
+
+.quick-actions .secondary-action {
+  background-color: #ffffff;
+  color: #111827 !important;
+  border: 1px solid #d1d5db;
+}
+
+.quick-actions a:hover {
+  text-decoration: none;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.dashboard-panel {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.dashboard-panel h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.compact-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.compact-row:last-child {
+  border-bottom: none;
+}
+
+.tag-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ========================================
    UTILITIES / MISC
 ======================================== */
 
