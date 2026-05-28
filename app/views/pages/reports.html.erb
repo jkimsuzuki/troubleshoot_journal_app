@@ -54,3 +54,29 @@
     </section>
   <% end %>
 </section>
+
+<section class="report-section">
+  <h2>Issues by Tag</h2>
+
+  <% if @tags.any? %>
+    <div class="report-list">
+      <% @tags.each do |tag| %>
+        <div class="report-row">
+          <div>
+            <strong><%= link_to tag.name, tag %></strong>
+            <p>Troubleshooting category</p>
+          </div>
+
+          <span>
+            <%= pluralize(tag.issues.count, "issue") %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <section class="empty-state">
+      <h2>No tags yet</h2>
+      <p>Add tags to organize troubleshooting patterns.</p>
+    </section>
+  <% end %>
+</section>
