@@ -35,17 +35,36 @@
   <%= link_to "View Reports", reports_path, class: "secondary-action" %>
 </section>
 
-<section class="report-section">
-  <h2>Recent Issues</h2>
+<section class="dashboard-grid">
 
-  <% if @recent_issues.any? %>
-    <% @recent_issues.each do |issue| %>
-      <%= render "issues/issue_card", issue: issue %>
+  <section class="dashboard-panel">
+    <h2>Recent Issues</h2>
+
+    <% if @recent_issues.any? %>
+      <% @recent_issues.each do |issue| %>
+        <%= render "issues/issue_card", issue: issue %>
+      <% end %>
+    <% else %>
+      <section class="empty-state">
+        <h2>No issues yet</h2>
+        <p>Create your first issue to begin tracking troubleshooting activity.</p>
+      </section>
     <% end %>
-  <% else %>
-    <section class="empty-state">
-      <h2>No issues yet</h2>
-      <p>Create your first issue to begin tracking troubleshooting activity.</p>
-    </section>
-  <% end %>
+  </section>
+
+  <section class="dashboard-panel">
+    <h2>Project Coverage</h2>
+
+    <% if @projects.any? %>
+      <% @projects.each do |project| %>
+        <div class="compact-row">
+          <%= link_to project.name, project %>
+          <span><%= pluralize(project.issues.count, "issue") %></span>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="empty-state">No projects yet.</p>
+    <% end %>
+  </section>
+
 </section>
