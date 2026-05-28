@@ -1,0 +1,45 @@
+<% content_for :title, "Dashboard" %>
+
+<section class="page-header">
+  <div>
+    <h1>Dashboard</h1>
+    <p>Review troubleshooting activity, issue status, and project coverage.</p>
+  </div>
+</section>
+
+<section class="dashboard-stats">
+  <div>
+    <h3>Total Issues</h3>
+    <p><%= @total_issues %></p>
+  </div>
+
+  <div>
+    <h3>Resolved</h3>
+    <p><%= @resolved_issues %></p>
+  </div>
+
+  <div>
+    <h3>Investigating</h3>
+    <p><%= @investigating_issues %></p>
+  </div>
+
+  <div>
+    <h3>Pending</h3>
+    <p><%= @pending_issues %></p>
+  </div>
+</section>
+
+<section class="report-section">
+  <h2>Recent Issues</h2>
+
+  <% if @recent_issues.any? %>
+    <% @recent_issues.each do |issue| %>
+      <%= render "issues/issue_card", issue: issue %>
+    <% end %>
+  <% else %>
+    <section class="empty-state">
+      <h2>No issues yet</h2>
+      <p>Create your first issue to begin tracking troubleshooting activity.</p>
+    </section>
+  <% end %>
+</section>
