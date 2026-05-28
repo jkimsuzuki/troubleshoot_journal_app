@@ -1,27 +1,56 @@
 <% content_for :title, "Reports" %>
 
 <section class="page-header">
-
   <div>
-
     <h1>Reports</h1>
-
-    <p>
-      View reports relating to each incident.
-    </p>
-
+    <p>Review troubleshooting patterns, issue status, and project activity.</p>
   </div>
-
 </section>
 
 <section class="dashboard-stats">
-
   <div>
-    <h3>Total Resolved Issues</h3>
-    <p>24</p>
+    <h3>Total Issues</h3>
+    <p><%= @total_issues %></p>
   </div>
 
   <div>
-    <h3>Average Resolution Time</h3>
-    <p>2.3 days</p>
+    <h3>Resolved</h3>
+    <p><%= @resolved_issues %></p>
   </div>
+
+  <div>
+    <h3>Investigating</h3>
+    <p><%= @investigating_issues %></p>
+  </div>
+
+  <div>
+    <h3>Pending</h3>
+    <p><%= @pending_issues %></p>
+  </div>
+</section>
+
+<section class="report-section">
+  <h2>Issues by Project</h2>
+
+  <% if @projects.any? %>
+    <div class="report-list">
+      <% @projects.each do |project| %>
+        <div class="report-row">
+          <div>
+            <strong><%= link_to project.name, project %></strong>
+            <p><%= project.description %></p>
+          </div>
+
+          <span>
+            <%= pluralize(project.issues.count, "issue") %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <section class="empty-state">
+      <h2>No projects yet</h2>
+      <p>Create projects to begin tracking troubleshooting patterns.</p>
+    </section>
+  <% end %>
+</section>
