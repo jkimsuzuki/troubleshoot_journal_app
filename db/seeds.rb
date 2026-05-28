@@ -7,6 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-["Rails", "Database", "Git", "CSS", "Routing", "Testing", "Deployment"].each do |tag_name|
+[ "Rails", "Database", "Git", "CSS", "Routing", "Testing", "Deployment" ].each do |tag_name|
   Tag.find_or_create_by!(name: tag_name)
 end

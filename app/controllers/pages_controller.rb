@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
   def reports
     @total_issues = Issue.count
-  @resolved_issues = Issue.where(status: "Resolved").count
+    @resolved_issues = Issue.where(status: "Resolved").count
     @investigating_issues = Issue.where(status: "Investigating").count
     @pending_issues = Issue.where(status: "Pending").count
 
