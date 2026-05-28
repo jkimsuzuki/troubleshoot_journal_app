@@ -67,4 +67,18 @@
     <% end %>
   </section>
 
+  <section class="dashboard-panel">
+  <h2>Tag Summary</h2>
+
+  <% if @tags.any? %>
+    <div class="tag-summary">
+      <% @tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag), class: "tag-pill" %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="empty-state">No tags yet.</p>
+  <% end %>
+</section>
+
 </section>
