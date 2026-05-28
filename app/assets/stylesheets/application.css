@@ -613,6 +613,44 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   TIMELINE
+======================================== */
+
+.timeline-list {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-marker {
+  width: 14px;
+  height: 14px;
+  background-color: #111827;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.timeline-content {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.timeline-date {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+/* ========================================
    UTILITIES / MISC
 ======================================== */
 
