@@ -1,25 +1,47 @@
 <% content_for :title, "Timeline" %>
 
 <section class="page-header">
-
   <div>
-
     <h1>Timeline</h1>
-
-    <p>
-      View investigation activity and issue history.
-    </p>
-
+    <p>Review recent troubleshooting activity and issue updates.</p>
   </div>
-
 </section>
 
-<section class="dashboard-stats">
+<section class="timeline-list">
+  <% if @recent_issues.any? %>
+    <% @recent_issues.each do |issue| %>
 
-  <div>
-    <h3>Recent Investigations</h3>
-  </div>
+      <article class="timeline-item">
 
-  <div>
-    <h3>Latest Root Cause</h3>
-  </div>
+        <div class="timeline-marker"></div>
+
+        <div class="timeline-content">
+          <p class="timeline-date">
+            <%= formatted_date(issue.updated_at) %>
+          </p>
+
+          <h2>
+            <%= link_to issue.title, issue %>
+          </h2>
+
+          <p>
+            <strong>Status:</strong>
+            <%= issue.status %>
+          </p>
+
+          <p>
+            <strong>Project:</strong>
+            <%= issue.project&.name || "No project assigned" %>
+          </p>
+        </div>
+
+      </article>
+
+    <% end %>
+  <% else %>
+    <section class="empty-state">
+      <h2>No timeline activity yet</h2>
+      <p>Create or update issues to start building your troubleshooting timeline.</p>
+    </section>
+  <% end %>
+</section>
