@@ -14,6 +14,17 @@ class PagesController < ApplicationController
   end
 
   def search
+    @query = params[:query]
+
+  @issues =
+    if @query.present?
+      Issue.where(
+        "title LIKE :query OR error_message LIKE :query OR root_cause LIKE :query OR fix LIKE :query",
+        query: "%#{@query}%"
+      )
+    else
+      Issue.none
+    end
   end
 
   def tags
