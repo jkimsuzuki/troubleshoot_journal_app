@@ -672,9 +672,20 @@ input[type="submit"]:hover {
 .report-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid #eeeeee;
+  line-height: 1.4;
+}
+
+.report-row span {
+  background-color: #f3f4f6;
+  color: #111827;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .report-row:last-child {
