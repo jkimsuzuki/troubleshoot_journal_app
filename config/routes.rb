@@ -5,13 +5,6 @@ Rails.application.routes.draw do
   resources :issues
   resources :projects
   resources :tags, only: [ :index, :show ]
-  get "tags/index"
-  get "tags/show"
-  get "pages/timeline"
-  get "pages/reports"
-  get "pages/search"
-  get "pages/tags"
-
 
   get "timeline", to: "pages#timeline"
   get "reports", to: "pages#reports"

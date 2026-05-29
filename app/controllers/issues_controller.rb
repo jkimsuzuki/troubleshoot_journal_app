@@ -96,6 +96,7 @@ class IssuesController < ApplicationController
         :title,
         :project_id,
         :status,
+        :severity,
         :error_message,
         :stack_trace,
         :steps_to_reproduce,

@@ -4,6 +4,7 @@ one:
   title: Cart issue
   project: one
   status: Investigating
+  severity: Medium
   error_message: Cart failing
   stack_trace: Stack trace example
   steps_to_reproduce: Reproduce steps
@@ -17,6 +18,7 @@ two:
   title: Liquid rendering issue
   project: two
   status: Resolved
+  severity: Medium
   error_message: Liquid variable missing
   stack_trace: Liquid stack trace
   steps_to_reproduce: Visit product page
