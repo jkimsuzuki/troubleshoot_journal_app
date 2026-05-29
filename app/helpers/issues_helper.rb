@@ -16,3 +16,18 @@ module IssuesHelper
       date.strftime("%B %d, %Y")
    end
 end
+
+def severity_badge_class(severity)
+  case severity
+  when "Critical"
+    "severity-badge severity-critical"
+  when "High"
+    "severity-badge severity-high"
+  when "Medium"
+    "severity-badge severity-medium"
+  when "Low"
+    "severity-badge severity-low"
+  else
+    "severity-badge"
+  end
+end
