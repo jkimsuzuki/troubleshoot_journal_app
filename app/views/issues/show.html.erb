@@ -25,6 +25,7 @@
         <% end %>
     </div>
 
+<div class="issue-badges">
     <span class="<%= status_badge_class(@issue.status) %>">
       <%= @issue.status %>
     </span>
@@ -32,6 +33,7 @@
     <span class="<%= severity_badge_class(@issue.severity) %>">
       <%= @issue.severity %>
     </span>
+</div>
   </div>
 
   <section class="detail-section">

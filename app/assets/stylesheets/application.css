@@ -775,6 +775,43 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   SEVERITY BADGES
+======================================== */
+
+.issue-badges {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.severity-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.severity-low {
+  background-color: #e0f2fe;
+  color: #075985;
+}
+
+.severity-medium {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.severity-high {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.severity-critical {
+  background-color: #111827;
+  color: white;
+}
+
+/* ========================================
    UTILITIES / MISC
 ======================================== */
 

@@ -10,22 +10,22 @@ class IssuesController < ApplicationController
 
     @issues = Issue.all
 
-      if @status.present?
-         @issues = @issues.where(status: @status)
-      end
+    if @status.present?
+      @issues = @issues.where(status: @status)
+    end
 
-      if @project_id.present?
-        @issues = @issues.where(project_id: @project_id)
-      end
+    if @project_id.present?
+      @issues = @issues.where(project_id: @project_id)
+    end
 
-      if @query.present?
-        @issues = @issues.where(
-        "title LIKE ?", "%#{@query}%")
-      end
+    if @query.present?
+      @issues = @issues.where(
+      "title LIKE ?", "%#{@query}%")
+    end
 
-      if @tag_id.present?
-        @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
-      end
+    if @tag_id.present?
+      @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
+    end
 
     @total_issues = Issue.count
     @resolved_issues = Issue.where(status: "Resolved").count
@@ -101,7 +101,8 @@ class IssuesController < ApplicationController
         :stack_trace,
         :steps_to_reproduce,
         :what_i_checked,
-        :root_cause, :fix,
+        :root_cause,
+        :fix,
         :prevention,
         :interview_summary,
         tag_ids: []

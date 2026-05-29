@@ -5,6 +5,7 @@
       <%= link_to issue.title, issue %>
     </h2>
 
+<div class="issue-badges">
     <span class="<%= status_badge_class(issue.status) %>">
        <%= issue.status %>
     </span>
@@ -12,6 +13,7 @@
     <span class="<%= severity_badge_class(issue.severity) %>">
        <%= issue.severity %>
     </span>
+</div>
   </div>
 
 <div class="issue-card-body">
