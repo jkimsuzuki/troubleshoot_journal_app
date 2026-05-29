@@ -7,4 +7,5 @@ class Issue < ApplicationRecord
   validates :title, presence: true
   validates :project_id, presence: true
   validates :status, presence: true
+  validates :severity, presence: true
 end
