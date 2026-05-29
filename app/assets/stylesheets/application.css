@@ -691,6 +691,17 @@ input[type="submit"]:hover {
   color: #111827;
 }
 
+.reports-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* ========================================
    DASHBOARD
 ======================================== */
