@@ -16,6 +16,11 @@
         <%= formatted_date(@issue.created_at) %>
       </p>
 
+      <div class="issue-meta-item">
+        <strong>Severity:</strong>
+        <%= @issue.severity.presence || "Not set" %>
+      </div>
+
       <% if @issue.tags.any? %>
       <div class="issue-tags">
         <% @issue.tags.each do |tag| %>
