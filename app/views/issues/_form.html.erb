@@ -1,12 +1,10 @@
 <%= form_with(model: issue) do |form| %>
-
   <% if issue.errors.any? %>
     <div style="color: red">
       <h2>
         <%= pluralize(issue.errors.count, "error") %>
         prohibited this issue from being saved:
       </h2>
-
       <ul>
         <% issue.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -16,9 +14,7 @@
   <% end %>
 
   <section class="form-section">
-
     <h2>Issue Overview</h2>
-
     <div class="field">
       <%= form.label :title %>
       <%= form.text_field :title %>
@@ -40,74 +36,63 @@
     </div>
 
     <div class="field">
-      <%= form.label :tag_ids, "Tags" %>
-
-    <div class="checkbox-group">
-      <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name do |tag| %>
-      <label class="checkbox-item">
-        <%= tag.check_box %>
-        <%= tag.text %>
-      </label>
-      <% end %>
+      <%= form.label :severity %>
+      <%= form.select :severity,
+  ["Low", "Medium", "High", "Critical"],
+  prompt: "Select severity" %>
     </div>
-</div>
-
+    
+    <div class="field">
+      <%= form.label :tag_ids, "Tags" %>
+      <div class="checkbox-group">
+        <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name do |tag| %>
+          <label class="checkbox-item">
+            <%= tag.check_box %>
+            <%= tag.text %>
+          </label>
+        <% end %>
+      </div>
+    </div>
   </section>
-
   <section class="form-section">
-
     <h2>Error Details</h2>
-
     <div class="field">
       <%= form.label :error_message, "Error Message" %>
       <%= form.text_area :error_message, rows: 4 %>
     </div>
-
     <div class="field">
       <%= form.label :stack_trace, "Stack Trace" %>
       <%= form.text_area :stack_trace, rows: 6 %>
     </div>
-
     <div class="field">
       <%= form.label :steps_to_reproduce, "Steps to Reproduce" %>
       <%= form.text_area :steps_to_reproduce, rows: 4 %>
     </div>
-
   </section>
-
   <section class="form-section">
-
     <h2>Investigation Process</h2>
-
     <div class="field">
       <%= form.label :what_i_checked, "What I Checked" %>
       <%= form.text_area :what_i_checked, rows: 4 %>
     </div>
-
     <div class="field">
       <%= form.label :root_cause, "Root Cause" %>
       <%= form.text_area :root_cause, rows: 4 %>
     </div>
-
     <div class="field">
       <%= form.label :fix %>
       <%= form.text_area :fix, rows: 4 %>
     </div>
-
     <div class="field">
       <%= form.label :prevention %>
       <%= form.text_area :prevention, rows: 4 %>
     </div>
-
     <div class="field">
       <%= form.label :interview_summary, "Interview Summary" %>
       <%= form.text_area :interview_summary, rows: 4 %>
     </div>
-
   </section>
-
   <div class="form-actions">
     <%= form.submit %>
   </div>
-
 <% end %>
