@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_27_064502) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_29_061854) do
   create_table "issue_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "issue_id", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_27_064502) do
     t.integer "project_id"
     t.string "project_name"
     t.text "root_cause"
+    t.string "severity"
     t.text "stack_trace"
     t.string "status"
     t.text "steps_to_reproduce"
