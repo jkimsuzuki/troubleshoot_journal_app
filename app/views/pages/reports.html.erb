@@ -28,56 +28,95 @@
     <p><%= @pending_issues %></p>
   </div>
 </section>
+
+<section class="report-section">
+  <h2>Issues by Severity</h2>
+
+  <div class="report-list">
+    <div class="report-row">
+      <div>
+        <strong>Critical</strong>
+        <p>Highest priority troubleshooting issues</p>
+      </div>
+      <span><%= pluralize(@critical_severity, "issue") %></span>
+    </div>
+
+    <div class="report-row">
+      <div>
+        <strong>High</strong>
+        <p>Important issues that need close attention</p>
+      </div>
+      <span><%= pluralize(@high_severity, "issue") %></span>
+    </div>
+
+    <div class="report-row">
+      <div>
+        <strong>Medium</strong>
+        <p>Normal priority troubleshooting issues</p>
+      </div>
+      <span><%= pluralize(@medium_severity, "issue") %></span>
+    </div>
+
+    <div class="report-row">
+      <div>
+        <strong>Low</strong>
+        <p>Lower priority learning or cleanup issues</p>
+      </div>
+      <span><%= pluralize(@low_severity, "issue") %></span>
+    </div>
+  </div>
+</section>
+
 <section class="reports-grid">
-<section class="report-section">
-  <h2>Issues by Project</h2>
+  <section class="report-section">
+    <h2>Issues by Project</h2>
 
-  <% if @projects.any? %>
-    <div class="report-list">
-      <% @projects.each do |project| %>
-        <div class="report-row">
-          <div>
-            <strong><%= link_to project.name, project %></strong>
-            <p><%= project.description %></p>
+    <% if @projects.any? %>
+      <div class="report-list">
+        <% @projects.each do |project| %>
+          <div class="report-row">
+            <div>
+              <strong><%= link_to project.name, project %></strong>
+              <p><%= project.description %></p>
+            </div>
+
+            <span>
+              <%= pluralize(project.issues.count, "issue") %>
+            </span>
           </div>
+        <% end %>
+      </div>
+    <% else %>
+      <section class="empty-state">
+        <h2>No projects yet</h2>
+        <p>Create projects to begin tracking troubleshooting patterns.</p>
+      </section>
+    <% end %>
+  </section>
 
-          <span>
-            <%= pluralize(project.issues.count, "issue") %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <section class="empty-state">
-      <h2>No projects yet</h2>
-      <p>Create projects to begin tracking troubleshooting patterns.</p>
-    </section>
-  <% end %>
-</section>
+  <section class="report-section">
+    <h2>Issues by Tag</h2>
 
-<section class="report-section">
-  <h2>Issues by Tag</h2>
+    <% if @tags.any? %>
+      <div class="report-list">
+        <% @tags.each do |tag| %>
+          <div class="report-row">
+            <div>
+              <strong><%= link_to tag.name, tag %></strong>
+              <p>Troubleshooting category</p>
+            </div>
 
-  <% if @tags.any? %>
-    <div class="report-list">
-      <% @tags.each do |tag| %>
-        <div class="report-row">
-          <div>
-            <strong><%= link_to tag.name, tag %></strong>
-            <p>Troubleshooting category</p>
+            <span>
+              <%= pluralize(tag.issues.count, "issue") %>
+            </span>
           </div>
-
-          <span>
-            <%= pluralize(tag.issues.count, "issue") %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <section class="empty-state">
-      <h2>No tags yet</h2>
-      <p>Add tags to organize troubleshooting patterns.</p>
-    </section>
-</section>
-  <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <section class="empty-state">
+        <h2>No tags yet</h2>
+        <p>Add tags to organize troubleshooting patterns.</p>
+      </section>
+    <% end %>
+  </section>
 </section>

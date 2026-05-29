@@ -20,6 +20,11 @@ class PagesController < ApplicationController
     @investigating_issues = Issue.where(status: "Investigating").count
     @pending_issues = Issue.where(status: "Pending").count
 
+    @low_severity = Issue.where(severity: "Low").count
+    @medium_severity = Issue.where(severity: "Medium").count
+    @high_severity = Issue.where(severity: "High").count
+    @critical_severity = Issue.where(severity: "Critical").count
+
     @projects = Project.all
     @tags = Tag.all
   end
