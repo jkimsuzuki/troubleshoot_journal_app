@@ -867,6 +867,15 @@ input[type="submit"]:hover {
   margin-bottom: 2rem;
 }
 
+.filter-label {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: #374151;
+}
+
+.filter-panel nav {
+  margin-bottom: 1.5rem;
+}
 /* ========================================
    UTILITIES / MISC
 ======================================== */
