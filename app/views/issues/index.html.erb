@@ -35,6 +35,15 @@
 
 <%= render "filter_controls" %>
 
+<section class="section-header">
+  <div>
+    <h2>Issue List</h2>
+    <p>Review logged troubleshooting issues and investigation status.</p>
+  </div>
+
+  <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
+</section>
+
 <div id="issues">
   <% if @issues.any? %>
 
@@ -66,5 +75,3 @@
 <% end %>
 
 </div>
-
-<%= link_to "New issue", new_issue_path %>
