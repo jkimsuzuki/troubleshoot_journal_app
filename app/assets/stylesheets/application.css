@@ -616,39 +616,71 @@ input[type="submit"]:hover {
    TIMELINE
 ======================================== */
 
-.timeline-list {
+.timeline-feed {
   position: relative;
   margin-top: 2rem;
 }
 
+.timeline-feed::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #dcdcdc;
+}
+
 .timeline-item {
+  position: relative;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .timeline-marker {
   width: 14px;
   height: 14px;
+  border-radius: 999px;
   background-color: #111827;
-  border-radius: 50%;
-  margin-top: 0.5rem;
+  margin-top: 1.25rem;
+  z-index: 1;
   flex-shrink: 0;
 }
 
 .timeline-content {
+  flex: 1;
   background-color: white;
   border: 1px solid #dcdcdc;
   border-radius: 12px;
-  padding: 1.25rem;
-  flex: 1;
+  padding: 1.5rem;
 }
 
-.timeline-date {
-  color: #6b7280;
-  font-size: 0.9rem;
-  margin-top: 0;
+.timeline-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
+
+.timeline-top-row h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  color: #6b7280;
+}
+
+.timeline-summary {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
 
 /* ========================================
    REPORTS
