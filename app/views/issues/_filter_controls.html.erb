@@ -1,5 +1,6 @@
 <section class="filter-panel">
 
+<h3 class="filter-label">Status</h3>
 <nav class="status-filters">
 
   <%= link_to "All",
@@ -20,6 +21,7 @@
 
 </nav>
 
+<h3 class="filter-label">Projects</h3>
 <nav class="project-filters">
 
   <%= link_to "All Projects",
@@ -36,6 +38,7 @@
 
 </nav>
 
+<h3 class="filter-label">Tags</h3>
 <nav class="tag-filters">
 
   <%= link_to "All Tags",
@@ -50,6 +53,7 @@
 
 </nav>
 
+<h3 class="filter-label">Search</h3>
 <form class="search-form" method="get" action="/issues">
 
 <%= hidden_field_tag :status, @status if @status.present? %>
