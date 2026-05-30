@@ -93,6 +93,6 @@
     </div>
   </section>
   <div class="form-actions">
-    <%= form.submit %>
+    <%= form.submit issue.persisted? ? "Update Issue" : "Create Issue" %>
   </div>
 <% end %>
