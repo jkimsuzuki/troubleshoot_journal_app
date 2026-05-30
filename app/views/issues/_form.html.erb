@@ -94,5 +94,6 @@
   </section>
   <div class="form-actions">
     <%= form.submit issue.persisted? ? "Update Issue" : "Create Issue" %>
+    <%= link_to "Cancel", issues_path, class: "secondary-action" %>
   </div>
 <% end %>
