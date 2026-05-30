@@ -7,42 +7,54 @@
   </div>
 </section>
 
-<section class="timeline-list">
+<section class="timeline-feed">
   <% if @recent_issues.any? %>
     <% @recent_issues.each do |issue| %>
-
       <article class="timeline-item">
-
         <div class="timeline-marker"></div>
 
         <div class="timeline-content">
-          <p class="timeline-date">
-            <%= formatted_date(issue.updated_at) %>
-          </p>
+          <div class="timeline-top-row">
+            <h2><%= link_to issue.title, issue %></h2>
 
-          <h2>
-            <%= link_to issue.title, issue %>
-          </h2>
-
-          <p>
             <span class="<%= status_badge_class(issue.status) %>">
               <%= issue.status %>
             </span>
-          </p>
+          </div>
 
-          <p>
-            <strong>Project:</strong>
-            <%= issue.project&.name || "No project assigned" %>
+          <div class="timeline-meta">
+            <p>
+              <strong>Project:</strong>
+              <%= issue.project&.name || "No project assigned" %>
+            </p>
+
+            <p>
+              <strong>Severity:</strong>
+              <%= issue.severity.presence || "Not set" %>
+            </p>
+
+            <p>
+              <strong>Updated:</strong>
+              <%= formatted_date(issue.updated_at) %>
+            </p>
+          </div>
+
+          <p class="timeline-summary">
+            <%= truncate(
+              issue.root_cause.presence ||
+              issue.error_message.presence ||
+              issue.fix.presence ||
+              "No investigation summary recorded yet.",
+              length: 180
+            ) %>
           </p>
         </div>
-
       </article>
-
     <% end %>
   <% else %>
     <section class="empty-state">
-      <h2>No timeline activity yet</h2>
-      <p>Create or update issues to start building your troubleshooting timeline.</p>
+      <h2>No issue activity yet</h2>
+      <p>Issue updates and investigations will appear here.</p>
     </section>
   <% end %>
 </section>
