@@ -850,6 +850,12 @@ input[type="submit"]:hover {
   gap: 0.5rem;
 }
 
+.primary-action,
+.secondary-action,
+.danger-action {
+  white-space: nowrap;
+}
+
 @media (max-width: 900px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
