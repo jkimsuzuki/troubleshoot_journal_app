@@ -48,9 +48,9 @@
   </section>
 
   <div class="issue-actions">
-    <%= link_to "Back to projects", projects_path %>
-    <%= link_to "Edit project", edit_project_path(@project) %>
-    <%= button_to "Delete project", @project, method: :delete %>
+    <%= link_to "Back to projects", projects_path, class: "secondary-action" %>
+   <%= link_to "Edit project", edit_project_path(@project), class: "secondary-action" %>
+    <%= button_to "Delete project", @project, method: :delete, class: "danger-action" %>
   </div>
 
 </section>
