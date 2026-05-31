@@ -304,6 +304,13 @@ display: flex;
   margin-bottom: 1rem;
 }
 
+.issue-card,
+.timeline-content,
+.report-row,
+.project-card {
+  overflow-wrap: break-word;
+}
+
 /* ========================================
    ISSUE METADATA
 ======================================== */
