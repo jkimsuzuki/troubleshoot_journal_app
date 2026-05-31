@@ -3,82 +3,152 @@
 <section class="page-header">
   <div>
     <h1>Dashboard</h1>
-    <p>Review troubleshooting activity, issue status, and project coverage.</p>
+    <p>Track investigations, troubleshooting progress, and operational activity.</p>
   </div>
+
+  <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
 </section>
 
 <section class="dashboard-stats">
-  <div>
+  <div class="dashboard-panel">
     <h3>Total Issues</h3>
     <p><%= @total_issues %></p>
   </div>
 
-  <div>
-    <h3>Resolved</h3>
-    <p><%= @resolved_issues %></p>
-  </div>
-
-  <div>
+  <div class="dashboard-panel">
     <h3>Investigating</h3>
     <p><%= @investigating_issues %></p>
   </div>
 
-  <div>
-    <h3>Pending</h3>
-    <p><%= @pending_issues %></p>
+  <div class="dashboard-panel">
+    <h3>Resolved</h3>
+    <p><%= @resolved_issues %></p>
+  </div>
+
+  <div class="dashboard-panel">
+    <h3>Projects</h3>
+    <p><%= @projects.count %></p>
+  </div>
+
+  <div class="dashboard-panel">
+    <h3>Tags</h3>
+    <p><%= @tags.count %></p>
   </div>
 </section>
 
-<section class="quick-actions">
-  <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
-  <%= link_to "View All Issues", issues_path, class: "secondary-action" %>
-  <%= link_to "View Reports", reports_path, class: "secondary-action" %>
-</section>
+<section class="dashboard-layout">
 
-<section class="dashboard-grid">
+  <section class="dashboard-main">
 
-  <section class="dashboard-panel">
-    <h2>Recent Issues</h2>
+    <section class="dashboard-toolbar">
 
-    <% if @recent_issues.any? %>
+      <nav class="status-filters">
+        <%= link_to "All Issues", issues_path %>
+        <%= link_to "Investigating", issues_path(status: "Investigating") %>
+        <%= link_to "Resolved", issues_path(status: "Resolved") %>
+      </nav>
+
+      <%= form_with url: issues_path,
+      method: :get,
+      local: true,
+      class: "dashboard-search" do |form| %>
+
+        <%= form.text_field :query,
+        placeholder: "Search issues..." %>
+
+      <% end %>
+
+    </section>
+
+    <section class="dashboard-table">
+
+      <div class="dashboard-table-header">
+        <span>ID</span>
+        <span>Title</span>
+        <span>Project</span>
+        <span>Status</span>
+        <span>Severity</span>
+        <span>Updated</span>
+      </div>
+
       <% @recent_issues.each do |issue| %>
-        <%= render "issues/issue_card", issue: issue %>
+
+        <article class="dashboard-row">
+
+          <div>
+            #<%= issue.id %>
+          </div>
+
+          <div>
+            <%= link_to issue.title, issue %>
+          </div>
+
+          <div>
+            <%= issue.project&.name %>
+          </div>
+
+          <div>
+            <span class="<%= status_badge_class(issue.status) %>">
+              <%= issue.status %>
+            </span>
+          </div>
+
+          <div>
+            <%= issue.severity.presence || "Not set" %>
+          </div>
+
+          <div>
+            <%= formatted_date(issue.updated_at) %>
+          </div>
+
+        </article>
+
       <% end %>
-    <% else %>
-      <section class="empty-state">
-        <h2>No issues yet</h2>
-        <p>Create your first issue to begin tracking troubleshooting activity.</p>
-      </section>
-    <% end %>
+
+    </section>
+
   </section>
 
-  <section class="dashboard-panel">
-    <h2>Project Coverage</h2>
+  <aside class="dashboard-sidebar">
 
-    <% if @projects.any? %>
-      <% @projects.each do |project| %>
-        <div class="compact-row">
-          <%= link_to project.name, project %>
-          <span><%= pluralize(project.issues.count, "issue") %></span>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="empty-state">No projects yet.</p>
-    <% end %>
-  </section>
+    <section class="dashboard-side-panel">
+      <h2>Operational Summary</h2>
 
-  <section class="dashboard-panel">
-  <h2>Tag Summary</h2>
+      <ul>
+        <li>
+          <strong><%= @active_issues.count %></strong>
+          active investigations
+        </li>
 
-  <% if @tags.any? %>
-    <div class="tag-summary">
-      <% @tags.each do |tag| %>
-        <%= link_to tag.name, tag_path(tag), class: "tag-pill" %>
-      <% end %>
-    </div>
-  <% else %>
-    <p class="empty-state">No tags yet.</p>
-  <% end %>
-</section>
+        <li>
+          <strong><%= @critical_issues %></strong>
+          critical severity issues
+        </li>
+
+        <li>
+          <strong><%= @projects.count %></strong>
+          active projects tracked
+        </li>
+
+        <li>
+          <strong><%= @tags.count %></strong>
+          troubleshooting categories
+        </li>
+      </ul>
+    </section>
+
+    <section class="dashboard-side-panel">
+      <h2>What this app tracks</h2>
+
+      <ul>
+        <li>Issue investigations</li>
+        <li>Root causes</li>
+        <li>Fixes and prevention</li>
+        <li>Project troubleshooting history</li>
+        <li>Interview-ready debugging stories</li>
+      </ul>
+    </section>
+
+  </aside>
 
 </section>
