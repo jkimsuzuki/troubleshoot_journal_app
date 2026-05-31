@@ -6,7 +6,10 @@
     <p>Track investigations, troubleshooting progress, and operational activity.</p>
   </div>
 
-  <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
+  <%= link_to new_issue_path, class: "primary-action" do %>
+  <span>+</span>
+  New Issue
+  <% end %>
 </section>
 
 <section class="dashboard-stats">
