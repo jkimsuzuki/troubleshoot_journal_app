@@ -5,15 +5,32 @@
     <p>Incident Response Workspace</p>
   </div>
       
-    <nav class="sidebar-nav">
-      <p><%= link_to "Dashboard", dashboard_path, class: active_nav_class(dashboard_path) %></p>
-      <p><%= link_to "Issues", issues_path, class: active_nav_class(issues_path) %></p>
-      <p><%= link_to "Projects", projects_path, class: active_nav_class(projects_path) %></p>
-      <p><%= link_to "Tags", tags_path, class: active_nav_class(tags_path) %></p>
-      <p><%= link_to "Timeline", timeline_path, class: active_nav_class(timeline_path) %></p>
-      <p><%= link_to "Search", search_path, class: active_nav_class(search_path) %></p>
-      <p><%= link_to "Reports", reports_path, class: active_nav_class(reports_path) %></p>
-      <a href="#">Settings</a> 
-      <a href="#">Profile</a>
-    </nav>
+<nav class="sidebar-nav">
+
+  <p class="sidebar-section-label">Workspace</p>
+
+  <%= link_to "Dashboard", dashboard_path,
+  class: active_nav_class(dashboard_path) %>
+
+  <%= link_to "Issues", issues_path,
+  class: active_nav_class(issues_path) %>
+
+  <%= link_to "Projects", projects_path,
+  class: active_nav_class(projects_path) %>
+
+  <%= link_to "Tags", tags_path,
+  class: active_nav_class(tags_path) %>
+
+  <p class="sidebar-section-label">Insights</p>
+
+  <%= link_to "Timeline", timeline_path,
+  class: active_nav_class(timeline_path) %>
+
+  <%= link_to "Reports", reports_path,
+  class: active_nav_class(reports_path) %>
+
+  <%= link_to "Search", search_path,
+  class: active_nav_class(search_path) %>
+
+</nav>
 </aside>
