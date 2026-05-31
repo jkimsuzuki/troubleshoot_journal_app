@@ -249,7 +249,7 @@ main a:hover {
 .dashboard-row {
   display: grid;
   grid-template-columns:
-    80px
+    40px
     2fr
     1.5fr
     1fr
@@ -257,7 +257,7 @@ main a:hover {
     1fr;
 
   gap: 1rem;
-  align-items: center;
+  align-items: start;
   padding: 0.85rem 1rem;
 }
 
@@ -269,6 +269,8 @@ main a:hover {
 
 .dashboard-row {
   border-bottom: 1px solid #f3f4f6;
+  min-height: 92px;
+  
 }
 
 .dashboard-row:last-child {
@@ -277,6 +279,14 @@ main a:hover {
 
 .dashboard-row:hover {
   background-color: #f9fafb;
+}
+
+.dashboard-row > div {
+  align-self: center;
+}
+
+.dashboard-row div:nth-child(3) {
+  min-width: 0;
 }
 
 .dashboard-sidebar {

@@ -32,7 +32,7 @@
 
 <div class="issue-badges">
     <span class="<%= status_badge_class(@issue.status) %>">
-      <%= @issue.status %>
+      <%= @issue.status == "Investigating" ? "Active" : issue.status %>
     </span>
 
     <span class="<%= severity_badge_class(@issue.severity) %>">

@@ -76,41 +76,53 @@
         <span>Updated</span>
       </div>
 
-      <% @recent_issues.each do |issue| %>
+      <% if @recent_issues.any? %>
 
-        <article class="dashboard-row">
+  <% @recent_issues.each do |issue| %>
 
-          <div>
-            #<%= issue.id %>
-          </div>
+    <article class="dashboard-row">
 
-          <div>
-            <%= link_to issue.title, issue %>
-          </div>
+      <div>
+        #<%= issue.id %>
+      </div>
 
-          <div>
-            <%= issue.project&.name %>
-          </div>
+      <div>
+        <%= link_to issue.title, issue %>
+      </div>
 
-          <div>
-            <span class="<%= status_badge_class(issue.status) %>">
-              <%= issue.status %>
-            </span>
-          </div>
+      <div>
+        <%= issue.project&.name || "No project assigned" %>
+      </div>
 
-          <div>
-            <span class="severity-pill">
-              <%= issue.severity.presence || "Not set" %>
-            </span>
-          </div>
+      <div>
+        <span class="<%= status_badge_class(issue.status) %>">
+          <%= issue.status == "Investigating" ? "Active" : issue.status %>
+        </span>
+      </div>
 
-          <div>
-            <%= formatted_date(issue.updated_at) %>
-          </div>
+      <div>
+        <span class="severity-pill">
+          <%= issue.severity.presence || "Not set" %>
+        </span>
+      </div>
 
-        </article>
+      <div>
+        <%= formatted_date(issue.updated_at) %>
+      </div>
 
-      <% end %>
+    </article>
+
+  <% end %>
+
+<% else %>
+
+  <section class="empty-state dashboard-empty-state">
+    <h2>No recent issues</h2>
+    <p>Create your first issue to start building your troubleshooting history.</p>
+    <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
+  </section>
+
+<% end %>
 
     </section>
 
