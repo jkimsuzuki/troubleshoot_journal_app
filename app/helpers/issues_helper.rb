@@ -30,8 +30,4 @@ def severity_badge_class(severity)
   else
     "severity-badge"
   end
-
-  def status_label(status)
-    status == "Investigating" ? "Active" : status
-  end
 end

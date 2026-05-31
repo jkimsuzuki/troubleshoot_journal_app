@@ -265,11 +265,12 @@ main a:hover {
   background-color: #f9fafb;
   font-weight: 600;
   border-bottom: 1px solid #e5e7eb;
+  align-items: center;
 }
 
 .dashboard-row {
   border-bottom: 1px solid #f3f4f6;
-  min-height: 92px;
+  min-height: 50px;
   
 }
 
