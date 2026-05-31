@@ -128,13 +128,30 @@ main {
 }
 
 .sidebar-brand h2 {
-  margin-bottom: 0.25rem;
-  color: white;
+  margin: 0;
+  font-size: 1.4rem;
 }
 
 .sidebar-brand p {
+  margin-top: 0.25rem;
   color: #9ca3af;
   font-size: 0.9rem;
+}
+
+.sidebar-section-label {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 /* ========================================
