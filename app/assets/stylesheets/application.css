@@ -26,6 +26,9 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 /* ========================================
    LAYOUT
@@ -797,6 +800,16 @@ input[type="submit"]:hover {
   margin: 0;
 }
 
+.primary-action {
+  display: inline-block;
+  margin-top: 1rem;
+
+  background-color: #111827;
+  color: rgb(212, 164, 60) !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+}
+
 .quick-actions .primary-action {
   background-color: #111827;
   color: #facc15 !important;
@@ -1009,14 +1022,4 @@ input[type="submit"]:hover {
   border-radius: 12px;
   padding: 3rem;
   text-align: center;
-}
-
-.primary-action {
-  display: inline-block;
-  margin-top: 1rem;
-
-  background-color: #111827;
-  color: rgb(212, 164, 60) !important;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
 }
