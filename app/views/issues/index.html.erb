@@ -44,34 +44,63 @@
   <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
 </section>
 
-<div id="issues">
+<section class="dashboard-table issues-table">
+
+  <div class="dashboard-table-header">
+    <span>ID</span>
+    <span>Title</span>
+    <span>Project</span>
+    <span>Status</span>
+    <span>Severity</span>
+    <span>Updated</span>
+  </div>
+
   <% if @issues.any? %>
 
     <% @issues.each do |issue| %>
-      <%= render "issue_card", issue: issue %>
-      <%end%>
+
+      <article class="dashboard-row">
+
+        <div>
+          #<%= issue.id %>
+        </div>
+
+        <div>
+          <%= link_to issue.title, issue %>
+        </div>
+
+        <div>
+          <%= issue.project&.name || "No project assigned" %>
+        </div>
+
+        <div>
+          <span class="<%= status_badge_class(issue.status) %>">
+            <%= status_label(issue.status) %>
+          </span>
+        </div>
+
+        <div>
+          <span class="severity-pill">
+            <%= issue.severity.presence || "Not set" %>
+          </span>
+        </div>
+
+        <div>
+          <%= formatted_date(issue.updated_at) %>
+        </div>
+
+      </article>
+
+    <% end %>
 
   <% else %>
 
-  <section class="empty-state">
-  <h2>No issues found</h2>
+    <section class="empty-state dashboard-empty-state">
+      <h2>No issues found</h2>
+      <p>Create a new issue or adjust your filters.</p>
+      <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
+    </section>
 
-  <% if @status.present? || @project_id.present? || @query.present? %>
-    <p>
-      No issues match your current filters. Try clearing filters or changing your search.
-    </p>
-
-    <%= link_to "Clear filters", issues_path %>
-  <% else %>
-    <p>
-      No issues have been created yet.
-    </p>
-
-    <%= link_to "Create your first issue", new_issue_path,
-    class: "primary-action" %>
   <% end %>
+
 </section>
-
-<% end %>
-
-</div>

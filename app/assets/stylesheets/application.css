@@ -558,6 +558,9 @@ display: flex;
   overflow-wrap: break-word;
 }
 
+.issues-table {
+  margin-top: 1rem;
+}
 /* ========================================
    ISSUE METADATA
 ======================================== */
