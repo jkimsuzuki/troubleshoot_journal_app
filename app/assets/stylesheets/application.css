@@ -835,6 +835,48 @@ input[type="submit"]:hover {
   color: #2563eb;
 }
 
+.projects-table-header,
+.projects-row {
+  display: grid;
+  grid-template-columns:
+    minmax(200px, 1.3fr)
+    minmax(260px, 1.8fr)
+    90px
+    110px
+    150px
+    130px;
+
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-track {
+  width: 90px;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #2563eb;
+  border-radius: 999px;
+}
+
+.progress-cell span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
 @media (max-width: 900px) {
   .projects-filter-form {
     grid-template-columns: 1fr;

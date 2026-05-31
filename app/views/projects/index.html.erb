@@ -8,7 +8,10 @@
     <p>Organize issues by the projects you’re working on.</p>
   </div>
 
-  <%= link_to "New Project", new_project_path, class: "primary-action" %>
+  <%= link_to new_project_path, class: "primary-action" do %>
+  <span>+</span>
+  New Project
+  <% end %>
 </section>
 
 <section class="dashboard-stats">
@@ -84,6 +87,7 @@
     <span>Description</span>
     <span>Issues</span>
     <span>Status</span>
+    <span>Progress</span>
     <span>Updated</span>
   </div>
 
@@ -112,6 +116,20 @@
           </span>
         </div>
 
+        <div>
+          <% total_issues = project.issues.count %>
+          <% resolved_issues = project.issues.where(status: "Resolved").count %>
+          <% progress = total_issues.positive? ? ((resolved_issues.to_f / total_issues) * 100).round : 0 %>
+
+         <div class="progress-cell">
+           <div class="progress-track">
+             <div class="progress-fill" style="width: <%= progress %>%"></div>
+          </div>
+
+            <span><%= progress %>%</span>
+        </div>
+        </div>
+        
         <div>
           <%= formatted_date(project.updated_at) %>
         </div>
