@@ -175,7 +175,6 @@ main a:hover {
   text-decoration: underline;
 }
 
-
 /* ========================================
    DASHBOARD STATS
 ======================================== */
@@ -355,7 +354,6 @@ display: flex;
   color: #374151;
 }
 
-
 /* ========================================
    ISSUE DETAIL PAGE
 ======================================== */
@@ -396,7 +394,6 @@ display: flex;
   gap: 1rem;
   margin-top: 2rem;
 }
-
 
 /* ========================================
    FORMS
@@ -477,7 +474,6 @@ input[type="submit"]:hover {
   color: white;
   cursor: pointer;
 }
-
 
 /* ========================================
    FILTER SUMMARY
@@ -712,7 +708,6 @@ input[type="submit"]:hover {
   line-height: 1.5;
 }
 
-
 /* ========================================
    REPORTS
 ======================================== */
@@ -776,6 +771,7 @@ input[type="submit"]:hover {
     grid-template-columns: 1fr;
   }
 }
+
 /* ========================================
    DASHBOARD
 ======================================== */
@@ -969,7 +965,6 @@ input[type="submit"]:hover {
   color: white;
 }
 
-
 /* ========================================
    SECTION HEADERS
 ======================================== */
@@ -1012,6 +1007,7 @@ input[type="submit"]:hover {
 .filter-panel nav {
   margin-bottom: 1.5rem;
 }
+
 /* ========================================
    UTILITIES / MISC
 ======================================== */

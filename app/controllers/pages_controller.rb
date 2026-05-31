@@ -8,6 +8,14 @@ class PagesController < ApplicationController
     @recent_issues = Issue.order(updated_at: :desc).limit(5)
     @projects = Project.all
     @tags = Tag.all
+
+    @recent_issues = Issue.order(updated_at: :desc).limit(8)
+    @active_issues =
+      Issue.where(status: "Investigating").or(
+        Issue.where(status: "Pending")
+        )
+
+    @critical_issues = Issue.where(severity: "Critical").count
   end
 
   def timeline
