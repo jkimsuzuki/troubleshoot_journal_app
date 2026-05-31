@@ -1,20 +1,20 @@
 module IssuesHelper
-   def status_badge_class(status)
-      case status
-      when "Resolved"
+  def status_badge_class(status)
+    case status
+    when "Resolved"
       "status-badge status-resolved"
-      when "Investigating"
+    when "Investigating"
       "status-badge status-investigating"
-      when "Pending"
+    when "Pending"
       "status-badge status-pending"
-      else
+    else
       "status-badge"
-      end
-   end
+    end
+  end
 
-   def formatted_date(date)
-      date.strftime("%B %d, %Y")
-   end
+  def formatted_date(date)
+    date.strftime("%B %d, %Y")
+  end
 end
 
 def severity_badge_class(severity)
@@ -29,5 +29,9 @@ def severity_badge_class(severity)
     "severity-badge severity-low"
   else
     "severity-badge"
+  end
+
+  def status_label(status)
+    status == "Investigating" ? "Active" : status
   end
 end

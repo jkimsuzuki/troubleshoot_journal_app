@@ -18,7 +18,7 @@
             <h2><%= link_to issue.title, issue %></h2>
 
             <span class="<%= status_badge_class(issue.status) %>">
-              <%= issue.status == "Investigating" ? "Active" : issue.status %>
+              <%= status_label(issue.status) %>
             </span>
           </div>
 

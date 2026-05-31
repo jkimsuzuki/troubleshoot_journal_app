@@ -7,7 +7,7 @@
 
 <div class="issue-badges">
     <span class="<%= status_badge_class(issue.status) %>">
-       <%= issue.status == "Investigating" ? "Active" : issue.status %>
+       <%= status_label(issue.status) %>
     </span>
 
     <span class="<%= severity_badge_class(issue.severity) %>">
