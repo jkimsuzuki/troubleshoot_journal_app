@@ -321,6 +321,14 @@ main a:hover {
   height: 20px;
 }
 
+.dashboard-row a {
+  color: #111827;
+  font-weight: 600;
+}
+
+.dashboard-row a:hover {
+  color: #2563eb;
+}
 /* ========================================
    ISSUE FILTER
 ======================================== */
