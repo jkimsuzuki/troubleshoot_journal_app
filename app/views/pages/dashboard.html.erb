@@ -99,7 +99,9 @@
           </div>
 
           <div>
-            <%= issue.severity.presence || "Not set" %>
+            <span class="severity-pill">
+              <%= issue.severity.presence || "Not set" %>
+            </span>
           </div>
 
           <div>

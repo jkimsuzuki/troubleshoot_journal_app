@@ -329,6 +329,17 @@ main a:hover {
 .dashboard-row a:hover {
   color: #2563eb;
 }
+
+.severity-pill {
+  display: inline-block;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
 /* ========================================
    ISSUE FILTER
 ======================================== */
