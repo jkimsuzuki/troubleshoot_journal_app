@@ -13,21 +13,25 @@
   <div class="dashboard-panel">
     <h3>Total Issues</h3>
     <p><%= @total_issues %></p>
+    <span>All time</span>
   </div>
 
   <div class="dashboard-panel">
     <h3>Investigating</h3>
     <p><%= @investigating_issues %></p>
+    <span>Currently open</span>
   </div>
 
   <div class="dashboard-panel">
     <h3>Resolved</h3>
     <p><%= @resolved_issues %></p>
+    <span>Closed Issues</span>
   </div>
 
   <div class="dashboard-panel">
     <h3>Projects</h3>
     <p><%= @projects.count %></p>
+    <span>Total Projects</span>
   </div>
 
 </section>
