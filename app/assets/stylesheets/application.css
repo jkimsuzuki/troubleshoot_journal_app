@@ -75,6 +75,7 @@ main {
   padding: 2rem 1rem;
   background-color: #0E0C0C;
   color: #F3F1F1;
+  overflow-y: auto;
 }
 
 .sidebar h2 {
