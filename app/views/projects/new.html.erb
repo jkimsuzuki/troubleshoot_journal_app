@@ -1,11 +1,14 @@
-<% content_for :title, "New project" %>
+<% content_for :title, "New Project" %>
 
-<h1>New project</h1>
+<section class="page-header">
+  <div>
+    <h1>New Project</h1>
+    <p>Create a project to organize related troubleshooting issues.</p>
+  </div>
+</section>
 
 <%= render "form", project: @project %>
 
-<br>
-
-<div>
-  <%= link_to "Back to projects", projects_path %>
+<div class="issue-actions">
+  <%= link_to "Back to projects", projects_path, class: "secondary-action" %>
 </div>
