@@ -207,7 +207,7 @@ main a:hover {
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .dashboard-toolbar {
@@ -357,6 +357,10 @@ main a:hover {
   margin-top: 0.4rem;
   color: #6b7280;
   font-size: 0.85rem;
+}
+
+.dashboard-stats {
+  margin-bottom: 1.5rem;
 }
 
 /* ========================================
