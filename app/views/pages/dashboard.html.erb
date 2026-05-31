@@ -30,10 +30,6 @@
     <p><%= @projects.count %></p>
   </div>
 
-  <div class="dashboard-panel">
-    <h3>Tags</h3>
-    <p><%= @tags.count %></p>
-  </div>
 </section>
 
 <section class="dashboard-layout">
@@ -58,6 +54,15 @@
 
       <% end %>
 
+    </section>
+
+    <section class="section-header dashboard-section-header">
+      <div>
+        <h2>Recent Issues</h2>
+        <p>Latest troubleshooting records and investigation status.</p>
+      </div>
+
+        <%= link_to "View All Issues", issues_path, class: "secondary-action" %>
     </section>
 
     <section class="dashboard-table">
@@ -112,32 +117,6 @@
   <aside class="dashboard-sidebar">
 
     <section class="dashboard-side-panel">
-      <h2>Operational Summary</h2>
-
-      <ul>
-        <li>
-          <strong><%= @active_issues.count %></strong>
-          active investigations
-        </li>
-
-        <li>
-          <strong><%= @critical_issues %></strong>
-          critical severity issues
-        </li>
-
-        <li>
-          <strong><%= @projects.count %></strong>
-          active projects tracked
-        </li>
-
-        <li>
-          <strong><%= @tags.count %></strong>
-          troubleshooting categories
-        </li>
-      </ul>
-    </section>
-
-    <section class="dashboard-side-panel">
       <h2>What this app tracks</h2>
 
       <ul>
@@ -148,6 +127,21 @@
         <li>Interview-ready debugging stories</li>
       </ul>
     </section>
+
+    <section class="dashboard-side-panel">
+      <h2>Tech Stack</h2>
+
+      <ul>
+        <li>Ruby on Rails</li>
+        <li>SQLite</li>
+        <li>ERB views</li>
+        <li>Custom CSS</li>
+        <li>Minitest</li>
+        <li>GitHub Actions</li>
+      </ul>
+    </section>
+
+   
 
   </aside>
 

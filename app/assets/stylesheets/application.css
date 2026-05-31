@@ -212,14 +212,30 @@ main a:hover {
 
 .dashboard-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
   margin-bottom: 1.5rem;
   align-items: center;
 }
 
+.dashboard-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
 .dashboard-search input {
-  width: 280px;
+  width: 240px;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+}
+
+.dashboard-search input:focus {
+  outline: none;
+  border-color: #111827;
 }
 
 .dashboard-table {
@@ -289,6 +305,21 @@ main a:hover {
   margin-bottom: 0.75rem;
 }
 
+.dashboard-toolbar .status-filters {
+  margin-bottom: 0;
+  align-items: center;
+}
+
+.dashboard-toolbar .dashboard-search {
+  margin-left: auto;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-toolbar .dashboard-search input {
+  height: 20px;
+}
 
 /* ========================================
    ISSUE FILTER
@@ -298,14 +329,19 @@ main a:hover {
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .status-filters a {
-  background-color: white;
+  background-color: #f9fafb;
   border: 1px solid #dcdcdc;
   border-radius: 999px;
-  padding: 0.45rem 0.9rem;
+
+  padding: 0.55rem 1rem;
+
   color: #111827;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -1032,7 +1068,7 @@ input[type="submit"]:hover {
 
 @media (max-width: 900px) {
 
-  .dashboard-toolbar {
+ .dashboard-toolbar {
     flex-direction: column;
     align-items: stretch;
   }
