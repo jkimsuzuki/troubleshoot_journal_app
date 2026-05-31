@@ -846,6 +846,24 @@ input[type="submit"]:hover {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
+
+   .dashboard-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .timeline-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .quick-actions {
+    flex-wrap: wrap;
+  }
 }
 
 /* ========================================
