@@ -3,7 +3,26 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
+    @status = params[:status]
+    @query = params[:query]
+
     @projects = Project.all
+
+    if @status.present?
+      @projects = @projects.where(status: @status)
+    end
+
+    if @query.present?
+      @projects = @projects.where(
+        "name LIKE :query OR description LIKE :query",
+        query: "%#{@query}%"
+      )
+    end
+
+    @total_projects = Project.count
+    @active_projects = Project.where(status: "Active").count
+    @completed_projects = Project.where(status: "Completed").count
+    @total_project_issues = Issue.count
   end
 
   # GET /projects/1 or /projects/1.json

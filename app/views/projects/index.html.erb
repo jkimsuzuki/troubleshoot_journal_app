@@ -5,28 +5,126 @@
 <section class="page-header">
   <div>
     <h1>Projects</h1>
-    <p>Organize troubleshooting issues by application, feature, or learning project.</p>
+    <p>Organize issues by the projects you’re working on.</p>
   </div>
 
-  <%= link_to "New project", new_project_path, class: "primary-action" %>
+  <%= link_to "New Project", new_project_path, class: "primary-action" %>
 </section>
 
-<div class="project-grid">
-  <% @projects.each do |project| %>
-    <section class="project-card">
-      <h2><%= link_to project.name, project %></h2>
+<section class="dashboard-stats">
+  <div class="dashboard-panel">
+    <h3>Total Projects</h3>
+    <p><%= @total_projects %></p>
+    <span>All projects</span>
+  </div>
 
-      <p><%= project.description %></p>
+  <div class="dashboard-panel">
+    <h3>Active Projects</h3>
+    <p><%= @active_projects %></p>
+    <span>Currently active</span>
+  </div>
 
-      <p>
-        <strong>Status:</strong>
-        <%= project.status %>
-      </p>
+  <div class="dashboard-panel">
+    <h3>Completed Projects</h3>
+    <p><%= @completed_projects %></p>
+    <span>Finished projects</span>
+  </div>
 
-      <p>
-        <strong>Issues:</strong>
-        <%= project.issues.count %>
-      </p>
+  <div class="dashboard-panel">
+    <h3>Total Issues</h3>
+    <p><%= @total_project_issues %></p>
+    <span>Across all projects</span>
+  </div>
+</section>
+
+<section class="filter-panel">
+  <%= form_with url: projects_path, method: :get, local: true, class: "filter-form projects-filter-form" do |form| %>
+
+    <div class="filter-field filter-search">
+      <%= form.label :query, "Search" %>
+      <%= form.text_field :query,
+        value: @query,
+        placeholder: "Search projects..." %>
+    </div>
+
+    <div class="filter-field">
+      <%= form.label :status, "Status" %>
+      <%= form.select :status,
+        options_for_select(
+          [
+            ["All Statuses", ""],
+            ["Active", "Active"],
+            ["Paused", "Paused"],
+            ["Completed", "Completed"]
+          ],
+          @status
+        )
+      %>
+    </div>
+
+    <div class="filter-actions">
+      <%= form.submit "Apply", class: "primary-action" %>
+      <%= link_to "Clear", projects_path, class: "secondary-action" %>
+    </div>
+
+  <% end %>
+</section>
+
+<section class="section-header">
+  <div>
+    <h2>Project List</h2>
+    <p>Review project status, issue volume, and recent activity.</p>
+  </div>
+</section>
+
+<section class="dashboard-table projects-table">
+
+  <div class="projects-table-header">
+    <span>Project</span>
+    <span>Description</span>
+    <span>Issues</span>
+    <span>Status</span>
+    <span>Updated</span>
+  </div>
+
+  <% if @projects.any? %>
+    <% @projects.each do |project| %>
+
+      <article class="projects-row">
+
+        <div>
+          <%= link_to project.name, project %>
+        </div>
+
+        <div>
+          <%= project.description.presence || "No description added." %>
+        </div>
+
+        <div>
+          <span class="severity-pill">
+            <%= pluralize(project.issues.count, "issue") %>
+          </span>
+        </div>
+
+        <div>
+          <span class="severity-pill">
+            <%= project.status.presence || "Not set" %>
+          </span>
+        </div>
+
+        <div>
+          <%= formatted_date(project.updated_at) %>
+        </div>
+
+      </article>
+
+    <% end %>
+  <% else %>
+    <section class="empty-state dashboard-empty-state">
+      <h2>No projects found</h2>
+      <p>Create a project or adjust your filters.</p>
+      <%= link_to "New Project", new_project_path, class: "primary-action" %>
     </section>
   <% end %>
-</div>
+
+</section>

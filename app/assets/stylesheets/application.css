@@ -786,6 +786,70 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   PROJECTS TABLE
+======================================== */
+
+.projects-filter-form {
+  grid-template-columns: 2fr 1fr auto;
+}
+
+.projects-table-header,
+.projects-row {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 1.4fr)
+    minmax(280px, 2fr)
+    110px
+    110px
+    130px;
+
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.projects-table-header {
+  background-color: #f9fafb;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.projects-row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.projects-row:last-child {
+  border-bottom: none;
+}
+
+.projects-row:hover {
+  background-color: #f9fafb;
+}
+
+.projects-row a {
+  color: #111827;
+  font-weight: 600;
+}
+
+.projects-row a:hover {
+  color: #2563eb;
+}
+
+@media (max-width: 900px) {
+  .projects-filter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-table-header {
+    display: none;
+  }
+
+  .projects-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+/* ========================================
    TAGS
 ======================================== */
 
