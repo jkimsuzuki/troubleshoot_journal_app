@@ -200,6 +200,97 @@ main a:hover {
 }
 
 /* ========================================
+   DASHBOARD V2
+======================================== */
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dashboard-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.dashboard-search input {
+  width: 280px;
+}
+
+.dashboard-table {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dashboard-table-header,
+.dashboard-row {
+  display: grid;
+  grid-template-columns:
+    80px
+    2fr
+    1.5fr
+    1fr
+    1fr
+    1fr;
+
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+}
+
+.dashboard-table-header {
+  background-color: #f9fafb;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dashboard-row:last-child {
+  border-bottom: none;
+}
+
+.dashboard-row:hover {
+  background-color: #f9fafb;
+}
+
+.dashboard-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-side-panel {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.dashboard-side-panel h2 {
+  margin-top: 0;
+}
+
+.dashboard-side-panel ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.dashboard-side-panel li {
+  margin-bottom: 0.75rem;
+}
+
+
+/* ========================================
    ISSUE FILTER
 ======================================== */
 
