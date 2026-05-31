@@ -1,12 +1,15 @@
-<% content_for :title, "Editing project" %>
+<% content_for :title, "Edit Project" %>
 
-<h1>Editing project</h1>
+<section class="page-header">
+  <div>
+    <h1>Edit Project</h1>
+    <p>Update project details and status.</p>
+  </div>
+</section>
 
 <%= render "form", project: @project %>
 
-<br>
-
-<div>
-  <%= link_to "Show this project", @project %> |
-  <%= link_to "Back to projects", projects_path %>
+<div class="issue-actions">
+  <%= link_to "Show project", @project, class: "secondary-action" %>
+  <%= link_to "Back to projects", projects_path, class: "secondary-action" %>
 </div>
