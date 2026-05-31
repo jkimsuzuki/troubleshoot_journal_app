@@ -258,7 +258,7 @@ main a:hover {
 
   gap: 1rem;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.85rem 1rem;
 }
 
 .dashboard-table-header {
