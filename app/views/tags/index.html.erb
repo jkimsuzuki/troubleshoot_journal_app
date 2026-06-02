@@ -3,15 +3,112 @@
 <section class="page-header">
   <div>
     <h1>Tags</h1>
-    <p>Browse recurring troubleshooting categories across issues.</p>
+    <p>Manage labels to categorize troubleshooting issues.</p>
+  </div>
+
+  <%= link_to new_tag_path, class: "primary-action" do %>
+    <span>+</span>
+    New Tag
+  <% end %>
+</section>
+
+<section class="dashboard-stats">
+  <div class="dashboard-panel">
+    <h3>Total Tags</h3>
+    <p><%= @total_tags %></p>
+    <span>All labels</span>
+  </div>
+
+  <div class="dashboard-panel">
+    <h3>Most Used Tag</h3>
+    <p><%= @most_used_tag&.name || "None" %></p>
+    <span>Most common category</span>
+  </div>
+
+  <div class="dashboard-panel">
+    <h3>Unused Tags</h3>
+    <p><%= @unused_tags %></p>
+    <span>No issues yet</span>
+  </div>
+
+  <div class="dashboard-panel">
+    <h3>Tagged Issues</h3>
+    <p><%= @total_tagged_issues %></p>
+    <span>Across all tags</span>
   </div>
 </section>
 
-<section class="tag-grid">
-  <% @tags.each do |tag| %>
-    <%= link_to tag_path(tag), class: "tag-card" do %>
-      <h2><%= tag.name %></h2>
-      <p><%= pluralize(tag.issues.count, "issue") %></p>
+<section class="filter-panel">
+  <%= form_with url: tags_path, method: :get, local: true, class: "filter-form tags-filter-form" do |form| %>
+    <div class="filter-field filter-search">
+      <%= form.label :query, "Search" %>
+      <%= form.text_field :query, value: @query, placeholder: "Search tags..." %>
+    </div>
+
+    <div class="filter-field">
+      <%= form.label :usage, "Usage" %>
+      <%= form.select :usage,
+        options_for_select(
+          [
+            ["All Tags", ""],
+            ["Used Tags", "used"],
+            ["Unused Tags", "unused"]
+          ],
+          @usage
+        )
+      %>
+    </div>
+
+    <div class="filter-actions">
+      <%= form.submit "Apply", class: "primary-action" %>
+      <%= link_to "Clear", tags_path, class: "secondary-action" %>
+    </div>
+  <% end %>
+</section>
+
+<section class="dashboard-table tags-table">
+  <div class="tags-table-header">
+    <span>Tag Name</span>
+    <span>Issues</span>
+    <span>Projects</span>
+    <span>Created</span>
+    <span>Actions</span>
+  </div>
+
+  <% if @tags.any? %>
+    <% @tags.each do |tag| %>
+      <article class="tags-row">
+        <div>
+          <%= link_to tag.name, tag_path(tag) %>
+        </div>
+
+        <div>
+          <span class="severity-pill">
+            <%= pluralize(tag.issues.count, "issue") %>
+          </span>
+        </div>
+
+        <div>
+          <span class="severity-pill">
+            <%= pluralize(tag.issues.includes(:project).map(&:project).compact.uniq.count, "project") %>
+          </span>
+        </div>
+
+        <div>
+          <%= formatted_date(tag.created_at) %>
+        </div>
+
+        <div class="table-actions">
+          <%= link_to "Edit", edit_tag_path(tag), class: "secondary-action" %>
+          <%= button_to "Delete", tag, method: :delete, class: "danger-action" %>
+        </div>
+      </article>
     <% end %>
+  <% else %>
+    <section class="empty-state dashboard-empty-state">
+      <h2>No tags found</h2>
+      <p>Create a tag or adjust your filters.</p>
+      <%= link_to "New Tag", new_tag_path, class: "primary-action" %>
+    </section>
   <% end %>
 </section>

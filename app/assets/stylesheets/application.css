@@ -971,6 +971,81 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   TAGS TABLE
+======================================== */
+
+.tags-filter-form {
+  grid-template-columns: 2fr 1fr auto;
+}
+
+.tags-table-header,
+.tags-row {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 2fr)
+    120px
+    120px
+    150px
+    190px;
+
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.tags-table-header {
+  background-color: #f9fafb;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tags-row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tags-row:last-child {
+  border-bottom: none;
+}
+
+.tags-row:hover {
+  background-color: #f9fafb;
+}
+
+.tags-row a {
+  color: #111827;
+  font-weight: 600;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.table-actions form {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .tags-filter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .tags-table-header {
+    display: none;
+  }
+
+  .tags-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .table-actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* ========================================
    CHECKBOX GROUPS
 ======================================== */
 
@@ -1064,6 +1139,108 @@ input[type="submit"]:hover {
 .timeline-summary {
   margin-bottom: 0;
   line-height: 1.5;
+}
+
+/* ========================================
+   TIMELINE V2
+======================================== */
+
+.timeline-filter-form {
+  grid-template-columns: 2fr 1fr 1fr auto;
+}
+
+.timeline-v2 {
+  margin-top: 2rem;
+  position: relative;
+}
+
+.timeline-date-group {
+  margin-bottom: 2rem;
+}
+
+.timeline-date-heading {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.timeline-v2-row {
+  display: grid;
+  grid-template-columns: 100px 32px 1fr 130px 180px;
+  gap: 1rem;
+  align-items: center;
+
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+
+  position: relative;
+}
+
+.timeline-time {
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background-color: #111827;
+
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-v2-row::before {
+  content: "";
+
+  position: absolute;
+
+  left: 106px;
+  top: 0;
+  bottom: 0;
+
+  width: 2px;
+  background-color: #e5e7eb;
+
+  z-index: 1;
+}
+
+.timeline-event a {
+  color: #111827;
+  font-weight: 600;
+}
+
+.timeline-event a:hover {
+  color: #2563eb;
+}
+
+timeline-date-group .timeline-v2-row:first-of-type::before {
+  top: 50%;
+}
+
+.timeline-date-group .timeline-v2-row:last-of-type::before {
+  bottom: 50%;
+}
+
+@media (max-width: 900px) {
+  .timeline-filter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-v2-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    background-color: white;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-dot {
+    display: none;
+  }
 }
 
 /* ========================================

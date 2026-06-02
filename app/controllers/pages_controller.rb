@@ -19,8 +19,29 @@ class PagesController < ApplicationController
   end
 
   def timeline
-    @recent_issues = Issue.order(updated_at: :desc).limit(10)
+  @query = params[:query]
+  @project_id = params[:project_id]
+  @status = params[:status]
+
+  @recent_issues = Issue.includes(:project).order(updated_at: :desc)
+
+  if @query.present?
+    @recent_issues = @recent_issues.where(
+      "title LIKE :query OR root_cause LIKE :query OR fix LIKE :query OR error_message LIKE :query",
+      query: "%#{@query}%"
+    )
   end
+
+  if @project_id.present?
+    @recent_issues = @recent_issues.where(project_id: @project_id)
+  end
+
+  if @status.present?
+    @recent_issues = @recent_issues.where(status: @status)
+  end
+
+  @grouped_issues = @recent_issues.group_by { |issue| issue.updated_at.to_date }
+end
 
   def reports
     @total_issues = Issue.count

@@ -3,58 +3,107 @@
 <section class="page-header">
   <div>
     <h1>Timeline</h1>
-    <p>Review recent troubleshooting activity and issue updates.</p>
+    <p>View a chronological timeline of troubleshooting activity.</p>
   </div>
 </section>
 
-<section class="timeline-feed">
-  <% if @recent_issues.any? %>
-    <% @recent_issues.each do |issue| %>
-      <article class="timeline-item">
-        <div class="timeline-marker"></div>
+<section class="filter-panel">
+  <%= form_with url: timeline_path, method: :get, local: true, class: "filter-form timeline-filter-form" do |form| %>
 
-        <div class="timeline-content">
-          <div class="timeline-top-row">
-            <h2><%= link_to issue.title, issue %></h2>
+    <div class="filter-field filter-search">
+      <%= form.label :query, "Search" %>
+      <%= form.text_field :query, value: @query, placeholder: "Search timeline..." %>
+    </div>
 
-            <span class="<%= status_badge_class(issue.status) %>">
-              <%= status_label(issue.status) %>
-            </span>
-          </div>
+    <div class="filter-field">
+      <%= form.label :project_id, "Project" %>
+      <%= form.collection_select :project_id,
+        Project.order(:name),
+        :id,
+        :name,
+        { include_blank: "All Projects", selected: @project_id }
+      %>
+    </div>
 
-          <div class="timeline-meta">
-            <p>
-              <strong>Project:</strong>
-              <%= issue.project&.name || "No project assigned" %>
-            </p>
+    <div class="filter-field">
+      <%= form.label :status, "Status" %>
+      <%= form.select :status,
+        options_for_select(
+          [
+            ["All Statuses", ""],
+            ["Pending", "Pending"],
+            ["Active", "Investigating"],
+            ["Resolved", "Resolved"]
+          ],
+          @status
+        )
+      %>
+    </div>
 
-            <p>
-              <strong>Severity:</strong>
-              <%= issue.severity.presence || "Not set" %>
-            </p>
+    <div class="filter-actions">
+      <%= form.submit "Apply", class: "primary-action" %>
+      <%= link_to "Clear", timeline_path, class: "secondary-action" %>
+    </div>
 
-            <p>
-              <strong>Updated:</strong>
-              <%= formatted_date(issue.updated_at) %>
-            </p>
-          </div>
-
-          <p class="timeline-summary">
-            <%= truncate(
-              issue.root_cause.presence ||
-              issue.error_message.presence ||
-              issue.fix.presence ||
-              "No investigation summary recorded yet.",
-              length: 180
-            ) %>
-          </p>
-        </div>
-      </article>
-    <% end %>
-  <% else %>
-    <section class="empty-state">
-      <h2>No issue activity yet</h2>
-      <p>Issue updates and investigations will appear here.</p>
-    </section>
   <% end %>
+</section>
+
+<section class="timeline-v2">
+
+  <% if @grouped_issues.any? %>
+
+    <% @grouped_issues.each do |date, issues| %>
+
+      <section class="timeline-date-group">
+
+        <h2 class="timeline-date-heading">
+          <%= date.strftime("%B %d, %Y") %>
+        </h2>
+
+        <% issues.each do |issue| %>
+
+          <article class="timeline-v2-row">
+
+            <div class="timeline-time">
+              <%= issue.updated_at.strftime("%I:%M %p") %>
+            </div>
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-event">
+              <%= link_to issue_path(issue) do %>
+                Updated issue #<%= issue.id %> “<%= issue.title %>”
+              <% end %>
+            </div>
+
+            <div>
+              <span class="<%= status_badge_class(issue.status) %>">
+                <%= status_label(issue.status) %>
+              </span>
+            </div>
+
+            <div>
+              <span class="severity-pill">
+                <%= issue.project&.name || "No project" %>
+              </span>
+            </div>
+
+          </article>
+
+        <% end %>
+
+      </section>
+
+    <% end %>
+
+  <% else %>
+
+    <section class="empty-state">
+      <h2>No timeline activity found</h2>
+      <p>Create or update issues to build your troubleshooting timeline.</p>
+      <%= link_to "New Issue", new_issue_path, class: "primary-action" %>
+    </section>
+
+  <% end %>
+
 </section>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard"
   resources :issues
   resources :projects
-  resources :tags, only: [ :index, :show ]
+  resources :tags
 
   get "timeline", to: "pages#timeline"
   get "reports", to: "pages#reports"
