@@ -1154,6 +1154,17 @@ input[type="submit"]:hover {
   position: relative;
 }
 
+.timeline-v2::before {
+  content: "";
+  position: absolute;
+  left: 122px;
+  top: 2.2rem;
+  bottom: 1rem;
+  width: 2px;
+  background-color: #e5e7eb;
+  z-index: 0;
+}
+
 .timeline-date-group {
   margin-bottom: 2rem;
 }
@@ -1169,10 +1180,8 @@ input[type="submit"]:hover {
   grid-template-columns: 100px 32px 1fr 130px 180px;
   gap: 1rem;
   align-items: center;
-
   padding: 1rem 0;
   border-top: 1px solid #e5e7eb;
-
   position: relative;
 }
 
@@ -1186,24 +1195,8 @@ input[type="submit"]:hover {
   height: 14px;
   border-radius: 999px;
   background-color: #111827;
-
   position: relative;
   z-index: 2;
-}
-
-.timeline-v2-row::before {
-  content: "";
-
-  position: absolute;
-
-  left: 106px;
-  top: 0;
-  bottom: 0;
-
-  width: 2px;
-  background-color: #e5e7eb;
-
-  z-index: 1;
 }
 
 .timeline-event a {
@@ -1215,17 +1208,13 @@ input[type="submit"]:hover {
   color: #2563eb;
 }
 
-timeline-date-group .timeline-v2-row:first-of-type::before {
-  top: 50%;
-}
-
-.timeline-date-group .timeline-v2-row:last-of-type::before {
-  bottom: 50%;
-}
-
 @media (max-width: 900px) {
   .timeline-filter-form {
     grid-template-columns: 1fr;
+  }
+
+  .timeline-v2::before {
+    display: none;
   }
 
   .timeline-v2-row {
