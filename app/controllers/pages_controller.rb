@@ -19,29 +19,29 @@ class PagesController < ApplicationController
   end
 
   def timeline
-  @query = params[:query]
-  @project_id = params[:project_id]
-  @status = params[:status]
+    @query = params[:query]
+    @project_id = params[:project_id]
+    @status = params[:status]
 
-  @recent_issues = Issue.includes(:project).order(updated_at: :desc)
+    @recent_issues = Issue.includes(:project).order(updated_at: :desc)
 
-  if @query.present?
-    @recent_issues = @recent_issues.where(
-      "title LIKE :query OR root_cause LIKE :query OR fix LIKE :query OR error_message LIKE :query",
-      query: "%#{@query}%"
-    )
+    if @query.present?
+      @recent_issues = @recent_issues.where(
+        "title LIKE :query OR root_cause LIKE :query OR fix LIKE :query OR error_message LIKE :query",
+        query: "%#{@query}%"
+      )
+    end
+
+    if @project_id.present?
+      @recent_issues = @recent_issues.where(project_id: @project_id)
+    end
+
+    if @status.present?
+      @recent_issues = @recent_issues.where(status: @status)
+    end
+
+    @grouped_issues = @recent_issues.group_by { |issue| issue.updated_at.to_date }
   end
-
-  if @project_id.present?
-    @recent_issues = @recent_issues.where(project_id: @project_id)
-  end
-
-  if @status.present?
-    @recent_issues = @recent_issues.where(status: @status)
-  end
-
-  @grouped_issues = @recent_issues.group_by { |issue| issue.updated_at.to_date }
-end
 
   def reports
     @total_issues = Issue.count
@@ -56,6 +56,20 @@ end
 
     @projects = Project.all
     @tags = Tag.all
+
+    @resolution_rate =
+  @total_issues.positive? ? ((@resolved_issues.to_f / @total_issues) * 100).round : 0
+
+    @projects_report = Project.all
+
+    @top_tags =
+      Tag.left_joins(:issues)
+         .group(:id)
+         .order("COUNT(issues.id) DESC")
+         .limit(6)
+
+    @max_tag_count =
+      @top_tags.map { |tag| tag.issues.count }.max || 1
   end
 
   def search

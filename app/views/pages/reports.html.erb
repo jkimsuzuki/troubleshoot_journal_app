@@ -3,120 +3,156 @@
 <section class="page-header">
   <div>
     <h1>Reports</h1>
-    <p>Review troubleshooting patterns, issue status, and project activity.</p>
+    <p>Insights and analytics from your troubleshooting data.</p>
+  </div>
+
+  <div class="report-header-actions">
+    <select>
+      <option>Last 7 days</option>
+      <option>Last 30 days</option>
+      <option>All time</option>
+    </select>
+
+    <%= link_to "Export Report", reports_path, class: "secondary-action" %>
   </div>
 </section>
+
+<nav class="report-tabs">
+  <a class="active-tab" href="#">Overview</a>
+  <a href="#">Issues</a>
+  <a href="#">Projects</a>
+  <a href="#">Tags</a>
+  <a href="#">Time</a>
+  <a href="#">Activity</a>
+</nav>
 
 <section class="dashboard-stats">
-  <div>
+  <div class="dashboard-panel">
     <h3>Total Issues</h3>
     <p><%= @total_issues %></p>
+    <span>All recorded issues</span>
   </div>
 
-  <div>
-    <h3>Resolved</h3>
+  <div class="dashboard-panel">
+    <h3>Resolved Issues</h3>
     <p><%= @resolved_issues %></p>
+    <span>Completed investigations</span>
   </div>
 
-  <div>
-    <h3>Investigating</h3>
-    <p><%= @investigating_issues %></p>
+  <div class="dashboard-panel">
+    <h3>Resolution Rate</h3>
+    <p><%= @resolution_rate %>%</p>
+    <span>Resolved / total</span>
   </div>
 
-  <div>
-    <h3>Pending</h3>
-    <p><%= @pending_issues %></p>
-  </div>
-</section>
-
-<section class="report-section">
-  <h2>Issues by Severity</h2>
-
-  <div class="report-list">
-    <div class="report-row">
-      <div>
-        <strong>Critical</strong>
-        <p>Highest priority troubleshooting issues</p>
-      </div>
-      <span><%= pluralize(@critical_severity, "issue") %></span>
-    </div>
-
-    <div class="report-row">
-      <div>
-        <strong>High</strong>
-        <p>Important issues that need close attention</p>
-      </div>
-      <span><%= pluralize(@high_severity, "issue") %></span>
-    </div>
-
-    <div class="report-row">
-      <div>
-        <strong>Medium</strong>
-        <p>Normal priority troubleshooting issues</p>
-      </div>
-      <span><%= pluralize(@medium_severity, "issue") %></span>
-    </div>
-
-    <div class="report-row">
-      <div>
-        <strong>Low</strong>
-        <p>Lower priority learning or cleanup issues</p>
-      </div>
-      <span><%= pluralize(@low_severity, "issue") %></span>
-    </div>
+  <div class="dashboard-panel">
+    <h3>Active Issues</h3>
+    <p><%= @investigating_issues + @pending_issues %></p>
+    <span>Open investigations</span>
   </div>
 </section>
 
-<section class="reports-grid">
-  <section class="report-section">
-    <h2>Issues by Project</h2>
+<section class="reports-visual-grid">
+  <section class="report-card large-report-card">
+    <div class="report-card-header">
+      <h2>Issues Over Time</h2>
+      <select>
+        <option>Daily</option>
+        <option>Weekly</option>
+      </select>
+    </div>
 
-    <% if @projects.any? %>
-      <div class="report-list">
-        <% @projects.each do |project| %>
-          <div class="report-row">
-            <div>
-              <strong><%= link_to project.name, project %></strong>
-              <p><%= project.description %></p>
-            </div>
+    <div class="line-chart-placeholder">
+      <div class="chart-line chart-line-one"></div>
+      <div class="chart-line chart-line-two"></div>
+      <div class="chart-line chart-line-three"></div>
 
-            <span>
-              <%= pluralize(project.issues.count, "issue") %>
-            </span>
-          </div>
-        <% end %>
+      <div class="chart-axis">
+        <span>May 10</span>
+        <span>May 12</span>
+        <span>May 14</span>
+        <span>May 16</span>
       </div>
-    <% else %>
-      <section class="empty-state">
-        <h2>No projects yet</h2>
-        <p>Create projects to begin tracking troubleshooting patterns.</p>
-      </section>
-    <% end %>
+    </div>
   </section>
 
-  <section class="report-section">
-    <h2>Issues by Tag</h2>
+  <section class="report-card">
+    <div class="report-card-header">
+      <h2>Issues by Status</h2>
+    </div>
 
-    <% if @tags.any? %>
-      <div class="report-list">
-        <% @tags.each do |tag| %>
-          <div class="report-row">
-            <div>
-              <strong><%= link_to tag.name, tag %></strong>
-              <p>Troubleshooting category</p>
-            </div>
-
-            <span>
-              <%= pluralize(tag.issues.count, "issue") %>
-            </span>
-          </div>
-        <% end %>
+    <div class="status-donut-layout">
+      <div class="donut-chart">
+        <span><%= @total_issues %><br>Total</span>
       </div>
-    <% else %>
-      <section class="empty-state">
-        <h2>No tags yet</h2>
-        <p>Add tags to organize troubleshooting patterns.</p>
-      </section>
-    <% end %>
+
+      <ul class="status-breakdown">
+        <li><span class="legend-dot resolved-dot"></span> Resolved <strong><%= @resolved_issues %></strong></li>
+        <li><span class="legend-dot active-dot"></span> Active <strong><%= @investigating_issues %></strong></li>
+        <li><span class="legend-dot pending-dot"></span> Pending <strong><%= @pending_issues %></strong></li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section class="reports-bottom-grid">
+  <section class="report-card">
+    <h2>Issues by Project</h2>
+
+    <div class="mini-table">
+      <% @projects_report.each do |project| %>
+        <% total = project.issues.count %>
+        <% resolved = project.issues.where(status: "Resolved").count %>
+        <% rate = total.positive? ? ((resolved.to_f / total) * 100).round : 0 %>
+
+        <div class="mini-table-row">
+          <span><%= project.name %></span>
+          <span><%= total %></span>
+          <span><%= rate %>%</span>
+          <div class="mini-progress-track">
+            <div class="mini-progress-fill" style="width: <%= rate %>%"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "View all projects →", projects_path, class: "report-link" %>
+  </section>
+
+  <section class="report-card">
+    <h2>Top Tags</h2>
+
+    <div class="mini-table">
+      <% @top_tags.each do |tag| %>
+        <% count = tag.issues.count %>
+        <% width = ((count.to_f / @max_tag_count) * 100).round %>
+
+        <div class="mini-table-row">
+          <span><%= tag.name %></span>
+          <span><%= count %></span>
+          <div class="mini-progress-track">
+            <div class="mini-progress-fill" style="width: <%= width %>%"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "View all tags →", tags_path, class: "report-link" %>
+  </section>
+
+  <section class="report-card summary-card">
+    <h2>Summary</h2>
+
+    <div class="summary-list">
+      <p><span>Total Issues</span><strong><%= @total_issues %></strong></p>
+      <p><span>Resolved Issues</span><strong><%= @resolved_issues %></strong></p>
+      <p><span>Resolution Rate</span><strong><%= @resolution_rate %>%</strong></p>
+      <p><span>Projects</span><strong><%= @projects.count %></strong></p>
+      <p><span>Tags</span><strong><%= @tags.count %></strong></p>
+    </div>
+
+    <div class="info-box">
+      Data is updated from your current troubleshooting records.
+    </div>
   </section>
 </section>

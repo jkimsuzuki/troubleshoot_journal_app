@@ -1297,6 +1297,246 @@ input[type="submit"]:hover {
 }
 
 /* ========================================
+   REPORTS V2
+======================================== */
+
+.report-header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.report-header-actions select {
+  height: 42px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 0.75rem;
+  background-color: white;
+}
+
+.report-tabs {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 1.5rem;
+}
+
+.report-tabs a {
+  padding: 0.75rem 0;
+  color: #374151;
+  font-weight: 600;
+}
+
+.report-tabs .active-tab {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+.reports-visual-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.reports-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.report-card {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.report-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-card h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.report-card select {
+  height: 36px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.line-chart-placeholder {
+  position: relative;
+  height: 220px;
+  margin-top: 1rem;
+  border-left: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  background: repeating-linear-gradient(
+    to top,
+    #ffffff,
+    #ffffff 43px,
+    #f3f4f6 44px
+  );
+}
+
+.chart-line {
+  position: absolute;
+  height: 3px;
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.chart-line-one {
+  width: 80%;
+  background-color: #2563eb;
+  left: 8%;
+  top: 55%;
+  transform: rotate(-12deg);
+}
+
+.chart-line-two {
+  width: 70%;
+  background-color: #16a34a;
+  left: 10%;
+  top: 68%;
+  transform: rotate(-10deg);
+}
+
+.chart-line-three {
+  width: 65%;
+  background-color: #7c3aed;
+  left: 12%;
+  top: 78%;
+  transform: rotate(-9deg);
+}
+
+.chart-axis {
+   position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.75rem;
+  display: flex;
+  justify-content: space-around;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.status-donut-layout {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.donut-chart {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #16a34a 0 70%,
+    #2563eb 70% 85%,
+    #f59e0b 85% 100%
+  );
+  display: grid;
+  place-items: center;
+}
+
+.donut-chart span {
+  background-color: white;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-weight: 700;
+}
+
+.status-breakdown {
+  list-style: none;
+  padding: 0;
+}
+
+.status-breakdown li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.legend-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.resolved-dot {
+  background-color: #16a34a;
+}
+
+.active-dot {
+  background-color: #2563eb;
+}
+
+.pending-dot {
+  background-color: #f59e0b;
+}
+
+.mini-table {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mini-table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 60px 80px 120px;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.mini-progress-track {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background-color: #2563eb;
+}
+
+.report-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.summary-list p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.info-box {
+  background-color: #eff6ff;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #1e3a8a;
+  margin-top: 1rem;
+}
+
+
+
+/* ========================================
    DASHBOARD
 ======================================== */
 .quick-actions {
