@@ -3,41 +3,151 @@
 <section class="page-header">
   <div>
     <h1>Search</h1>
-    <p>Search across issue titles, errors, root causes, and fixes.</p>
+    <p>Find issues, notes, and solutions across your troubleshooting journal.</p>
   </div>
+
+  <select class="saved-search-select">
+    <option>Saved Searches</option>
+  </select>
 </section>
 
-<form class="search-form" method="get" action="<%= search_path %>">
-  <%= text_field_tag :query,
-  @query,
-  placeholder: "Search troubleshooting notes..." %>
+<%= form_with url: search_path, method: :get, local: true, class: "search-hero-form" do |form| %>
+  <%= form.text_field :query,
+    value: @query,
+    placeholder: "Search troubleshooting notes..." %>
 
-  <%= submit_tag "Search" %>
-</form>
-
-<% if @query.present? %>
-  <section class="filter-summary">
-    <p>
-      Search results for:
-      <strong><%= @query %></strong>
-    </p>
-
-    <%= link_to "Clear search", search_path %>
-  </section>
-
-  <% if @issues.any? %>
-    <% @issues.each do |issue| %>
-      <%= render "issues/issue_card", issue: issue %>
-    <% end %>
-  <% else %>
-    <section class="empty-state">
-      <h2>No matching issues found</h2>
-      <p>Try searching for another error message, root cause, project term, or fix.</p>
-    </section>
-  <% end %>
-<% else %>
-  <section class="empty-state">
-    <h2>Start a search</h2>
-    <p>Search your troubleshooting journal to find past investigations and solutions.</p>
-  </section>
+  <%= form.submit "Search", class: "primary-action" %>
 <% end %>
+
+<nav class="search-tabs">
+  <%= link_to "All Results", search_path(query: @query), class: "active-tab" %>
+  <%= link_to "Issues", search_path(query: @query) %>
+  <%= link_to "Projects", projects_path %>
+  <%= link_to "Tags", tags_path %>
+</nav>
+
+<section class="search-layout">
+
+  <aside class="search-filter-sidebar">
+    <div class="filter-sidebar-header">
+      <h2>Filters</h2>
+      <%= link_to "Clear all", search_path %>
+    </div>
+
+    <%= form_with url: search_path, method: :get, local: true, class: "search-filter-form" do |form| %>
+      <%= form.hidden_field :query, value: @query %>
+
+      <div class="filter-field">
+        <%= form.label :project_id, "Project" %>
+        <%= form.collection_select :project_id,
+          Project.order(:name),
+          :id,
+          :name,
+          { include_blank: "All Projects", selected: @project_id }
+        %>
+      </div>
+
+      <div class="filter-field">
+        <%= form.label :status, "Status" %>
+        <%= form.select :status,
+          options_for_select(
+            [
+              ["All Statuses", ""],
+              ["Pending", "Pending"],
+              ["Active", "Investigating"],
+              ["Resolved", "Resolved"]
+            ],
+            @status
+          )
+        %>
+      </div>
+
+      <div class="filter-field">
+        <%= form.label :tag_id, "Tag" %>
+        <%= form.collection_select :tag_id,
+          Tag.order(:name),
+          :id,
+          :name,
+          { include_blank: "All Tags", selected: @tag_id }
+        %>
+      </div>
+
+      <%= form.submit "Apply Filters", class: "primary-action full-width-action" %>
+    <% end %>
+  </aside>
+
+  <section class="search-results-panel">
+    <div class="search-results-header">
+      <% if @query.present? %>
+        <h2>
+          <%= pluralize(@issues.count, "result") %>
+          found for “<%= @query %>”
+        </h2>
+      <% else %>
+        <h2>Start a search</h2>
+      <% end %>
+
+      <select>
+        <option>Sort by: Relevance</option>
+        <option>Recently Updated</option>
+        <option>Newest Created</option>
+      </select>
+    </div>
+
+    <% if @query.present? && @issues.any? %>
+      <div class="search-results-list">
+        <% @issues.each do |issue| %>
+          <article class="search-result-row">
+            <div class="search-result-icon">
+              !
+            </div>
+
+            <div class="search-result-main">
+              <h3>
+                <%= link_to issue.title, issue_path(issue) %>
+              </h3>
+
+              <p>
+                <%= truncate(
+                  issue.error_message.presence ||
+                  issue.root_cause.presence ||
+                  issue.fix.presence ||
+                  "No summary recorded yet.",
+                  length: 160
+                ) %>
+              </p>
+
+              <div class="search-result-meta">
+                <span>#<%= issue.id %></span>
+                <span><%= issue.project&.name || "No project" %></span>
+
+                <% issue.tags.limit(3).each do |tag| %>
+                  <%= link_to tag.name, tag_path(tag), class: "tag-pill" %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="search-result-side">
+              <span class="<%= status_badge_class(issue.status) %>">
+                <%= status_label(issue.status) %>
+              </span>
+
+              <span><%= formatted_date(issue.updated_at) %></span>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% elsif @query.present? %>
+      <section class="empty-state">
+        <h2>No matching results</h2>
+        <p>Try a different keyword or clear your filters.</p>
+      </section>
+    <% else %>
+      <section class="empty-state">
+        <h2>Search your troubleshooting journal</h2>
+        <p>Look up previous errors, root causes, fixes, and investigation notes.</p>
+      </section>
+    <% end %>
+  </section>
+
+</section>
