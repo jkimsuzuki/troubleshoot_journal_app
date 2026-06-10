@@ -1,11 +1,35 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<% content_for :title, "Sign in" %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Troubleshooting Journal</h1>
+      <p>Sign in to track issues, fixes, projects, and debugging notes.</p>
+    </div>
 
-<%= link_to "Forgot password?", new_password_path %>
+    <%= form_with url: session_path, class: "auth-form" do |form| %>
+      <div class="auth-field">
+        <%= form.label :email_address, "Email address" %>
+        <%= form.email_field :email_address,
+          required: true,
+          autofocus: true,
+          autocomplete: "username",
+          placeholder: "you@example.com" %>
+      </div>
+
+      <div class="auth-field">
+        <%= form.label :password, "Password" %>
+        <%= form.password_field :password,
+          required: true,
+          autocomplete: "current-password",
+          placeholder: "Enter your password" %>
+      </div>
+
+      <%= form.submit "Sign in", class: "auth-submit" %>
+    <% end %>
+
+    <div class="auth-footer">
+      <%= link_to "Forgot password?", new_password_path %>
+    </div>
+  </div>
+</section>
