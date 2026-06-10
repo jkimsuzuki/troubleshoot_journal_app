@@ -30,8 +30,12 @@
   class: active_nav_class(reports_path) %>
 
   <%= link_to "Search", search_path,
-  class: active_nav_class(search_path) %>
+class: active_nav_class(search_path) %>
 
-<%= button_to "Log out", session_path, method: :delete, class: "logout-button" %>
+<div class="sidebar-divider"></div>
+
+<%= button_to "Log out", session_path,
+method: :delete,
+class: "logout-button" %>
 </nav>
 </aside>
