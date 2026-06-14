@@ -19,9 +19,9 @@ class MetricsController < ApplicationController
     metrics << "# TYPE signaldesk_users_total gauge"
     metrics << "signaldesk_users_total #{User.count}"
 
-    metrics << "# HELP signaldesk_open_issues Pending issues"
-    metrics << "# TYPE signaldesk_open_issues gauge"
-    metrics << "signaldesk_open_issues #{Issue.where(status: 'Pending').count}"
+    metrics << "# HELP signaldesk_pending_issues Pending issues"
+    metrics << "# TYPE signaldesk_pending_issues gauge"
+    metrics << "signaldesk_pending_issues #{Issue.where(status: 'Pending').count}"
 
     metrics << "# HELP signaldesk_resolved_issues Resolved issues"
     metrics << "# TYPE signaldesk_resolved_issues gauge"
