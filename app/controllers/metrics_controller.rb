@@ -19,8 +19,16 @@ class MetricsController < ApplicationController
     metrics << "# TYPE signaldesk_users_total gauge"
     metrics << "signaldesk_users_total #{User.count}"
 
+    metrics << "# HELP signaldesk_open_issues Open issues"
+    metrics << "# TYPE signaldesk_open_issues gauge"
     metrics << "signaldesk_open_issues #{Issue.where(status: 'open').count}"
+
+    metrics << "# HELP signaldesk_resolved_issues Resolved issues"
+    metrics << "# TYPE signaldesk_resolved_issues gauge"
     metrics << "signaldesk_resolved_issues #{Issue.where(status: 'resolved').count}"
+
+    metrics << "# HELP signaldesk_investigating_issues Investigating issues"
+    metrics << "# TYPE signaldesk_investigating_issues gauge"
     metrics << "signaldesk_investigating_issues #{Issue.where(status: 'investigating').count}"
 
     render plain: metrics.join("\n"), content_type: "text/plain"
