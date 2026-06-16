@@ -85,6 +85,14 @@ class MetricsController < ApplicationController
 
     metrics << "signaldesk_prevention_coverage #{prevention_coverage}"
 
+    metrics << "# HELP signaldesk_response_time_ms Average response time"
+    metrics << "# TYPE signaldesk_response_time_ms gauge"
+    metrics << "signaldesk_response_time_ms #{Rails.cache.read('response_time_ms') || 0}"
+
+    metrics << "# HELP signaldesk_documented_incidents Total documented incidents"
+    metrics << "# TYPE signaldesk_documented_incidents gauge"
+    metrics << "signaldesk_documented_incidents #{Issue.count}"
+
     render plain: metrics.join("\n"), content_type: "text/plain"
   end
 end
