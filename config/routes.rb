@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "metrics/show"
   resource :session
   resources :passwords, param: :token
   root "pages#dashboard"

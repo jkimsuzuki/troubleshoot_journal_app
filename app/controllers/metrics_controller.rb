@@ -3,29 +3,11 @@ class MetricsController < ApplicationController
 
   def show
     metrics = []
-    metrics << "# HELP signaldesk_issues_total Total number of issues"
-    metrics << "# TYPE signaldesk_issues_total gauge"
-    metrics << "signaldesk_issues_total #{Issue.count}"
-
-    metrics << "# HELP signaldesk_projects_total Total number of projects"
-    metrics << "# TYPE signaldesk_projects_total gauge"
-    metrics << "signaldesk_projects_total #{Project.count}"
-
-    metrics << "# HELP signaldesk_tags_total Total number of tags"
-    metrics << "# TYPE signaldesk_tags_total gauge"
-    metrics << "signaldesk_tags_total #{Tag.count}"
-
-    metrics << "# HELP signaldesk_users_total Total number of users"
-    metrics << "# TYPE signaldesk_users_total gauge"
-    metrics << "signaldesk_users_total #{User.count}"
 
     metrics << "# HELP signaldesk_pending_issues Pending issues"
     metrics << "# TYPE signaldesk_pending_issues gauge"
     metrics << "signaldesk_pending_issues #{Issue.where(status: 'Pending').count}"
 
-    metrics << "# HELP signaldesk_resolved_issues Resolved issues"
-    metrics << "# TYPE signaldesk_resolved_issues gauge"
-    metrics << "signaldesk_resolved_issues #{Issue.where(status: 'Resolved').count}"
 
     metrics << "# HELP signaldesk_investigating_issues Investigating issues"
     metrics << "# TYPE signaldesk_investigating_issues gauge"
@@ -63,6 +45,8 @@ class MetricsController < ApplicationController
          Issue.count * 100).round
       end
 
+    metrics << "# HELP signaldesk_root_cause_coverage Root cause coverage percentage"
+    metrics << "# TYPE signaldesk_root_cause_coverage gauge"
     metrics << "signaldesk_root_cause_coverage #{root_cause_coverage}"
 
     fix_coverage =
@@ -73,6 +57,8 @@ class MetricsController < ApplicationController
      Issue.count * 100).round
   end
 
+    metrics << "# HELP signaldesk_fix_coverage Fix coverage percentage"
+    metrics << "# TYPE signaldesk_fix_coverage gauge"
     metrics << "signaldesk_fix_coverage #{fix_coverage}"
 
     prevention_coverage =
@@ -83,6 +69,8 @@ class MetricsController < ApplicationController
      Issue.count * 100).round
   end
 
+    metrics << "# HELP signaldesk_prevention_coverage Prevention coverage percentage"
+    metrics << "# TYPE signaldesk_prevention_coverage gauge"
     metrics << "signaldesk_prevention_coverage #{prevention_coverage}"
 
     render plain: metrics.join("\n"), content_type: "text/plain"
