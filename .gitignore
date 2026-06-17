@@ -30,6 +30,7 @@
 
 /public/assets
 
+database_backups/
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
