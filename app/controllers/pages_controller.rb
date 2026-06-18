@@ -69,38 +69,38 @@ class PagesController < ApplicationController
          .limit(6)
 
     @max_tag_count =
-      @top_tags.map { |tag| tag.issues.count }.max || 1
+  [ @top_tags.map { |tag| tag.issues.count }.max.to_i, 1 ].max
   end
 
   def search
-  @query = params[:query]
-  @status = params[:status]
-  @project_id = params[:project_id]
-  @tag_id = params[:tag_id]
+    @query = params[:query]
+    @status = params[:status]
+    @project_id = params[:project_id]
+    @tag_id = params[:tag_id]
 
-  @issues = Issue.includes(:project, :tags)
+    @issues = Issue.includes(:project, :tags)
 
-  if @query.present?
-    @issues = @issues.where(
-      "title LIKE :query OR error_message LIKE :query OR root_cause LIKE :query OR fix LIKE :query OR prevention LIKE :query OR interview_summary LIKE :query",
-      query: "%#{@query}%"
-    )
-  else
-    @issues = Issue.none
+    if @query.present?
+      @issues = @issues.where(
+        "title LIKE :query OR error_message LIKE :query OR root_cause LIKE :query OR fix LIKE :query OR prevention LIKE :query OR interview_summary LIKE :query",
+        query: "%#{@query}%"
+      )
+    else
+      @issues = Issue.none
+    end
+
+    if @status.present?
+      @issues = @issues.where(status: @status)
+    end
+
+    if @project_id.present?
+      @issues = @issues.where(project_id: @project_id)
+    end
+
+    if @tag_id.present?
+      @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
+    end
   end
-
-  if @status.present?
-    @issues = @issues.where(status: @status)
-  end
-
-  if @project_id.present?
-    @issues = @issues.where(project_id: @project_id)
-  end
-
-  if @tag_id.present?
-    @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
-  end
-end
 
   def tags
   end

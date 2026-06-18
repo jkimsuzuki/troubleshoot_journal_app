@@ -1,22 +1,18 @@
 <% content_for :title, "Reports" %>
-
 <section class="page-header">
   <div>
     <h1>Reports</h1>
     <p>Insights and analytics from your troubleshooting data.</p>
   </div>
-
   <div class="report-header-actions">
     <select>
       <option>Last 7 days</option>
       <option>Last 30 days</option>
       <option>All time</option>
     </select>
-
     <%= link_to "Export Report", reports_path, class: "secondary-action" %>
   </div>
 </section>
-
 <nav class="report-tabs">
   <a class="active-tab" href="#">Overview</a>
   <a href="#">Issues</a>
@@ -25,33 +21,28 @@
   <a href="#">Time</a>
   <a href="#">Activity</a>
 </nav>
-
 <section class="dashboard-stats">
   <div class="dashboard-panel">
     <h3>Total Issues</h3>
     <p><%= @total_issues %></p>
     <span>All recorded issues</span>
   </div>
-
   <div class="dashboard-panel">
     <h3>Resolved Issues</h3>
     <p><%= @resolved_issues %></p>
     <span>Completed investigations</span>
   </div>
-
   <div class="dashboard-panel">
     <h3>Resolution Rate</h3>
     <p><%= @resolution_rate %>%</p>
     <span>Resolved / total</span>
   </div>
-
   <div class="dashboard-panel">
     <h3>Active Issues</h3>
     <p><%= @investigating_issues + @pending_issues %></p>
     <span>Open investigations</span>
   </div>
 </section>
-
 <section class="reports-visual-grid">
   <section class="report-card large-report-card">
     <div class="report-card-header">
@@ -61,12 +52,10 @@
         <option>Weekly</option>
       </select>
     </div>
-
     <div class="line-chart-placeholder">
       <div class="chart-line chart-line-one"></div>
       <div class="chart-line chart-line-two"></div>
       <div class="chart-line chart-line-three"></div>
-
       <div class="chart-axis">
         <span>May 10</span>
         <span>May 12</span>
@@ -75,17 +64,15 @@
       </div>
     </div>
   </section>
-
   <section class="report-card">
     <div class="report-card-header">
       <h2>Issues by Status</h2>
     </div>
-
     <div class="status-donut-layout">
       <div class="donut-chart">
-        <span><%= @total_issues %><br>Total</span>
+        <span><%= @total_issues %><br>
+          Total</span>
       </div>
-
       <ul class="status-breakdown">
         <li><span class="legend-dot resolved-dot"></span> Resolved <strong><%= @resolved_issues %></strong></li>
         <li><span class="legend-dot active-dot"></span> Active <strong><%= @investigating_issues %></strong></li>
@@ -94,17 +81,14 @@
     </div>
   </section>
 </section>
-
 <section class="reports-bottom-grid">
   <section class="report-card">
     <h2>Issues by Project</h2>
-
     <div class="mini-table">
       <% @projects_report.each do |project| %>
         <% total = project.issues.count %>
         <% resolved = project.issues.where(status: "Resolved").count %>
         <% rate = total.positive? ? ((resolved.to_f / total) * 100).round : 0 %>
-
         <div class="mini-table-row">
           <span><%= project.name %></span>
           <span><%= total %></span>
@@ -115,18 +99,14 @@
         </div>
       <% end %>
     </div>
-
     <%= link_to "View all projects →", projects_path, class: "report-link" %>
   </section>
-
   <section class="report-card">
     <h2>Top Tags</h2>
-
     <div class="mini-table">
       <% @top_tags.each do |tag| %>
         <% count = tag.issues.count %>
-        <% width = ((count.to_f / @max_tag_count) * 100).round %>
-
+        <% width = @max_tag_count.positive? ? ((count.to_f / @max_tag_count) * 100).round : 0 %>
         <div class="mini-table-row">
           <span><%= tag.name %></span>
           <span><%= count %></span>
@@ -136,13 +116,10 @@
         </div>
       <% end %>
     </div>
-
     <%= link_to "View all tags →", tags_path, class: "report-link" %>
   </section>
-
   <section class="report-card summary-card">
     <h2>Summary</h2>
-
     <div class="summary-list">
       <p><span>Total Issues</span><strong><%= @total_issues %></strong></p>
       <p><span>Resolved Issues</span><strong><%= @resolved_issues %></strong></p>
@@ -150,7 +127,6 @@
       <p><span>Projects</span><strong><%= @projects.count %></strong></p>
       <p><span>Tags</span><strong><%= @tags.count %></strong></p>
     </div>
-
     <div class="info-box">
       Data is updated from your current troubleshooting records.
     </div>
