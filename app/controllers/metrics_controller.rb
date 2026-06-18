@@ -4,10 +4,13 @@ class MetricsController < ApplicationController
   def show
     metrics = []
 
+    metrics << "# HELP signaldesk_issues_created_total Total issues ever created"
+    metrics << "# TYPE signaldesk_issues_created_total counter"
+    metrics << "signaldesk_issues_created_total #{Issue.count}"
+
     metrics << "# HELP signaldesk_pending_issues Pending issues"
     metrics << "# TYPE signaldesk_pending_issues gauge"
     metrics << "signaldesk_pending_issues #{Issue.where(status: 'Pending').count}"
-
 
     metrics << "# HELP signaldesk_investigating_issues Investigating issues"
     metrics << "# TYPE signaldesk_investigating_issues gauge"
