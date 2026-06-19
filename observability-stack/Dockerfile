@@ -14,9 +14,9 @@ RUN curl -L "https://github.com/prometheus/prometheus/releases/download/v${PROME
   && chmod +x /usr/local/bin/prometheus /usr/local/bin/promtool \
   && rm -rf /tmp/prometheus /tmp/prometheus.tar.gz
 
-COPY supervisord.conf /etc/supervisord.conf
-COPY prometheus.yml /etc/prometheus/prometheus.yml
-COPY grafana/provisioning /etc/grafana/provisioning
+COPY observability-stack/supervisord.conf /etc/supervisord.conf
+COPY observability-stack/prometheus.yml /etc/prometheus/prometheus.yml
+COPY observability-stack/grafana/provisioning /etc/grafana/provisioning
 
 ENV GF_SECURITY_ALLOW_EMBEDDING=true
 ENV GF_AUTH_ANONYMOUS_ENABLED=true
