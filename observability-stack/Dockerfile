@@ -26,4 +26,5 @@ ENV GF_SERVER_HTTP_PORT=3000
 
 EXPOSE 3000
 
+ENTRYPOINT []
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
