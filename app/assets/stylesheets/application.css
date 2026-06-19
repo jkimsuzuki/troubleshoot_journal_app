@@ -1222,6 +1222,26 @@ input[type="submit"]:hover {
   margin-top: 1rem;
 }
 
+.grafana-embed-card {
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.grafana-frame-wrapper {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+  background: #111827;
+}
+
+.grafana-frame-wrapper iframe {
+  display: block;
+  width: 100%;
+  min-height: 900px;
+  border: 0;
+}
+
 /* ========================================
    SEARCH V2
 ======================================== */
