@@ -1,0 +1,59 @@
+{
+  "title": "SignalDesk Observability",
+  "uid": "signaldesk-observability",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "SignalDesk Up",
+      "gridPos": { "x": 0, "y": 0, "w": 8, "h": 4 },
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "targets": [
+        {
+          "expr": "up{job=\"signaldesk\"}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "1": { "text": "UP" },
+                "0": { "text": "DOWN" }
+              },
+              "type": "value"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Issues Created Total",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "targets": [
+        {
+          "expr": "signaldesk_issues_created_total",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Backlog",
+      "gridPos": { "x": 8, "y": 0, "w": 8, "h": 4 },
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "targets": [
+        {
+          "expr": "signaldesk_backlog",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

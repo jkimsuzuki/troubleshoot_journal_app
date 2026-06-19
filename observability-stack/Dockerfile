@@ -17,6 +17,7 @@ RUN curl -L "https://github.com/prometheus/prometheus/releases/download/v${PROME
 COPY observability-stack/supervisord.conf /etc/supervisord.conf
 COPY observability-stack/prometheus.yml /etc/prometheus/prometheus.yml
 COPY observability-stack/grafana/provisioning /etc/grafana/provisioning
+COPY observability-stack/grafana/dashboards /etc/grafana/dashboards
 
 ENV GF_SECURITY_ALLOW_EMBEDDING=true
 ENV GF_AUTH_ANONYMOUS_ENABLED=true
