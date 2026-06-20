@@ -1,59 +1,360 @@
 {
-  "title": "SignalDesk Observability",
   "uid": "signaldesk-observability",
+  "title": "SignalDesk Observability",
+  "tags": ["signaldesk", "rails", "prometheus"],
   "timezone": "browser",
   "schemaVersion": 39,
   "version": 1,
   "refresh": "30s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
   "panels": [
     {
+      "id": 1,
+      "type": "row",
+      "title": "Executive Metrics",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 2,
       "type": "stat",
-      "title": "SignalDesk Up",
-      "gridPos": { "x": 0, "y": 0, "w": 8, "h": 4 },
+      "title": "Open Incidents",
       "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
-      "targets": [
-        {
-          "expr": "up{job=\"signaldesk\"}",
-          "refId": "A"
-        }
-      ],
+      "gridPos": { "h": 5, "w": 8, "x": 0, "y": 1 },
+      "targets": [{ "expr": "signaldesk_pending_issues", "refId": "A" }],
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "1": { "text": "UP" },
-                "0": { "text": "DOWN" }
-              },
-              "type": "value"
-            }
-          ]
-        }
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
       }
     },
     {
-      "type": "timeseries",
-      "title": "Issues Created Total",
-      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "id": 3,
+      "type": "stat",
+      "title": "Active Investigations",
       "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
-      "targets": [
-        {
-          "expr": "signaldesk_issues_created_total",
-          "refId": "A"
-        }
-      ]
+      "gridPos": { "h": 5, "w": 8, "x": 8, "y": 1 },
+      "targets": [{ "expr": "signaldesk_investigating_issues", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
     },
     {
+      "id": 4,
       "type": "stat",
-      "title": "Backlog",
-      "gridPos": { "x": 8, "y": 0, "w": 8, "h": 4 },
+      "title": "Unresolved Incidents",
       "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
-      "targets": [
-        {
-          "expr": "signaldesk_backlog",
-          "refId": "A"
-        }
-      ]
+      "gridPos": { "h": 5, "w": 8, "x": 16, "y": 1 },
+      "targets": [{ "expr": "signaldesk_backlog", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 3 },
+              { "color": "red", "value": 10 }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 5,
+      "type": "row",
+      "title": "Incident Flow",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 6 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "New Incidents Today",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 5, "w": 8, "x": 0, "y": 7 },
+      "targets": [{ "expr": "signaldesk_created_today", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 3 },
+              { "color": "red", "value": 8 }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "Oldest Open Incident",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 5, "w": 8, "x": 8, "y": 7 },
+      "targets": [{ "expr": "signaldesk_oldest_open_incident_days", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "d",
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 3 },
+              { "color": "red", "value": 7 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "Incidents > 7 Days",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 5, "w": 8, "x": 16, "y": 7 },
+      "targets": [{ "expr": "signaldesk_incidents_over_7_days", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 1 }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 9,
+      "type": "row",
+      "title": "Documentation Quality",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 12 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 10,
+      "type": "gauge",
+      "title": "Root Cause Coverage",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 7, "w": 8, "x": 0, "y": 13 },
+      "targets": [{ "expr": "signaldesk_root_cause_coverage", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 70 },
+              { "color": "green", "value": 90 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
+      "id": 11,
+      "type": "gauge",
+      "title": "Fix Coverage",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 7, "w": 8, "x": 8, "y": 13 },
+      "targets": [{ "expr": "signaldesk_fix_coverage", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 70 },
+              { "color": "green", "value": 90 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
+      "id": 12,
+      "type": "gauge",
+      "title": "Prevention Coverage",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 7, "w": 8, "x": 16, "y": 13 },
+      "targets": [{ "expr": "signaldesk_prevention_coverage", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 70 },
+              { "color": "green", "value": 90 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
+      "id": 13,
+      "type": "row",
+      "title": "Incident Trend",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 20 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "Incident Creation Trend",
+      "description": "Cumulative number of issues documented in SignalDesk over time.",
+      "datasource": { "type": "prometheus", "uid": "signaldesk-prometheus" },
+      "gridPos": { "h": 9, "w": 24, "x": 0, "y": 21 },
+      "targets": [{ "expr": "signaldesk_issues_created_total", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": { "mode": "palette-classic" },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 18,
+            "showPoints": "auto",
+            "spanNulls": true
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom", "showLegend": true },
+        "tooltip": { "mode": "single", "sort": "none" }
+      }
     }
-  ]
+  ],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "graphTooltip": 0,
+  "fiscalYearStartMonth": 0,
+  "links": []
 }
