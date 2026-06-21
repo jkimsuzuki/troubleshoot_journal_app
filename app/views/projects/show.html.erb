@@ -50,7 +50,12 @@
   <div class="issue-actions">
     <%= link_to "Back to projects", projects_path, class: "secondary-action" %>
    <%= link_to "Edit project", edit_project_path(@project), class: "secondary-action" %>
-    <%= button_to "Delete project", @project, method: :delete, class: "danger-action" %>
+    <%= button_to "Delete project",
+  project_path(@project),
+  method: :delete,
+  class: "secondary-action",
+  form_class: "inline-button-form",
+  data: { turbo_confirm: "Are you sure you want to delete this project?" } %>
   </div>
 
 </section>

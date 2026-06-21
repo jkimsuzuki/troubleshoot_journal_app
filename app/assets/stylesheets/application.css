@@ -826,6 +826,10 @@ input[type="submit"]:hover {
   color: #374151;
 }
 
+.inline-button-form .secondary-action {
+  font-family: inherit;
+  font-size: inherit;
+  
 /* ========================================
    TAGS
 ======================================== */
@@ -1223,23 +1227,24 @@ input[type="submit"]:hover {
 }
 
 .grafana-embed-card {
-  margin-top: 2rem;
-  overflow: hidden;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .grafana-frame-wrapper {
-  width: 100%;
-  border-radius: 1rem;
+  height: 1450px;
   overflow: hidden;
-  border: 1px solid #d1d5db;
-  background: #111827;
 }
 
-.grafana-frame-wrapper iframe {
-  display: block;
-  width: 100%;
-  min-height: 900px;
-  border: 0;
+.grafana-dashboard-frame {
+  height: 1450px;
+}
+}
+
+.reports-summary-stats {
+  margin-top: 2rem;
 }
 
 /* ========================================
@@ -1674,3 +1679,212 @@ input[type="submit"]:hover {
   font-weight: 700;
 }
 
+/* ========================================
+   FINAL LAYOUT REPAIR PATCH
+   Tags / Timeline / Reports / Buttons
+======================================== */
+
+/* Rails button_to reset */
+.inline-button-form {
+  display: inline-flex;
+  margin: 0;
+}
+
+.inline-button-form button,
+.inline-button-form .secondary-action,
+.inline-button-form .danger-action {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Tags table repair */
+.tags-table,
+.tags-list,
+.table-card {
+  width: 100%;
+}
+
+.tags-table-header,
+.tags-row {
+  display: grid;
+  grid-template-columns: 2fr 120px 120px 160px 180px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+}
+
+.tags-table-header {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 700;
+  color: #374151;
+}
+
+.tags-row {
+  background: #ffffff;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tags-row:last-child {
+  border-bottom: none;
+}
+
+.tags-row:hover {
+  background: #f9fafb;
+}
+
+/* If tags are inside normal table markup */
+table.tags-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #ffffff;
+}
+
+table.tags-table th,
+table.tags-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: middle;
+}
+
+table.tags-table th {
+  background: #f9fafb;
+  color: #374151;
+  font-weight: 700;
+}
+
+/* Action buttons inside tables */
+.table-actions,
+.tags-table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Timeline repair */
+.timeline-v2,
+.timeline-list {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.timeline-date-group,
+.timeline-day {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.timeline-date-heading,
+.timeline-day h2 {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.timeline-v2-row,
+.timeline-entry {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-v2-row:hover,
+.timeline-entry:hover {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.timeline-time,
+.timeline-entry time {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Reports repair */
+.reports-summary-stats {
+  margin-top: 2rem;
+}
+
+.reports-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.mini-table {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.mini-table-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto minmax(120px, 180px);
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.mini-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 999px;
+}
+
+/* Grafana embed */
+.grafana-embed-card {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grafana-frame-wrapper {
+  width: 100%;
+  height: 1450px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+  background: #111827;
+}
+
+.grafana-dashboard-frame {
+  display: block;
+  width: 100%;
+  height: 1450px;
+  border: 0;
+}
+
+/* Mobile cleanup */
+@media (max-width: 900px) {
+  .tags-table-header {
+    display: none;
+  }
+
+  .tags-row,
+  .timeline-v2-row,
+  .timeline-entry,
+  .mini-table-row,
+  .reports-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-actions,
+  .tags-table-actions {
+    flex-wrap: wrap;
+  }
+}
