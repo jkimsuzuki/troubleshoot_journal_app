@@ -1,0 +1,23 @@
+<%= form_with(model: tag, class: "resource-form") do |form| %>
+  <% if tag.errors.any? %>
+    <div class="error-box">
+      <h2><%= pluralize(tag.errors.count, "error") %> prevented this tag from being saved:</h2>
+
+      <ul>
+        <% tag.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :name, "Tag name" %>
+    <%= form.text_field :name, placeholder: "Example: Database, CSS, Deployment" %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "primary-action" %>
+    <%= link_to "Cancel", tags_path, class: "secondary-action" %>
+  </div>
+<% end %>

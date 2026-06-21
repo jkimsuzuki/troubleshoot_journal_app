@@ -1888,3 +1888,49 @@ table.tags-table th {
     flex-wrap: wrap;
   }
 }
+
+/* Search page dropdown cleanup */
+.search-toolbar select,
+.search-header-actions select,
+.search-sort select,
+.saved-searches-select,
+.results-sort-select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 180px;
+  padding: 0.85rem 2.5rem 0.85rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  color: #111827;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.search-toolbar,
+.search-results-header,
+.search-header-actions,
+.search-sort {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-header-actions,
+.search-sort {
+  justify-content: flex-end;
+}
+
+.search-results-header {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* General select fallback */
+select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 0.75rem;
+}
