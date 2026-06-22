@@ -1,0 +1,29 @@
+groups:
+  - name: signaldesk-alerts
+    rules:
+      - alert: SignalDeskAppDown
+        expr: up{job="signaldesk"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "SignalDesk is down"
+          description: "Prometheus cannot scrape the SignalDesk /metrics endpoint for more than 2 minutes."
+
+      - alert: SignalDeskBacklogTooHigh
+        expr: signaldesk_backlog > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SignalDesk backlog is high"
+          description: "SignalDesk has more than 10 unresolved issues for more than 5 minutes."
+
+      - alert: SignalDeskOldIncidents
+        expr: signaldesk_incidents_over_7_days > 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SignalDesk has stale incidents"
+          description: "At least one unresolved SignalDesk incident is older than 7 days."
