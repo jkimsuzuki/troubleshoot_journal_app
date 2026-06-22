@@ -1659,3 +1659,40 @@ table.tags-table th {
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================
+   TIMELINE OVERFLOW FIX
+======================================== */
+
+.timeline-v2-row {
+  overflow: hidden;
+}
+
+.timeline-v2-row > * {
+  min-width: 0;
+}
+
+/* Fix long project names spilling outside cards */
+.timeline-v2-row span:last-child,
+.timeline-v2-row .project-pill {
+  max-width: 250px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Prevent issue titles from pushing layout */
+.timeline-v2-row .timeline-title,
+.timeline-v2-row h4,
+.timeline-v2-row strong {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* Mobile */
+@media (max-width: 1100px) {
+  .timeline-v2-row span:last-child,
+  .timeline-v2-row .project-pill {
+    max-width: 100%;
+  }
+}
