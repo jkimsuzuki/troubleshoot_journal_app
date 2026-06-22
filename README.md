@@ -268,7 +268,7 @@ Grafana dashboards are embedded directly within the Reports page of the applicat
 
 ### Grafana Monitoring
 
-![Grafana](docs/screenshots/grafana.png)
+![Grafana](docs/screenshots/grafana-dashboard.png)
 
 ### Slack Alerting
 
