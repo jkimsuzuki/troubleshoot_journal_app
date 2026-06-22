@@ -6,15 +6,30 @@ Built as part of my journey toward Resiliency Incident Response, Site Reliabilit
 
 ---
 
+## Why I Built This
+
+I built SignalDesk to simulate the workflow of Incident Response Engineers, Production Support Engineers, and Site Reliability Engineers.
+
+The project combines issue tracking, observability tooling, monitoring, alerting, and troubleshooting workflows into a single platform. My goal was to gain hands-on experience with the same concepts used in production environments while strengthening my Ruby on Rails, monitoring, and operational troubleshooting skills.
+
+---
+
 ## Overview
 
-SignalDesk helps me to document, investigate, and resolve operational issues while providing visibility into system health through integrated monitoring and alerting.
+SignalDesk helps document, investigate, and resolve operational issues while providing visibility into system health through integrated monitoring and alerting.
 
-The application was inspired by the workflows used by Resiliency Incident Response Engineers, Technical Support Engineers, and Site Reliability Engineers who need to track incidents, identify patterns, monitor trends, and respond to operational issues.
+The application was inspired by workflows used by Resiliency Incident Response Engineers, Technical Support Engineers, and Site Reliability Engineers who need to track incidents, identify patterns, monitor trends, and respond to operational issues.
 
 ---
 
 ## Key Features
+
+### Authentication & Account Management
+
+- Secure user authentication
+- Session management
+- Password reset via email
+- Protected application routes
 
 ### Incident Tracking
 
@@ -75,11 +90,13 @@ Receive notifications when:
 ## Architecture
 
 ```text
-User
+Users
   ↓
-Ruby on Rails
+Ruby on Rails Application (Koyeb)
   ↓
 Neon PostgreSQL
+
+Rails Metrics Endpoint (/metrics)
   ↓
 Prometheus
   ↓
@@ -105,6 +122,12 @@ Slack Alerting
 - Neon PostgreSQL
 - Active Record
 - Rails Migrations
+
+### Authentication
+
+- Rails Authentication
+- Session-Based Authentication
+- Password Reset via Email
 
 ### Observability
 
@@ -135,8 +158,9 @@ Slack Alerting
 
 ### Testing & Quality
 
-- Automated Rails Tests
+- Automated Rails Tests (Minitest)
 - RuboCop
+- Brakeman Security Scanning
 
 ---
 
@@ -185,8 +209,10 @@ Alerts are delivered directly to Slack using Grafana Alerting.
 GitHub Actions automatically performs:
 
 - Automated test execution
-- Code quality validation
-- Deployment checks
+- RuboCop linting
+- Brakeman security scanning
+- Dependency auditing
+- Deployment validation
 
 This helps ensure application stability before deployment.
 
@@ -204,7 +230,10 @@ Hosted on Neon PostgreSQL.
 
 ### Observability Hosting
 
-Hosted on Northflank.
+Self-hosted on Northflank using:
+
+- Grafana
+- Prometheus
 
 ### Metrics Storage
 
@@ -252,6 +281,7 @@ Grafana dashboards are embedded directly within the Reports page of the applicat
 Building SignalDesk provided hands-on experience with:
 
 - Rails application architecture
+- Authentication and session management
 - PostgreSQL database management
 - Production deployments
 - Metrics collection
@@ -261,14 +291,14 @@ Building SignalDesk provided hands-on experience with:
 - Infrastructure troubleshooting
 - Incident response workflows
 - CI/CD pipelines
+- Monitoring and alerting strategy
 
-The project evolved from a simple troubleshooting journal into a production-style application with integrated monitoring and operational visibility.
+The project evolved from a simple troubleshooting journal into a production-style application with integrated monitoring, alerting, and operational visibility.
 
 ---
 
 ## Future Improvements
 
-- User authentication and authorization
 - Team collaboration features
 - Incident assignment workflows
 - Severity classifications
@@ -277,6 +307,8 @@ The project evolved from a simple troubleshooting journal into a production-styl
 - SLO and Error Budget tracking
 - API endpoints
 - Multi-tenant support
+- Incident escalation workflows
+- PagerDuty integration
 
 ---
 
