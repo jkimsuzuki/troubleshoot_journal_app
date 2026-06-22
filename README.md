@@ -1,83 +1,295 @@
-# README
+# SignalDesk
 
-# Troubleshooting Journal App
+SignalDesk is a Rails-based incident tracking and observability platform designed to simulate real-world troubleshooting, incident response, and operational monitoring workflows.
 
-Troubleshooting Journal is a Ruby on Rails application for logging, organizing, and reviewing software bugs, debugging steps, root causes, fixes, and interview-ready lessons learned.
+Built as part of my journey toward Resiliency Incident Response, Site Reliability Engineering (SRE), and Production Support Engineering roles, SignalDesk combines issue management, reporting, metrics collection, monitoring, and alerting into a single application.
 
-The goal of this project is to build stronger troubleshooting habits while practicing Rails, database relationships, reusable views, filtering, search, and operational-tooling style UI design.
+---
 
-## Purpose
+## Overview
 
-This project helps me build technical troubleshooting habits for future Resiliency Incident Response and SRE roles.
+SignalDesk helps me to document, investigate, and resolve operational issues while providing visibility into system health through integrated monitoring and alerting.
 
-## Features
+The application was inspired by the workflows used by Resiliency Incident Response Engineers, Technical Support Engineers, and Site Reliability Engineers who need to track incidents, identify patterns, monitor trends, and respond to operational issues.
 
-- Create, view, edit, and delete troubleshooting issues
-- Organize issues by project
-- Filter issues by status
-- Filter issues by project
-- Search issues by title
-- Preserve filters while searching
-- Display active filter states
-- Show empty states when no issues match
-- Reuse issue cards with Rails partials
-- Display status badges with Rails helpers
+---
+
+## Key Features
+
+### Incident Tracking
+
+Create and manage troubleshooting records including:
+
+- Error messages
+- Investigation notes
+- Root causes
+- Resolution steps
+- Prevention strategies
+- Interview-ready summaries
+
+### Project Management
+
+Organize incidents into projects and track operational issues across multiple systems.
+
+### Tag Management
+
+Categorize incidents using reusable tags for easier filtering and analysis.
+
+### Search & Filtering
+
+Quickly find historical incidents using:
+
+- Full-text search
+- Project filters
+- Status filters
+- Tag filters
+
+### Timeline View
+
+Track troubleshooting activity chronologically and review investigation history over time.
+
+### Reporting Dashboard
+
+Analyze operational trends through:
+
+- Total incidents
+- Resolution rates
+- Active investigations
+- Project breakdowns
+- Tag statistics
+
+### Embedded Observability Dashboard
+
+View live operational metrics directly inside the application through an embedded Grafana dashboard.
+
+### Slack Alerting
+
+Receive notifications when:
+
+- Application availability issues occur
+- Incident backlog exceeds thresholds
+- Aging incidents require attention
+
+---
+
+## Architecture
+
+```text
+User
+  ↓
+Ruby on Rails
+  ↓
+Neon PostgreSQL
+  ↓
+Prometheus
+  ↓
+Grafana
+  ↓
+Slack Alerting
+```
+
+---
 
 ## Tech Stack
 
-- Ruby on Rails
-- SQLite
+### Application
+
+- Ruby
+- Ruby on Rails 8
 - ERB
-- CSS
-- Minitest
+- HTML5
+- CSS3
+
+### Database
+
+- Neon PostgreSQL
+- Active Record
+- Rails Migrations
+
+### Observability
+
+- Prometheus
+- Grafana
+- Grafana Alerting
+- Custom Rails Metrics Exporter
+
+### Monitoring
+
+- Embedded Grafana Dashboards
+- Prometheus Time-Series Storage
+- Persistent Metric Retention
+- Slack Operational Alerting
+
+### Infrastructure
+
+- Docker
+- Supervisor
+- Koyeb
+- Northflank
+
+### Version Control & CI/CD
+
+- Git
+- GitHub
 - GitHub Actions
 
-## Architecture Concepts Practiced and Learned
+### Testing & Quality
 
-This project is designed to help me practice and reinforce:
+- Automated Rails Tests
+- RuboCop
 
-- Rails MVC structure
-- RESTful routing
-- ActiveRecord associations
-- Controller-driven filtering
-- Search with query params
-- Reusable partials
-- View helpers for reusable formatting
-- Reusable CSS organization
-- Test-driven confidence with Minitest
-- Git/GitHub workflow
-- CI troubleshooting with GitHub Actions
-- Incident-style documentation and debugging habits
+---
 
-## Current Status
+## Monitoring & Alerting
 
-This project is currently in active development.
+SignalDesk includes a self-hosted observability stack designed to monitor application health and operational trends.
 
-Completed so far:
+### Metrics Collected
 
-- Issues CRUD
-- Projects CRUD
-- Issue-to-project association
-- Dashboard statistics
-- Status and project filters
-- Search
-- Active filter states
-- Empty state messaging
-- Reusable issue cards
-- Basic layout and styling
-- Passing test suite
-- Passing GitHub Actions CI
+- Total incidents
+- Resolved incidents
+- Active investigations
+- Incident backlog
+- Resolution rate
+- Aging incidents
+- Application uptime
+
+### Alert Rules
+
+#### Application Down
+
+Triggers when Prometheus can no longer scrape SignalDesk metrics.
+
+**Severity:** Critical
+
+#### Backlog Too High
+
+Triggers when unresolved incidents exceed the configured threshold.
+
+**Severity:** Warning
+
+#### Aging Incidents
+
+Triggers when incidents remain unresolved beyond the acceptable investigation window.
+
+**Severity:** Warning
+
+### Alert Delivery
+
+Alerts are delivered directly to Slack using Grafana Alerting.
+
+---
+
+## CI/CD
+
+GitHub Actions automatically performs:
+
+- Automated test execution
+- Code quality validation
+- Deployment checks
+
+This helps ensure application stability before deployment.
+
+---
+
+## Production Environment
+
+### Application Hosting
+
+Hosted on Koyeb.
+
+### Database Hosting
+
+Hosted on Neon PostgreSQL.
+
+### Observability Hosting
+
+Hosted on Northflank.
+
+### Metrics Storage
+
+Prometheus stores historical metrics with:
+
+- 5 GB retention limit
+- Up to 3 years of historical retention
+
+### Visualization
+
+Grafana dashboards are embedded directly within the Reports page of the application.
+
+---
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Timeline
+
+![Timeline](docs/screenshots/timeline.png)
+
+### Search
+
+![Search](docs/screenshots/search.png)
+
+### Reports
+
+![Reports](docs/screenshots/reports.png)
+
+### Grafana Monitoring
+
+![Grafana](docs/screenshots/grafana.png)
+
+### Slack Alerting
+
+![Slack Alert](docs/screenshots/slack-alert.png)
+
+---
+
+## Lessons Learned
+
+Building SignalDesk provided hands-on experience with:
+
+- Rails application architecture
+- PostgreSQL database management
+- Production deployments
+- Metrics collection
+- Observability tooling
+- Dashboard creation
+- Alerting systems
+- Infrastructure troubleshooting
+- Incident response workflows
+- CI/CD pipelines
+
+The project evolved from a simple troubleshooting journal into a production-style application with integrated monitoring and operational visibility.
+
+---
 
 ## Future Improvements
 
-Planned improvements include:
+- User authentication and authorization
+- Team collaboration features
+- Incident assignment workflows
+- Severity classifications
+- Audit logging
+- Service ownership mapping
+- SLO and Error Budget tracking
+- API endpoints
+- Multi-tenant support
 
-- Tags
-- Timeline view
-- Reports dashboard
-- User authentication
-- Markdown support for issue notes
-- Better project dashboard pages
-- More detailed tests
-- Deployment
-- Screenshots and demo walkthrough
+---
+
+## Author
+
+### Joseph Kim-Suzuki
+
+Built as part of a portfolio focused on:
+
+- Incident Response
+- Site Reliability Engineering (SRE)
+- Observability
+- Troubleshooting
+- Production Support Engineering
+
+GitHub: https://github.com/jkimsuzuki

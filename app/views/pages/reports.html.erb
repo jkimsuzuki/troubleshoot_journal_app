@@ -1,32 +1,34 @@
 <% content_for :title, "Reports" %>
 
-<section class="page-header">
+<section class="page-header reports-page-header">
   <div>
     <h1>Reports</h1>
-    <p>Insights and analytics from your troubleshooting data.</p>
-  </div>
-
-  <div class="report-header-actions">
-    <select>
-      <option>Last 7 days</option>
-      <option>Last 30 days</option>
-      <option>All time</option>
-    </select>
-
-    <%= link_to "Export Report", reports_path, class: "secondary-action" %>
+    <p>Live observability and analytics from your troubleshooting data.</p>
   </div>
 </section>
 
-<nav class="report-tabs">
-  <a class="active-tab" href="#">Overview</a>
-  <a href="#">Issues</a>
-  <a href="#">Projects</a>
-  <a href="#">Tags</a>
-  <a href="#">Time</a>
-  <a href="#">Activity</a>
-</nav>
+<section class="report-card grafana-embed-card">
+  <div class="report-card-header">
+    <div>
+      <h2>Operational Dashboard</h2>
+      <p>
+        Live production metrics from SignalDesk, collected through Prometheus
+        and visualized with self-hosted Grafana.
+      </p>
+    </div>
+  </div>
 
-<section class="dashboard-stats">
+  <div class="grafana-frame-wrapper">
+  <iframe
+  src="https://p01--signaldesk-grafana--w2hqm5zlsbps.code.run/d/signaldesk-observability/signaldesk-observability?orgId=1&from=now-30d&to=now&timezone=browser&kiosk"
+  width="100%"
+  height="1500"
+  frameborder="0">
+</iframe>
+  </div>
+</section>
+
+<section class="dashboard-stats reports-summary-stats">
   <div class="dashboard-panel">
     <h3>Total Issues</h3>
     <p><%= @total_issues %></p>
@@ -52,49 +54,6 @@
   </div>
 </section>
 
-<section class="reports-visual-grid">
-  <section class="report-card large-report-card">
-    <div class="report-card-header">
-      <h2>Issues Over Time</h2>
-      <select>
-        <option>Daily</option>
-        <option>Weekly</option>
-      </select>
-    </div>
-
-    <div class="line-chart-placeholder">
-      <div class="chart-line chart-line-one"></div>
-      <div class="chart-line chart-line-two"></div>
-      <div class="chart-line chart-line-three"></div>
-
-      <div class="chart-axis">
-        <span>May 10</span>
-        <span>May 12</span>
-        <span>May 14</span>
-        <span>May 16</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="report-card">
-    <div class="report-card-header">
-      <h2>Issues by Status</h2>
-    </div>
-
-    <div class="status-donut-layout">
-      <div class="donut-chart">
-        <span><%= @total_issues %><br>Total</span>
-      </div>
-
-      <ul class="status-breakdown">
-        <li><span class="legend-dot resolved-dot"></span> Resolved <strong><%= @resolved_issues %></strong></li>
-        <li><span class="legend-dot active-dot"></span> Active <strong><%= @investigating_issues %></strong></li>
-        <li><span class="legend-dot pending-dot"></span> Pending <strong><%= @pending_issues %></strong></li>
-      </ul>
-    </div>
-  </section>
-</section>
-
 <section class="reports-bottom-grid">
   <section class="report-card">
     <h2>Issues by Project</h2>
@@ -107,8 +66,8 @@
 
         <div class="mini-table-row">
           <span><%= project.name %></span>
-          <span><%= total %></span>
-          <span><%= rate %>%</span>
+          <span><%= total %> issues</span>
+          <span><%= rate %>% resolved</span>
           <div class="mini-progress-track">
             <div class="mini-progress-fill" style="width: <%= rate %>%"></div>
           </div>
@@ -125,11 +84,11 @@
     <div class="mini-table">
       <% @top_tags.each do |tag| %>
         <% count = tag.issues.count %>
-        <% width = ((count.to_f / @max_tag_count) * 100).round %>
+        <% width = @max_tag_count.positive? ? ((count.to_f / @max_tag_count) * 100).round : 0 %>
 
         <div class="mini-table-row">
           <span><%= tag.name %></span>
-          <span><%= count %></span>
+          <span><%= count %> issues</span>
           <div class="mini-progress-track">
             <div class="mini-progress-fill" style="width: <%= width %>%"></div>
           </div>
@@ -138,21 +97,5 @@
     </div>
 
     <%= link_to "View all tags →", tags_path, class: "report-link" %>
-  </section>
-
-  <section class="report-card summary-card">
-    <h2>Summary</h2>
-
-    <div class="summary-list">
-      <p><span>Total Issues</span><strong><%= @total_issues %></strong></p>
-      <p><span>Resolved Issues</span><strong><%= @resolved_issues %></strong></p>
-      <p><span>Resolution Rate</span><strong><%= @resolution_rate %>%</strong></p>
-      <p><span>Projects</span><strong><%= @projects.count %></strong></p>
-      <p><span>Tags</span><strong><%= @tags.count %></strong></p>
-    </div>
-
-    <div class="info-box">
-      Data is updated from your current troubleshooting records.
-    </div>
   </section>
 </section>
