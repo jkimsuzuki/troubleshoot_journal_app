@@ -20,10 +20,14 @@ class ProjectsController < ApplicationController
       )
     end
 
-    @total_projects = Current.user.projects.count
-    @active_projects = Current.user.projects.where(status: "Active").count
-    @completed_projects = Current.user.projects.where(status: "Completed").count
+    project_status_counts = Current.user.projects.group(:status).count
+    @total_projects = project_status_counts.values.sum
+    @active_projects = project_status_counts["Active"].to_i
+    @completed_projects = project_status_counts["Completed"].to_i
     @total_project_issues = Current.user.issues.count
+
+    @issue_counts = Current.user.issues.group(:project_id).count
+    @resolved_issue_counts = Current.user.issues.where(status: "Resolved").group(:project_id).count
   end
 
   # GET /projects/1 or /projects/1.json

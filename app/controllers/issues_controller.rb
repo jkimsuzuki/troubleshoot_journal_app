@@ -28,9 +28,10 @@ class IssuesController < ApplicationController
       @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
     end
 
-    @total_issues = Current.user.issues.count
-    @resolved_issues = Current.user.issues.where(status: "Resolved").count
-    @investigating_issues = Current.user.issues.where(status: "Investigating").count
+    status_counts = Current.user.issues.group(:status).count
+    @total_issues = status_counts.values.sum
+    @resolved_issues = status_counts["Resolved"].to_i
+    @investigating_issues = status_counts["Investigating"].to_i
     @projects_count = Current.user.projects.count
   end
 

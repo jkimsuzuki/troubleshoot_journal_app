@@ -1,18 +1,16 @@
 class PagesController < ApplicationController
   def dashboard
-    @total_issues = Current.user.issues.count
-    @resolved_issues = Current.user.issues.where(status: "Resolved").count
-    @investigating_issues = Current.user.issues.where(status: "Investigating").count
-    @pending_issues = Current.user.issues.where(status: "Pending").count
+    status_counts = Current.user.issues.group(:status).count
+    @total_issues = status_counts.values.sum
+    @resolved_issues = status_counts["Resolved"].to_i
+    @investigating_issues = status_counts["Investigating"].to_i
+    @pending_issues = status_counts["Pending"].to_i
 
     @projects = Current.user.projects
     @tags = Tag.all
 
     @recent_issues = Current.user.issues.order(updated_at: :desc).limit(8)
-    @active_issues =
-      Current.user.issues.where(status: "Investigating").or(
-        Current.user.issues.where(status: "Pending")
-        )
+    @active_issues = Current.user.issues.where(status: [ "Investigating", "Pending" ])
 
     @critical_issues = Current.user.issues.where(severity: "Critical").count
   end
@@ -43,15 +41,17 @@ class PagesController < ApplicationController
   end
 
   def reports
-    @total_issues = Current.user.issues.count
-    @resolved_issues = Current.user.issues.where(status: "Resolved").count
-    @investigating_issues = Current.user.issues.where(status: "Investigating").count
-    @pending_issues = Current.user.issues.where(status: "Pending").count
+    status_counts = Current.user.issues.group(:status).count
+    @total_issues = status_counts.values.sum
+    @resolved_issues = status_counts["Resolved"].to_i
+    @investigating_issues = status_counts["Investigating"].to_i
+    @pending_issues = status_counts["Pending"].to_i
 
-    @low_severity = Current.user.issues.where(severity: "Low").count
-    @medium_severity = Current.user.issues.where(severity: "Medium").count
-    @high_severity = Current.user.issues.where(severity: "High").count
-    @critical_severity = Current.user.issues.where(severity: "Critical").count
+    severity_counts = Current.user.issues.group(:severity).count
+    @low_severity = severity_counts["Low"].to_i
+    @medium_severity = severity_counts["Medium"].to_i
+    @high_severity = severity_counts["High"].to_i
+    @critical_severity = severity_counts["Critical"].to_i
 
     @projects = Current.user.projects
     @tags = Tag.all
@@ -61,13 +61,9 @@ class PagesController < ApplicationController
 
     @projects_report = Current.user.projects
 
-    @top_tags =
-      Tag.all
-         .sort_by { |tag| -tag.issues.merge(Current.user.issues).count }
-         .first(6)
-
-    @max_tag_count =
-  [ @top_tags.map { |tag| tag.issues.merge(Current.user.issues).count }.max.to_i, 1 ].max
+    @tag_counts = Current.user.issues.joins(:tags).group("tags.id").count
+    @top_tags = Tag.all.sort_by { |tag| -@tag_counts.fetch(tag.id, 0) }.first(6)
+    @max_tag_count = [ @tag_counts.values.max.to_i, 1 ].max
   end
 
   def search

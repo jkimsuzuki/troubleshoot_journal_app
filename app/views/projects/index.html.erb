@@ -104,9 +104,11 @@
           <%= project.description.presence || "No description added." %>
         </div>
 
+        <% total_issues = @issue_counts.fetch(project.id, 0) %>
+
         <div>
           <span class="severity-pill">
-            <%= pluralize(project.issues.count, "issue") %>
+            <%= pluralize(total_issues, "issue") %>
           </span>
         </div>
 
@@ -117,8 +119,7 @@
         </div>
 
         <div>
-          <% total_issues = project.issues.count %>
-          <% resolved_issues = project.issues.where(status: "Resolved").count %>
+          <% resolved_issues = @resolved_issue_counts.fetch(project.id, 0) %>
           <% progress = total_issues.positive? ? ((resolved_issues.to_f / total_issues) * 100).round : 0 %>
 
          <div class="progress-cell">

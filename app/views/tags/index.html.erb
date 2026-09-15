@@ -84,13 +84,13 @@
 
         <div>
           <span class="severity-pill">
-            <%= pluralize(tag.issues.count, "issue") %>
+            <%= pluralize(@tag_issue_counts.fetch(tag.id, 0), "issue") %>
           </span>
         </div>
 
         <div>
           <span class="severity-pill">
-            <%= pluralize(tag.issues.includes(:project).map(&:project).compact.uniq.count, "project") %>
+            <%= pluralize(@tag_project_counts.fetch(tag.id, 0), "project") %>
           </span>
         </div>
 
