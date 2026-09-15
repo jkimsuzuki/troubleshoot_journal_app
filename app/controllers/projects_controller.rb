@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     @status = params[:status]
     @query = params[:query]
 
-    @projects = Project.all
+    @projects = Current.user.projects
 
     if @status.present?
       @projects = @projects.where(status: @status)
@@ -19,10 +19,10 @@ class ProjectsController < ApplicationController
       )
     end
 
-    @total_projects = Project.count
-    @active_projects = Project.where(status: "Active").count
-    @completed_projects = Project.where(status: "Completed").count
-    @total_project_issues = Issue.count
+    @total_projects = Current.user.projects.count
+    @active_projects = Current.user.projects.where(status: "Active").count
+    @completed_projects = Current.user.projects.where(status: "Completed").count
+    @total_project_issues = Current.user.issues.count
   end
 
   # GET /projects/1 or /projects/1.json
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = Current.user.projects.new
   end
 
   # GET /projects/1/edit
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Current.user.projects.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params.expect(:id))
+      @project = Current.user.projects.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.

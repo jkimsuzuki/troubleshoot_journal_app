@@ -83,7 +83,7 @@
 
     <div class="mini-table">
       <% @top_tags.each do |tag| %>
-        <% count = tag.issues.count %>
+        <% count = tag.issues.merge(Current.user.issues).count %>
         <% width = @max_tag_count.positive? ? ((count.to_f / @max_tag_count) * 100).round : 0 %>
 
         <div class="mini-table-row">

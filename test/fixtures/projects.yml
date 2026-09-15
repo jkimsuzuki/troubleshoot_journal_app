@@ -4,8 +4,10 @@ one:
   name: Mini Store (Rails)
   description: Ecommerce project
   status: Active
+  user: one
 
 two:
   name: Shopify Storefront
   description: Shopify Liquid Project
   status: Active
+  user: two

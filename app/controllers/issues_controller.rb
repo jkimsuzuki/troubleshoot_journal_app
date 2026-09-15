@@ -8,7 +8,7 @@ class IssuesController < ApplicationController
     @query = params[:query]
     @tag_id = params[:tag_id]
 
-    @issues = Issue.all
+    @issues = Current.user.issues
 
     if @status.present?
       @issues = @issues.where(status: @status)
@@ -27,10 +27,10 @@ class IssuesController < ApplicationController
       @issues = @issues.joins(:tags).where(tags: { id: @tag_id })
     end
 
-    @total_issues = Issue.count
-    @resolved_issues = Issue.where(status: "Resolved").count
-    @investigating_issues = Issue.where(status: "Investigating").count
-    @projects_count = Project.count
+    @total_issues = Current.user.issues.count
+    @resolved_issues = Current.user.issues.where(status: "Resolved").count
+    @investigating_issues = Current.user.issues.where(status: "Investigating").count
+    @projects_count = Current.user.projects.count
   end
 
   # GET /issues/1 or /issues/1.json
@@ -49,6 +49,7 @@ class IssuesController < ApplicationController
   # POST /issues or /issues.json
   def create
     @issue = Issue.new(issue_params)
+    authorize_project!(@issue.project_id)
 
     respond_to do |format|
       if @issue.save
@@ -63,6 +64,8 @@ class IssuesController < ApplicationController
 
   # PATCH/PUT /issues/1 or /issues/1.json
   def update
+    authorize_project!(issue_params[:project_id]) if issue_params[:project_id].present?
+
     respond_to do |format|
       if @issue.update(issue_params)
         format.html { redirect_to @issue, notice: "Issue was successfully updated.", status: :see_other }
@@ -87,7 +90,11 @@ class IssuesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
-      @issue = Issue.find(params.expect(:id))
+      @issue = Current.user.issues.find(params.expect(:id))
+    end
+
+    def authorize_project!(project_id)
+      raise ActiveRecord::RecordNotFound unless Current.user.projects.exists?(id: project_id)
     end
 
     # Only allow a list of trusted parameters through.

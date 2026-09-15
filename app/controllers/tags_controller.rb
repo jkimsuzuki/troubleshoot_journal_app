@@ -19,7 +19,7 @@ class TagsController < ApplicationController
 
     @total_tags = Tag.count
     @unused_tags = Tag.left_outer_joins(:issues).where(issues: { id: nil }).count
-    @total_tagged_issues = Issue.joins(:tags).distinct.count
+    @total_tagged_issues = Current.user.issues.joins(:tags).distinct.count
     @most_used_tag = Tag.left_joins(:issues).group(:id).order("COUNT(issues.id) DESC").first
   end
 

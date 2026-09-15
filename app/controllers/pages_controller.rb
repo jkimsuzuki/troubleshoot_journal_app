@@ -1,21 +1,20 @@
 class PagesController < ApplicationController
   def dashboard
-    @total_issues = Issue.count
-    @resolved_issues = Issue.where(status: "Resolved").count
-    @investigating_issues = Issue.where(status: "Investigating").count
-    @pending_issues = Issue.where(status: "Pending").count
+    @total_issues = Current.user.issues.count
+    @resolved_issues = Current.user.issues.where(status: "Resolved").count
+    @investigating_issues = Current.user.issues.where(status: "Investigating").count
+    @pending_issues = Current.user.issues.where(status: "Pending").count
 
-    @recent_issues = Issue.order(updated_at: :desc).limit(5)
-    @projects = Project.all
+    @projects = Current.user.projects
     @tags = Tag.all
 
-    @recent_issues = Issue.order(updated_at: :desc).limit(8)
+    @recent_issues = Current.user.issues.order(updated_at: :desc).limit(8)
     @active_issues =
-      Issue.where(status: "Investigating").or(
-        Issue.where(status: "Pending")
+      Current.user.issues.where(status: "Investigating").or(
+        Current.user.issues.where(status: "Pending")
         )
 
-    @critical_issues = Issue.where(severity: "Critical").count
+    @critical_issues = Current.user.issues.where(severity: "Critical").count
   end
 
   def timeline
@@ -23,7 +22,7 @@ class PagesController < ApplicationController
     @project_id = params[:project_id]
     @status = params[:status]
 
-    @recent_issues = Issue.includes(:project).order(updated_at: :desc)
+    @recent_issues = Current.user.issues.includes(:project).order(updated_at: :desc)
 
     if @query.present?
       @recent_issues = @recent_issues.where(
@@ -44,32 +43,31 @@ class PagesController < ApplicationController
   end
 
   def reports
-    @total_issues = Issue.count
-    @resolved_issues = Issue.where(status: "Resolved").count
-    @investigating_issues = Issue.where(status: "Investigating").count
-    @pending_issues = Issue.where(status: "Pending").count
+    @total_issues = Current.user.issues.count
+    @resolved_issues = Current.user.issues.where(status: "Resolved").count
+    @investigating_issues = Current.user.issues.where(status: "Investigating").count
+    @pending_issues = Current.user.issues.where(status: "Pending").count
 
-    @low_severity = Issue.where(severity: "Low").count
-    @medium_severity = Issue.where(severity: "Medium").count
-    @high_severity = Issue.where(severity: "High").count
-    @critical_severity = Issue.where(severity: "Critical").count
+    @low_severity = Current.user.issues.where(severity: "Low").count
+    @medium_severity = Current.user.issues.where(severity: "Medium").count
+    @high_severity = Current.user.issues.where(severity: "High").count
+    @critical_severity = Current.user.issues.where(severity: "Critical").count
 
-    @projects = Project.all
+    @projects = Current.user.projects
     @tags = Tag.all
 
     @resolution_rate =
   @total_issues.positive? ? ((@resolved_issues.to_f / @total_issues) * 100).round : 0
 
-    @projects_report = Project.all
+    @projects_report = Current.user.projects
 
     @top_tags =
-      Tag.left_joins(:issues)
-         .group(:id)
-         .order("COUNT(issues.id) DESC")
-         .limit(6)
+      Tag.all
+         .sort_by { |tag| -tag.issues.merge(Current.user.issues).count }
+         .first(6)
 
     @max_tag_count =
-  [ @top_tags.map { |tag| tag.issues.count }.max.to_i, 1 ].max
+  [ @top_tags.map { |tag| tag.issues.merge(Current.user.issues).count }.max.to_i, 1 ].max
   end
 
   def search
@@ -78,7 +76,7 @@ class PagesController < ApplicationController
     @project_id = params[:project_id]
     @tag_id = params[:tag_id]
 
-    @issues = Issue.includes(:project, :tags)
+    @issues = Current.user.issues.includes(:project, :tags)
 
     if @query.present?
       @issues = @issues.where(
@@ -86,7 +84,7 @@ class PagesController < ApplicationController
         query: "%#{@query}%"
       )
     else
-      @issues = Issue.none
+      @issues = Current.user.issues.none
     end
 
     if @status.present?
