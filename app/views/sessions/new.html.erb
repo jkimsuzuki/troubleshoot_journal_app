@@ -28,6 +28,8 @@
       <%= form.submit "Sign in", class: "auth-submit" %>
     <% end %>
 
+    <%= button_to "Try the demo", demo_session_path, class: "auth-submit auth-demo" %>
+
     <div class="auth-footer">
       <%= link_to "Forgot password?", new_password_path %>
     </div>

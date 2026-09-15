@@ -22,6 +22,13 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_nil cookies[:session_id]
   end
 
+  test "demo logs in as the demo user" do
+    post demo_session_path
+
+    assert_redirected_to root_path
+    assert cookies[:session_id]
+  end
+
   test "destroy" do
     sign_in_as(User.take)
 

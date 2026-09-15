@@ -11,3 +11,9 @@ two:
   description: Shopify Liquid Project
   status: Active
   user: two
+
+demo:
+  name: Sample E-commerce App
+  description: A demo project
+  status: Active
+  user: demo

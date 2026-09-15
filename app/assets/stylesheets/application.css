@@ -1524,6 +1524,19 @@ table.tags-table th {
   background-color: #030712;
 }
 
+.auth-demo {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.75rem;
+  background-color: transparent;
+  color: #111827;
+  border: 1px solid #dcdcdc;
+}
+
+.auth-demo:hover {
+  background-color: #f9fafb;
+}
+
 .auth-footer {
   margin-top: 1.25rem;
   text-align: center;

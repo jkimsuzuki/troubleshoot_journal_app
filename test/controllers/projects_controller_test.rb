@@ -47,4 +47,20 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to projects_url
   end
+
+  test "demo account cannot create, update, or destroy projects" do
+    sign_in_as users(:demo)
+    demo_project = projects(:demo)
+
+    assert_no_difference("Project.count") do
+      post projects_url, params: { project: { name: "New", description: "New", status: "Active" } }
+    end
+
+    patch project_url(demo_project), params: { project: { name: "Changed" } }
+    assert_not_equal "Changed", demo_project.reload.name
+
+    assert_no_difference("Project.count") do
+      delete project_url(demo_project)
+    end
+  end
 end

@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[show edit update destroy]
+  before_action :block_demo_writes, only: %i[create update destroy]
 
   def index
     @query = params[:query]

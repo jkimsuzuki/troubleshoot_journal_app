@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resource :session
+  resource :session do
+    post :demo, on: :collection
+  end
   resources :passwords, param: :token
   root "pages#dashboard"
 

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  allow_unauthenticated_access only: %i[ new create ]
-  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_path, alert: "Try again later." }
+  allow_unauthenticated_access only: %i[ new create demo ]
+  rate_limit to: 10, within: 3.minutes, only: %i[ create demo ], with: -> { redirect_to new_session_path, alert: "Try again later." }
 
   def new
   end
@@ -12,6 +12,11 @@ class SessionsController < ApplicationController
     else
       redirect_to new_session_path, alert: "Try another email address or password."
     end
+  end
+
+  def demo
+    start_new_session_for User.find_by!(email_address: User::DEMO_EMAIL)
+    redirect_to root_url, notice: "You're viewing a read-only demo account."
   end
 
   def destroy

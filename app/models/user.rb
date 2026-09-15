@@ -5,4 +5,10 @@ class User < ApplicationRecord
   has_many :issues, through: :projects
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  DEMO_EMAIL = "demo@signaldesk.foo"
+
+  def demo?
+    email_address == DEMO_EMAIL
+  end
 end

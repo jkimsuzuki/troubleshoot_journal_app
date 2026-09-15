@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
+  before_action :block_demo_writes, only: %i[ create update destroy ]
 
   # GET /issues or /issues.json
   def index
